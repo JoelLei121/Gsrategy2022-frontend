@@ -1,0 +1,121 @@
+fileFormatVersion: 2
+guid: 5f5a4a3ab0342ba409434de44f9e355a
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: sv98_base
+    100002: sv98_bmag
+    100004: sv98_bmag_end
+    100006: sv98_bullet
+    100008: //RootNode
+    100010: sv98_fire
+    100012: sv98_fire_end
+    100014: sv98_mag
+    100016: sv98_reload
+    100018: sv98_reload_end
+    100020: sv98_rig
+    100022: sv98_root
+    100024: sniper_rifle_base
+    100026: sniper_rifle_bullet
+    100028: sniper_rifle_mag
+    100030: sniper_rifle_rig
+    400000: sv98_base
+    400002: sv98_bmag
+    400004: sv98_bmag_end
+    400006: sv98_bullet
+    400008: //RootNode
+    400010: sv98_fire
+    400012: sv98_fire_end
+    400014: sv98_mag
+    400016: sv98_reload
+    400018: sv98_reload_end
+    400020: sv98_rig
+    400022: sv98_root
+    400024: sniper_rifle_base
+    400026: sniper_rifle_bullet
+    400028: sniper_rifle_mag
+    400030: sniper_rifle_rig
+    2100000: ColorPick
+    4300000: sv98_base
+    4300002: sv98_mag
+    4300004: sv98_bullet
+    4300006: sniper_rifle_base
+    4300008: sniper_rifle_mag
+    4300010: sniper_rifle_bullet
+    9500000: //RootNode
+    13700000: sv98_base
+    13700002: sv98_bullet
+    13700004: sv98_mag
+    13700006: sniper_rifle_base
+    13700008: sniper_rifle_bullet
+    13700010: sniper_rifle_mag
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

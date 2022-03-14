@@ -1,0 +1,119 @@
+fileFormatVersion: 2
+guid: 9cef85516f3dcd14f8af98b58220efcd
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: bullet
+    100002: fire
+    100004: fire_end
+    100006: //RootNode
+    100008: m16a1_base
+    100010: m16a1_rig
+    100012: mag
+    100014: mag_end
+    100016: reload
+    100018: reload_end
+    100020: root
+    100022: stanag30
+    100024: assault_rifle_base
+    100026: assault_rifle_rig
+    100028: Camera
+    100030: rifle_ammo_30
+    400000: bullet
+    400002: fire
+    400004: fire_end
+    400006: //RootNode
+    400008: m16a1_base
+    400010: m16a1_rig
+    400012: mag
+    400014: mag_end
+    400016: reload
+    400018: reload_end
+    400020: root
+    400022: stanag30
+    400024: assault_rifle_base
+    400026: assault_rifle_rig
+    400028: Camera
+    400030: rifle_ammo_30
+    2100000: ColorPick
+    4300000: m16a1_base
+    4300002: stanag30
+    4300004: bullet
+    4300006: assault_rifle_base
+    4300008: rifle_ammo_30
+    9500000: //RootNode
+    13700000: bullet
+    13700002: m16a1_base
+    13700004: stanag30
+    13700006: assault_rifle_base
+    13700008: rifle_ammo_30
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
