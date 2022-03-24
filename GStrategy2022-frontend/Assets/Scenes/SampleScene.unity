@@ -808,11 +808,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a79bef3c263281040bdeecc1bc21b192, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 6
-  height: 6
-  innerRadius: 1
-  outerRadius: 1
+  width: 20
+  length: 10
+  monster_num: 30
   hexPrefab: {fileID: 3069722108475870739, guid: f4532767a3fbe3f4d993bce980b91874, type: 3}
+  monsterPrefab: {fileID: 100040, guid: cb71e0b181fbc8c4a9a3e9f45f8448f3, type: 3}
 --- !u!4 &697583478
 Transform:
   m_ObjectHideFlags: 0
