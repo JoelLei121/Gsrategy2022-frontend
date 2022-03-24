@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HexGridMapLibrary", "HexGridMapLibrary.csproj", "{30E82A77-5C30-8B3D-C5EB-9AD25617C158}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{63932229-7F7D-FAF8-3163-90F7E34E5934}"
 EndProject
 Global
@@ -11,10 +9,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{30E82A77-5C30-8B3D-C5EB-9AD25617C158}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{30E82A77-5C30-8B3D-C5EB-9AD25617C158}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{30E82A77-5C30-8B3D-C5EB-9AD25617C158}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{30E82A77-5C30-8B3D-C5EB-9AD25617C158}.Release|Any CPU.Build.0 = Release|Any CPU
 		{63932229-7F7D-FAF8-3163-90F7E34E5934}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{63932229-7F7D-FAF8-3163-90F7E34E5934}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{63932229-7F7D-FAF8-3163-90F7E34E5934}.Release|Any CPU.ActiveCfg = Release|Any CPU

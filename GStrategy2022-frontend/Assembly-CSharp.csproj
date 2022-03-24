@@ -56,14 +56,8 @@
     <Analyzer Include="D:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Wunderwunsch\Examples\Scripts\GenericExample3.cs" />
-    <Compile Include="Assets\Wunderwunsch\Examples\Scripts\AlignedArraysExample1.cs" />
-    <Compile Include="Assets\Wunderwunsch\Examples\Scripts\GenericExample0.cs" />
+    <Compile Include="Assets\Scripts\HexGrid.cs" />
     <Compile Include="Assets\Scripts\Initialize.cs" />
-    <Compile Include="Assets\Scripts\Map.cs" />
-    <Compile Include="Assets\Wunderwunsch\Examples\Scripts\GenericExample4.cs" />
-    <Compile Include="Assets\Wunderwunsch\Examples\Scripts\GenericExample2.cs" />
-    <Compile Include="Assets\Wunderwunsch\Examples\Scripts\GenericExample1.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
@@ -80,7 +74,6 @@
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
-    <None Include="Assets\Wunderwunsch\Examples\NonScriptAssets\Shader\HexTile.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
@@ -695,10 +688,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="HexGridMapLibrary.csproj">
-      <Project>{30E82A77-5C30-8B3D-C5EB-9AD25617C158}</Project>
-      <Name>HexGridMapLibrary</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
