@@ -1,141 +1,153 @@
 using UnityEngine;
-using System;
 using System.Collections;
-
-public class HexGrid : MonoBehaviour
+enum Types { nor,bar,res };//0:normal 1:barrier 2:resource TODO:缩圈,更改资源
+public class MapUnit : MonoBehaviour 
 {
+    private int x = 0;
+    private int y = 0;
+    private int z = 0;
+    private GameObject cell;
+    private GameObject resource;
+    private int type = (int)Types.nor; 
+    private int resource_num = 0;
+    
+    public MapUnit()
+    {
 
-    public int width = 20;
-    public float length = 1;
-    public int monster_num = 0;
-    public int gift_num = 0;
-    public int obs_num = 0;
-    private int monster_index = 0;
-    private int gift_index = 0;
-    private int obs_index = 0;
+    }
+    public void init(int t_x,int t_z,float length, int t_type, GameObject hexPrefab,GameObject resPrefab, int t_res_num = 0)
+    {
+        x = t_x - t_z/2;
+        z = t_z;
+        y = -x - z;
+        type = t_type;
+        if (type == (int)Types.res)
+            resource_num = t_res_num;
+
+        //生成地图块
+        float innerRadius = 1.73205081f * length * 0.5f;
+        float outerRadius = length;
+        Vector3 position;
+        position.x = (t_x + (t_z % 2) * 0.5f) * (innerRadius * 2f);
+        position.y = 0f;
+        position.z = t_z * (outerRadius * 1.5f);
+
+        GameObject cell = Instantiate<GameObject>(hexPrefab);
+        cell.transform.SetParent(transform, false);
+        cell.transform.localPosition = position;
+
+
+        switch(type)
+        {
+            case 1://障碍
+                {
+                    Vector3 pos_obs = cell.transform.localPosition;
+                    pos_obs.y = 100f;
+                    cell.transform.localPosition = pos_obs;
+                    Vector3 scale_obs = cell.transform.localScale;
+                    scale_obs.y = 1000f;
+                    cell.transform.localScale = scale_obs;
+                    break;
+                }
+            case 2://资源 TODO：根据资源数修改模型
+                {
+                    Vector3 pos_res = Vector3.zero;
+                    pos_res.y = 1f;
+                    GameObject resource = Instantiate<GameObject>(resPrefab);
+                    resource.transform.SetParent(cell.transform, false);
+                    resource.transform.localPosition = pos_res;
+                    break;
+                }
+            default:
+                break;
+        }
+    }
+
+    public int[] GetHexCoor() //六边形坐标位置
+    {
+        int[] res = { x, y, z };  
+        return res;
+    }
+    
+    public Vector3 GetGloPos() //全局坐标
+    {
+        return transform.TransformPoint(cell.transform.position);
+    }
+    public Vector3 GetResPos() //相对坐标
+    {
+        return cell.transform.position;
+    }
+    public GameObject GetCell()//返回地图块
+    {
+        return cell;
+    }
+
+    /*public GameObject GetMonster()
+    {
+        return monster;
+    }*/
+
+    public GameObject GetRes()//返回资源
+    {
+        return resource;
+    }
+}
+
+public class HexGrid : MonoBehaviour //TODO:与后端文件联动
+{
+    public int width = 10;//边长
+    private int w = 20;
+    public float length = 1;//一块的边长
 
     public GameObject hexPrefab;
-    public GameObject monsterPrefab;
-    public GameObject giftPrefab;
+    //public GameObject monsterPrefab;
+    public GameObject resPrefab;
 
-    GameObject[] cells;
-    GameObject[] monsters;
-    GameObject[] gifts;
-    GameObject[] obss;
-    bool[] has_item;
+    ArrayList units = new ArrayList();
 
     void Awake()
     {
-        if(width%2==1)
+        if (width % 2 == 1)
         {
             width++;
         }
         if (width <= 2)
             return;
+        w = 2 * width;
 
-        cells = new GameObject[width * width];
-        monsters = new GameObject[monster_num];
-        gifts = new GameObject[gift_num];
-        obss = new GameObject[obs_num];
 
-        int unit_num = 0;
-        for (int z = 0; z < width - 1; z++)
+        for (int i = 0; i < w; i++)
         {
-            int width_tmp = Mathf.Abs((width - 2) / 2 - z);
-            int tmp_s = (width_tmp + 1) / 2;
-            int tmp_e = width - 2 - width_tmp  / 2;
-            for (int x = tmp_s; x <= tmp_e; x++)
+            for (int j = 0; j < w; j++)
             {
-                CreateCell(x, z, unit_num++);
+                units.Add(gameObject.AddComponent<MapUnit>());
             }
         }
 
-        has_item = new bool[unit_num];
-        Array.Clear(has_item, 0, unit_num);
-
-        CreateCentre(unit_num);
-        CreateMonster(unit_num);
-        CreateGift(unit_num);
-        CreateObstacle(unit_num);
-    }
-
-    void CreateCell(int x, int z, int i)
-    {
-        float innerRadius = 1.73205081f * length * 0.5f;
-        float outerRadius = length;
-        Vector3 position;
-        position.x = (x +(z % 2)*0.5f) *(innerRadius * 2f);
-        position.y = 0f;
-        position.z = z * (outerRadius * 1.5f);
-
-        GameObject cell = cells[i] = Instantiate<GameObject>(hexPrefab);
-        cell.transform.SetParent(transform, false);
-        cell.transform.localPosition = position;
-
-        
-    }
-
-    void CreateCentre(int unit_num)
-    {
-        GameObject cell = Instantiate<GameObject>(hexPrefab);
-        Vector3 position = Vector3.zero;
-        position.y = 5f;
-        cell.transform.SetParent(cells[unit_num/2].transform);
-        cell.transform.localPosition = position;
-    }
-
-    //随机生成的
-    void CreateMonster(int unit_num)
-    {
-        while (monster_index < monster_num)
+        for (int z = 0; z < w - 1; z++)
         {
-            int unit_index = 0;
-            do
+            int width_tmp = Mathf.Abs((w - 2) / 2 - z);
+            int tmp_s = (width_tmp + 1) / 2;
+            int tmp_e = w - 2 - width_tmp  / 2;
+            for (int x = tmp_s; x <= tmp_e; x++)
             {
-                unit_index = UnityEngine.Random.Range(0,unit_num-1); 
-            } while (has_item[unit_index]);
-            GameObject monster = monsters[monster_index++] = Instantiate<GameObject>(monsterPrefab);
-            Vector3 pos_monster = Vector3.zero;
-            pos_monster.y = 0.1f;
-            monster.transform.SetParent(cells[unit_index].transform, false);
-            monster.transform.localPosition = pos_monster;
+                ((MapUnit)units[x + w * z]).init(x, z, length, (int)Types.nor, hexPrefab, resPrefab);
+            }
         }
     }
 
-    void CreateGift(int unit_num)
+    public int[] hexToNormal(int h_x, int h_z)
     {
-        while (gift_index < gift_num)
-        {
-            int unit_index = 0;
-            do
-            {
-                unit_index = UnityEngine.Random.Range(0, unit_num - 1);
-            } while (has_item[unit_index]);
-            GameObject gift = gifts[gift_index++] = Instantiate<GameObject>(giftPrefab);
-            Vector3 pos_gift = Vector3.zero;
-            pos_gift.y = 1f;
-            gift.transform.SetParent(cells[unit_index].transform, false);
-            gift.transform.localPosition = pos_gift;
-        }
+        int[] normal = { h_x + h_z / 2, h_z };
+        return normal;
     }
 
-    void CreateObstacle(int unit_num)
+    public MapUnit GetMapUnit(int h_x, int h_z)
     {
-        while (obs_index < obs_num)
-        {
-            int unit_index = 0;
-            do
-            {
-                unit_index = UnityEngine.Random.Range(width-1, unit_num - width);
-            } while (has_item[unit_index]);
-            GameObject obs = obss[obs_index++] = Instantiate<GameObject>(hexPrefab);
-            Vector3 pos_obs = Vector3.zero;
-            Vector3 scale_obs = Vector3.one;
-            scale_obs.y = 100f;
-            pos_obs.y = 10f;
-            obs.transform.SetParent(cells[unit_index].transform, false);
-            obs.transform.localPosition = pos_obs;
-            obs.transform.localScale = scale_obs;
-        }
+        int[] n = hexToNormal(h_x, h_z);
+        int n_x = n[0];
+        int n_z = n[1];
+        return (MapUnit)units[n_z * w + n_x];
     }
+    
 }

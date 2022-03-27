@@ -810,12 +810,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   width: 20
   length: 10
-  monster_num: 30
-  gift_num: 30
-  obs_num: 10
   hexPrefab: {fileID: 3069722108475870739, guid: f4532767a3fbe3f4d993bce980b91874, type: 3}
-  monsterPrefab: {fileID: 100040, guid: cb71e0b181fbc8c4a9a3e9f45f8448f3, type: 3}
-  giftPrefab: {fileID: 100000, guid: 09bb590bef79d144e9f53d800a83bcfe, type: 3}
+  resPrefab: {fileID: 100006, guid: 9cef85516f3dcd14f8af98b58220efcd, type: 3}
 --- !u!4 &697583478
 Transform:
   m_ObjectHideFlags: 0
