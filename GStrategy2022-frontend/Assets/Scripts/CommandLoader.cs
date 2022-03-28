@@ -1,121 +1,88 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
-using System.Linq;
+using System;
+
+[Serializable]
+enum GameEvent
+{
+    MOVE,ATTACK,GATHER,DIED,ERROR
+}
+
+[Serializable]
+class GameState
+{
+    public int Round = 0;
+    public GameEvent CurrentEvent = GameEvent.MOVE;
+    public int ActivePlayerId = 0;
+    public int[] VictimId = { 0};
+    public int[] ActivePos = { 0, 0, 0 };
+    public int? WinnerId = null;
+    public float? exp = null;
+
+}
 
 public class CommandLoader : MonoBehaviour
 {
     private int index;
-    private string[] Commands;
-    private string runningCommand;
-    public string path = "Assets/Resources/test.txt";
+    public string path = "Assets/Resources/Play.json";
     public GameController gameController;
     public PlayerAction playerAction;
+    private GameState[] gameStates;
+    private GameState runningState;
     void Start()
     {
         index = 0;
     }
     public void GetCommandFromDocument()
     {
-        Commands = File.ReadAllLines(path);
-        if(Commands != null) Debug.Log("Read successful.");
+        String gameStateJson = File.ReadAllText(path);
+        gameStates = JsonUtility.FromJson<GameState[]>(gameStateJson);
+        if(gameStates != null) Debug.Log("Read successful.");
     }
     void NextCommand()
     {
         // start from 0
-        runningCommand = Commands[index];
+        runningState = gameStates[index];
         index++;
     }
 
     public void LoadCommand()
     {
         NextCommand();
-        char[] seperator = { '-' };
-        string[] s = runningCommand.Split(seperator);
-        string token = s[0];
-        // no checking
-        if (token == "game")
-        {
-            DoGameRunning(s.Skip<string>(1).ToArray<string>());
-        }
-        else if (token == "player")
-        {
-            int x = int.Parse(s[1]);
-            DoAction(gameController.players[x - 1], s.Skip<string>(2).ToArray<string>());
-        }
-        else
-        {
-            Debug.Log("missing command type: " + token);
-        }
-        return;
-    }
+        PlayerStatus target = gameController.players[runningState.ActivePlayerId];
+        int[] pos = runningState.ActivePos;
 
-    void DoAction(PlayerStatus player, string[] _action)
-    {
-        string token = _action[0];
-        if (token == "move")
+        switch (runningState.CurrentEvent)
         {
-            int x = int.Parse(_action[1]), y = int.Parse(_action[2]), z = int.Parse(_action[3]);
-            playerAction.MoveTo(player, x, y, z);
-            // move to
-        }
-        else if (token == "attack")
-        {
-            string[] s = _action.Skip<string>(1).ToArray<string>();
-            List<PlayerStatus> enemys = new List<PlayerStatus>();
-            foreach(string x in s)
-            {
-                enemys.Add(gameController.players[int.Parse(x)-1]);
-            }
-            playerAction.Attack(player, enemys.ToArray());
-            // attack
-        }
-        else if (token == "gather")
-        {
-            playerAction.Gather(player, float.Parse(_action[1]));
-            // gathering
-        }
-        else if(token == "died")
-        {
-            playerAction.Died(player);
-        }
-        else if (token == "ERROR")
-        {
-            playerAction.DoNothing(player);
-            // do nothing
-        }
-        else
-        {
-            Debug.Log("missing action: " + token);
-        }
-        return;
-    }
+            case GameEvent.MOVE:
+                
+                playerAction.MoveTo(target, pos[0], pos[1], pos[2]); 
+                break;
 
-    void DoGameRunning(string[] _command)
-    {
-        if(_command[0] == "start")
-        {
-            Debug.Log("Game started!");
-            // run game
+            case GameEvent.ATTACK:
+                PlayerStatus[] victim = gameController.players[runningState.VictimId];
+                playerAction.Attack(target, victim);
+                break;
+            case GameEvent.GATHER:
+                playerAction.Gather(target, (float)runningState.exp);
+                break;
+            case GameEvent.ERROR:
+                playerAction.DoNothing(target);
+                break;
+            case GameEvent.DIED:
+                playerAction.Died(target);
+                break;
         }
-        else if(_command[0] == "init")
-        {
-            string[] s = _command.Skip<string>(1).ToArray<string>();
-            for(int i = 0; i < 4; i++)
-            {
-                gameController.players[i].teamName = s[i];
-                gameController.players[i].ordering = i;
-            }
-        }
-        else if(_command[0] == "end")
+        
+        if(runningState.WinnerId != null)
         {
             gameController.commandIsDone = true;
             Debug.Log("Game is Finish!");
-            PlayerStatus winner = gameController.players[int.Parse(_command[1])-1];
+            PlayerStatus winner = gameController.players[(int)runningState.WinnerId];
             Debug.Log("Player " + winner.ordering + ": " + winner.teamName + " is the winner!");
             // end game
         }
+        return;
     }
 
 }

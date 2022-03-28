@@ -1,0 +1,24 @@
+[
+  {
+    "Round": 1,
+    "CurrentEvent": "Move",
+    "ActivePlayerId": 0,
+    "VictimId": [ 1, 2, 3 ],
+    "ActivePos": [ 0, 0, 0 ],
+    "WinnerId": null,
+    "exp": null,
+    "MapSize": [ 10, 10, 10 ]
+
+  },
+  {
+    "Round": 2,
+    "CurrentEvent": "Attack",
+    "ActivePlayerId": 0,
+    "VictimId": [ 1, 2, 3 ],
+    "ActivePos": [1,2,1],
+    "WinnerId": 2,
+    "exp": null,
+    "MapSize": [ 10, 10, 10 ]
+
+  }
+]

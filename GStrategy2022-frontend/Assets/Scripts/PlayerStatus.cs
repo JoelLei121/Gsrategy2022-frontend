@@ -1,6 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
+using System;
+
+[Serializable]
+public class Player
+{
+    public int id;
+    public string name;
+    public int[] pos;           //位置
+    public int attack_range;   //攻击范围
+    public int sight_range; //视野范围
+    public int move_range; //移动范围
+    public int mine_speed; //采集速度
+    public int at; //攻击力
+    public int hp; //血量
+}
+
 
 public class PlayerStatus : MonoBehaviour
 {
@@ -16,6 +31,14 @@ public class PlayerStatus : MonoBehaviour
     public float gatheringSkill;
     public int ordering;
     public bool OnProtection;
+
+    public PlayerStatus(Player p)
+    {
+        exp = 0;
+        hp = p.hp;
+        atk = p.at;
+        visibility = 1;  
+    }
 
     void Start()
     {
