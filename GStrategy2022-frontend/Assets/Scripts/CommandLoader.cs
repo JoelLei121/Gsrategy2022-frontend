@@ -3,6 +3,7 @@ using System.IO;
 using System;
 using System.Collections.Generic;
 
+
 [Serializable]
 enum GameEvent
 {
@@ -54,7 +55,7 @@ public class CommandLoader : MonoBehaviour
     {
 
     }
-    public async void LoadCommand()
+    public void LoadCommand()
     {
         NextCommand();
         // PlayerStatus target = gameController.GetPlayerStatus(runningState.ActivePlayerId);
@@ -70,7 +71,6 @@ public class CommandLoader : MonoBehaviour
 
             case GameEvent.ATTACK:
                 GameObject[] victim = new GameObject[runningState.VictimId.Length];
-                //gameController.players[runningState.VictimId];
                 for(int i = 0; i < runningState.VictimId.Length; i++)
                 {
                     victim[i] = gameController.players[runningState.VictimId[i]];

@@ -26,6 +26,12 @@ public class Initialize : MonoBehaviour
 
     void Awake()
     {
+
+    }
+
+    public void Run()
+    {
+        Debug.Log("waiting for init");
         String initialJson = File.ReadAllText(path);
         InitialState state = JsonUtility.FromJson<InitialState>(initialJson);
         //Initialize Map
@@ -50,11 +56,5 @@ public class Initialize : MonoBehaviour
         // }
         Debug.Log("Players are ready.");
         gameController.isInstantiated = true;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 }

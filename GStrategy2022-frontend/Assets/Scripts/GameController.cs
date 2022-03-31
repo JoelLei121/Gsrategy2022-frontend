@@ -16,29 +16,19 @@ public class GameController : MonoBehaviour
     public int mapSize = 20;
     public GameObject playerPrefab;
     public HexGrid map;
+    public Initialize initialize;
 
     public bool isInstantiated = false;
 
     void Start()
     {
+        initialize.Run();
+        map.init();
         // After initialize done
         // commandLoader.GetCommandFromDocument();
-        commandIsDone = false;
-        int cnt = 0;
-        while(!isInstantiated && cnt < 1000)
-        {
-            Debug.Log("waiting for init");
-            cnt++;
-        }
-        if(cnt < 1000)
-        {
-            Debug.Log("Data is read, game start");
-            GameStart();
-        }
-        else
-        {
-            Debug.Log("ERROR");
-        }
+        commandIsDone = false; 
+        Debug.Log("Data is read, game start");
+        GameStart();
     }
 
     // Update is called once per frame
@@ -47,18 +37,17 @@ public class GameController : MonoBehaviour
         //unnecessary
     }
 
-    async void GameStart()
+    void GameStart()
     {
         int i = 0;
         foreach(GameObject p in players)
         {
-            // p.transform.position = map.GetMapUnit(i,0).GetGloPos();
-            p.transform.Translate(0, 0, i);
-            i+=10;
+            p.transform.position = map.GetUnitTransform(i, i);
+            i++;
         }
         Debug.Log("Players are placed");
-        while(!commandIsDone)
-            commandLoader.LoadCommand();
+        // while(!commandIsDone)
+        //     commandLoader.LoadCommand();
     }
 
     public PlayerStatus GetPlayerStatus(int id)

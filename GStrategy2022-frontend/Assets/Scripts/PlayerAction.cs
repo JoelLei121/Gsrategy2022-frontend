@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Threading.Tasks;
 
 public class PlayerAction : MonoBehaviour
 {
@@ -11,11 +12,15 @@ public class PlayerAction : MonoBehaviour
     }
 
     // MoveTo(x, y, z)
-    public void MoveTo(GameObject player, int x, int y, int z)
+    public async void MoveTo(GameObject player, int x, int y, int z)
     {
         //go to specify point
         //play moving animation
         PlayerStatus status = player.GetComponent<PlayerStatus>();
+        await Task.Run(()=>{
+            // moving
+            // animation
+        });
         Debug.Log("Player " + status.id + ": moving to (" + x + ", " + y + ", " + z + ")");
     }
 
