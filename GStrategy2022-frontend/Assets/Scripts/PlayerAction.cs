@@ -11,63 +11,73 @@ public class PlayerAction : MonoBehaviour
     }
 
     // MoveTo(x, y, z)
-    public void MoveTo(PlayerStatus player, int x, int y, int z)
+    public void MoveTo(GameObject player, int x, int y, int z)
     {
         //go to specify point
         //play moving animation
-        Debug.Log("Player " + player.ordering + ": moving to (" + x + ", " + y + ", " + z + ")");
+        PlayerStatus status = player.GetComponent<PlayerStatus>();
+        Debug.Log("Player " + status.id + ": moving to (" + x + ", " + y + ", " + z + ")");
     }
 
     // Attack(Vector3 direction)
-    public void Attack(PlayerStatus player, PlayerStatus[] list)
+    public void Attack(GameObject player, GameObject[] victims)
     {
         //attack all the target could attack 
-        Debug.Log("Player " + player.ordering + " is going crazy!");
-        foreach (PlayerStatus target in list)
+        PlayerStatus status = player.GetComponent<PlayerStatus>();
+        Debug.Log("Player " + status.id + " is going crazy!");
+        foreach (GameObject target in victims)
         {
             AttackTo(player, target);
         }
     }
-    public void AttackTo(PlayerStatus player, PlayerStatus target)
+    public void AttackTo(GameObject player, GameObject target)
     {
         //move to front of target
         //MoveTo(0, 0, 0);
         //play attack animation
-        Debug.Log("Player " + player.ordering + " attack to Player " + target.ordering);
-        Damaged(target, player.atk);
+        PlayerStatus playerStatus = player.GetComponent<PlayerStatus>();
+        PlayerStatus targetStatus = target.GetComponent<PlayerStatus>();
+
+        Debug.Log("Player " + playerStatus.id + " attack to Player " + targetStatus.id);
+        Damaged(target, playerStatus.atk);
         //go back
         //MoveTo(0, 0, 0);
     }
 
     // Damaged(Vector3 direction)
-    public void Damaged(PlayerStatus player, int atk)
+    public void Damaged(GameObject player, int atk)
     {
-        player.hp -= atk;
+        PlayerStatus status = player.GetComponent<PlayerStatus>();
+        status.hp -= atk;
         //play damaged animation
-        Debug.Log("Player " + player.ordering + " is damaged. HP left: " + player.hp);
+        Debug.Log("Player " + status.id + " is damaged. HP left: " + status.hp);
     }
 
     // Died()
-    public void Died(PlayerStatus player)
+    public void Died(GameObject player)
     {
-        Debug.Log("Player " + player.ordering + " is killed.");
+        PlayerStatus status = player.GetComponent<PlayerStatus>();
+        Debug.Log("Player " + status.id + " is killed.");
         // Destroy player's gameobject
     }
 
     // Grab(Vector3 setPoint)
-    public void Gather(PlayerStatus player, float exp)
+    public void Gather(GameObject player, float exp)
     {
-        Debug.Log("Player " + player.ordering + " is gathering. exp + " + exp);
+        PlayerStatus status = player.GetComponent<PlayerStatus>();
+        Debug.Log("Player " + status.id + " is gathering. exp + " + exp);
         // play gathering animation
     }
 
-    public void Upgrade(PlayerStatus player)
+    public void LevelUp(GameObject player)
     {
-        Debug.Log("Player " + player.ordering + "upgrade level!");
+        PlayerStatus status = player.GetComponent<PlayerStatus>();
+        Debug.Log("Player " + status.id + "upgrade level!");
     }
-    public void DoNothing(PlayerStatus player)
+    public void DoNothing(GameObject player)
     {
-        Debug.Log("Player " + player.ordering + " are hesitating");
+        PlayerStatus status = player.GetComponent<PlayerStatus>();
+        Debug.Log("Player " + status.id + " are hesitating");
     }
 
 }

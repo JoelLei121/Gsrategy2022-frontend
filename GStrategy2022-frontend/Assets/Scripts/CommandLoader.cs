@@ -1,11 +1,12 @@
 using UnityEngine;
 using System.IO;
 using System;
+using System.Collections.Generic;
 
 [Serializable]
 enum GameEvent
 {
-    MOVE,ATTACK,GATHER,DIED,ERROR
+    MOVE, ATTACK, GATHER, DIED, ERROR
 }
 
 [Serializable]
@@ -14,10 +15,12 @@ class GameState
     public int Round = 0;
     public GameEvent CurrentEvent = GameEvent.MOVE;
     public int ActivePlayerId = 0;
-    public int[] VictimId = { 0};
+    public int[] VictimId = { 0 };
     public int[] ActivePos = { 0, 0, 0 };
     public int? WinnerId = null;
     public float? exp = null;
+
+    public int[] MapSize = { 10, 10, 10 };
 
 }
 
@@ -37,7 +40,8 @@ public class CommandLoader : MonoBehaviour
     {
         String gameStateJson = File.ReadAllText(path);
         gameStates = JsonUtility.FromJson<GameState[]>(gameStateJson);
-        if(gameStates != null) Debug.Log("Read successful.");
+        if (gameStates != null) 
+            Debug.Log("Game process read successfully.");
     }
     void NextCommand()
     {
@@ -46,21 +50,31 @@ public class CommandLoader : MonoBehaviour
         index++;
     }
 
-    public void LoadCommand()
+    public void testCommand()
+    {
+
+    }
+    public async void LoadCommand()
     {
         NextCommand();
-        PlayerStatus target = gameController.players[runningState.ActivePlayerId];
+        // PlayerStatus target = gameController.GetPlayerStatus(runningState.ActivePlayerId);
+        GameObject target = gameController.players[runningState.ActivePlayerId];
         int[] pos = runningState.ActivePos;
 
         switch (runningState.CurrentEvent)
         {
             case GameEvent.MOVE:
-                
-                playerAction.MoveTo(target, pos[0], pos[1], pos[2]); 
+
+                playerAction.MoveTo(target, pos[0], pos[1], pos[2]);
                 break;
 
             case GameEvent.ATTACK:
-                PlayerStatus[] victim = gameController.players[runningState.VictimId];
+                GameObject[] victim = new GameObject[runningState.VictimId.Length];
+                //gameController.players[runningState.VictimId];
+                for(int i = 0; i < runningState.VictimId.Length; i++)
+                {
+                    victim[i] = gameController.players[runningState.VictimId[i]];
+                }
                 playerAction.Attack(target, victim);
                 break;
             case GameEvent.GATHER:
@@ -73,12 +87,12 @@ public class CommandLoader : MonoBehaviour
                 playerAction.Died(target);
                 break;
         }
-        
-        if(runningState.WinnerId != null)
+
+        if (runningState.WinnerId != null)
         {
             gameController.commandIsDone = true;
             Debug.Log("Game is Finish!");
-            PlayerStatus winner = gameController.players[(int)runningState.WinnerId];
+            PlayerStatus winner = gameController.GetPlayerStatus((int)runningState.WinnerId);
             Debug.Log("Player " + winner.ordering + ": " + winner.teamName + " is the winner!");
             // end game
         }

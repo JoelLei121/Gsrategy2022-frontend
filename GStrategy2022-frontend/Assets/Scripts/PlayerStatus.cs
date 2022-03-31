@@ -3,7 +3,7 @@ using System.IO;
 using System;
 
 [Serializable]
-public class Player
+public class PlayerInitialize
 {
     public int id;
     public string name;
@@ -21,6 +21,7 @@ public class PlayerStatus : MonoBehaviour
 {
     // Start is called before the first frame update
     public string teamName;
+    public int id;
     public float exp;
     public float hp;
     public int atk;
@@ -32,8 +33,9 @@ public class PlayerStatus : MonoBehaviour
     public int ordering;
     public bool OnProtection;
 
-    public PlayerStatus(Player p)
+    public void init(PlayerInitialize p)
     {
+        id = p.id;
         exp = 0;
         hp = p.hp;
         atk = p.at;
