@@ -25,7 +25,7 @@ public class GameController : MonoBehaviour
         initialize.Run();
         map.init();
         // After initialize done
-        // commandLoader.GetCommandFromDocument();
+        commandLoader.GetCommandFromDocument();
         commandIsDone = false; 
         Debug.Log("Data is read, game start");
         GameStart();

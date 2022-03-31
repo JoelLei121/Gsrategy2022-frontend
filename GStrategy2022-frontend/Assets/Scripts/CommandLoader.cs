@@ -25,13 +25,18 @@ class GameState
 
 }
 
+public class Response<T>
+{
+    public List<T> list;
+}
+
+
 public class CommandLoader : MonoBehaviour
 {
     private int index;
-    public string path = "Assets/Resources/Play.json";
     public GameController gameController;
     public PlayerAction playerAction;
-    private GameState[] gameStates;
+    private List<GameState> gameStates;
     private GameState runningState;
     void Start()
     {
@@ -39,9 +44,11 @@ public class CommandLoader : MonoBehaviour
     }
     public void GetCommandFromDocument()
     {
-        String gameStateJson = File.ReadAllText(path);
-        gameStates = JsonUtility.FromJson<GameState[]>(gameStateJson);
-        if (gameStates != null) 
+        String gameStateJson = File.ReadAllText("Assets/Resources/Play.json");
+        Response<GameState> response = JsonUtility.FromJson<Response<GameState>>(gameStateJson);
+        gameStates = response.list;
+
+        if (gameStates != null)
             Debug.Log("Game process read successfully.");
     }
     void NextCommand()
@@ -71,7 +78,7 @@ public class CommandLoader : MonoBehaviour
 
             case GameEvent.ATTACK:
                 GameObject[] victim = new GameObject[runningState.VictimId.Length];
-                for(int i = 0; i < runningState.VictimId.Length; i++)
+                for (int i = 0; i < runningState.VictimId.Length; i++)
                 {
                     victim[i] = gameController.players[runningState.VictimId[i]];
                 }

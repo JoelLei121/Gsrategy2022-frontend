@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.IO;
 using System;
+using System.Collections.Generic;
 
 [Serializable]
 class Map
@@ -56,5 +57,9 @@ public class Initialize : MonoBehaviour
         // }
         Debug.Log("Players are ready.");
         gameController.isInstantiated = true;
+        Response<GameState> tmp = new Response<GameState>();
+        tmp.list = new List<GameState>();
+        tmp.list.Add(new GameState());
+        Debug.Log(JsonUtility.ToJson(tmp));
     }
 }
