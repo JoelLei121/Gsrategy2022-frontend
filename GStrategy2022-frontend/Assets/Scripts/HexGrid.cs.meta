@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: a79bef3c263281040bdeecc1bc21b192
+=======
+guid: 1bee3c8078a54c147a96a98b6dc908dd
+>>>>>>> origin/GameMaster&PlayerAction
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

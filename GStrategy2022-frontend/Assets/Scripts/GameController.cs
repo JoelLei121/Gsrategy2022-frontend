@@ -8,16 +8,26 @@ public class GameController : MonoBehaviour
     public CommandLoader commandLoader;
     public bool commandIsDone;
 
-    public PlayerStatus[] players;
-    public int playerNum = 4;
+    // public PlayerStatus[] players;
+    public GameObject[] players;
+    public int playerNum;
 
     //public Map map; // waiting for map data development
     public int mapSize = 20;
+    public GameObject playerPrefab;
+    public HexGrid map;
+    public Initialize initialize;
+
+    public bool isInstantiated = false;
 
     void Start()
     {
+        initialize.Run();
+        map.init();
+        // After initialize done
         commandLoader.GetCommandFromDocument();
-        commandIsDone = false;
+        commandIsDone = false; 
+        Debug.Log("Data is read, game start");
         GameStart();
     }
 
@@ -29,8 +39,21 @@ public class GameController : MonoBehaviour
 
     void GameStart()
     {
-        while(!commandIsDone)
-            commandLoader.LoadCommand();
+        foreach(GameObject p in players)
+        {
+            PlayerStatus pStatus = p.GetComponent<PlayerStatus>();
+            int x = pStatus.pos[0];
+            int z = pStatus.pos[2];
+            p.transform.position = map.GetUnitPosition(x, z);
+        }
+        Debug.Log("Players are placed");
+        StartCoroutine(commandLoader.LoadCommand());
+        // if isDone, stop coroutines
+    }
+
+    public PlayerStatus GetPlayerStatus(int id)
+    {
+        return players[id].GetComponent<PlayerStatus>();
     }
 
 
