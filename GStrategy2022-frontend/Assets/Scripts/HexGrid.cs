@@ -11,11 +11,10 @@ public class HexGrid : MonoBehaviour //TODO:与后端文件联动
     //public GameObject monsterPrefab;
     public GameObject resPrefab;
 
-    public GameObject[] units;
+    GameObject[] units;
 
     void Awake()
     {
-
     }
 
     public void init()
@@ -47,17 +46,18 @@ public class HexGrid : MonoBehaviour //TODO:与后端文件联动
             int tmp_e = w - 2 - width_tmp  / 2;
             for (int x = tmp_s; x <= tmp_e; x++)
             {
-                GameObject tmp_hex = createHex(x, z, length);
-                units[z * w + x] = tmp_hex;
+                GameObject tmp_hex = units[z * w + x] = createHex(x, z, length);
                 tmp_hex.AddComponent<MapUnit>();
-                tmp_hex.GetComponent<MapUnit>().init(x, z, (int)Types.nor, tmp_hex, resPrefab);
+                tmp_hex.GetComponent<MapUnit>().init(x, z,w, (int)Types.nor, tmp_hex, resPrefab);
             }
         }
     }
 
     public int[] hexToNormal(int h_x, int h_z)
     {
-        int[] normal = { h_x + h_z / 2, h_z };
+        int t_z = h_z + (2 * width - 1) / 2;
+        int t_x = h_x + width / 2 + t_z / 2;
+        int[] normal = { t_x, t_z };
         return normal;
     }
 
@@ -75,16 +75,12 @@ public class HexGrid : MonoBehaviour //TODO:与后端文件联动
         int n_x = n[0];
         int n_z = n[1];
         GameObject unit = units[n_z * w + n_x];
-        if(unit == null) Debug.Log("ERROR");
+        if (unit == null) Debug.Log("ERROR");
         Vector3 point = new Vector3(unit.transform.position.x, 0, unit.transform.position.z);
         return point;
     }
-
     public GameObject createHex(int t_x, int t_z, float length)
     {
-        int x = t_x - t_z / 2;
-        int z = t_z;
-
         //生成地图块
         float innerRadius = 1.73205081f * length * 0.5f;
         float outerRadius = length;

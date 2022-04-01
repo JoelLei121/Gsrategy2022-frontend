@@ -17,10 +17,10 @@ public class MapUnit : MonoBehaviour
     {
 
     }
-    public void init(int t_x, int t_z, int t_type, GameObject hexParent, GameObject resPrefab, int t_res_num = 0)
+    public void init(int t_x,int t_z,int width, int t_type, GameObject hexParent, GameObject resPrefab, int t_res_num = 0)
     {
-        x = t_x - t_z / 2;
-        z = t_z;
+        z = t_z - (width - 1) / 2;
+        x = t_x - t_z / 2 - width  / 4;
         y = -x - z;
         type = t_type;
         if (type == (int)Types.res)
