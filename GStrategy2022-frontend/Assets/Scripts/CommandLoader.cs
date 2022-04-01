@@ -4,23 +4,16 @@ using System;
 using System.Collections.Generic;
 using System.Collections;
 
-
-[Serializable]
-enum GameEvent
-{
-    MOVE, ATTACK, GATHER, DIED, ERROR
-}
-
 [Serializable]
 class GameState
 {
-    public int Round = 0;
-    public GameEvent CurrentEvent = GameEvent.MOVE;
-    public int ActivePlayerId = 0;
-    public int[] VictimId = { 0 };
-    public int[] ActivePos = { 0, 0, 0 };
-    public int? WinnerId = null;
-    public float? exp = null;
+    public int Round;
+    public String CurrentEvent;
+    public int ActivePlayerId;
+    public int[] VictimId;
+    public int[] ActivePos;
+    public int? WinnerId;
+    public float? exp;
 
     public int[] MapSize = { 10, 10, 10 };
 
@@ -80,12 +73,12 @@ public class CommandLoader : MonoBehaviour
 
             switch (runningState.CurrentEvent)
             {
-                case GameEvent.MOVE:
+                case "MOVE":
                     int[] pos = runningState.ActivePos;
                     yield return StartCoroutine(playerAction.MoveTo(target, pos[0], pos[1], pos[2]));
                     break;
 
-                case GameEvent.ATTACK:
+                case "ATTACK":
                     GameObject[] victim = new GameObject[runningState.VictimId.Length];
                     for (int i = 0; i < runningState.VictimId.Length; i++)
                     {
@@ -94,15 +87,15 @@ public class CommandLoader : MonoBehaviour
                     yield return StartCoroutine(playerAction.Attack(target, victim));
                     break;
 
-                case GameEvent.GATHER:
+                case "GATHER":
                     yield return StartCoroutine(playerAction.Gather(target, (float)runningState.exp));
                     break;
 
-                case GameEvent.ERROR:
+                case "ERROR":
                     yield return StartCoroutine(playerAction.DoNothing(target));
                     break;
 
-                case GameEvent.DIED:
+                case "DIED":
                     yield return StartCoroutine(playerAction.Died(target));
                     break;
             }
