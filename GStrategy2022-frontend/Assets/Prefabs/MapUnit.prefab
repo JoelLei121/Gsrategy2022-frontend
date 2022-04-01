@@ -86,7 +86,11 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 887ed4ed6ab4c0b448973362666189ec, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
+<<<<<<< HEAD
       objectReference: {fileID: 2100000, guid: 6f30b5440e8b05d4baeb4c76d3da59b1, type: 2}
+=======
+      objectReference: {fileID: 2100000, guid: f55186fe93129f94daca527bd453a0c6, type: 2}
+>>>>>>> origin/GameMaster&PlayerAction
     - target: {fileID: 919132149155446097, guid: 887ed4ed6ab4c0b448973362666189ec, type: 3}
       propertyPath: m_Name
       value: Ground

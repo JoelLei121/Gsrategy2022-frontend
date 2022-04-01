@@ -21,6 +21,7 @@ MonoBehaviour:
     x: 0
     y: 30
 <<<<<<< HEAD
+<<<<<<< HEAD
     width: 1253.3334
     height: 609.3334
   m_MinSize: {x: 679, y: 471}
@@ -35,6 +36,14 @@ MonoBehaviour:
   vertical: 0
   controlID: 130
 >>>>>>> origin/develop
+=======
+    width: 1536
+    height: 723
+  m_MinSize: {x: 707, y: 471}
+  m_MaxSize: {x: 18002, y: 14021}
+  vertical: 0
+  controlID: 1071
+>>>>>>> origin/GameMaster&PlayerAction
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -56,6 +65,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
 <<<<<<< HEAD
+<<<<<<< HEAD
     x: 283
     y: 19
     width: 596.6667
@@ -66,6 +76,12 @@ MonoBehaviour:
     width: 547
     height: 220
 >>>>>>> origin/develop
+=======
+    x: 0
+    y: 73.6
+    width: 480.6
+    height: 219.8
+>>>>>>> origin/GameMaster&PlayerAction
   m_ViewDataDictionary: {fileID: 0}
   m_SerializedViewNames: []
   m_SerializedViewValues: []
@@ -74,10 +90,14 @@ MonoBehaviour:
   m_TargetDisplay: 0
   m_ClearColor: {r: 0, g: 0, b: 0, a: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_TargetSize: {x: 596.6667, y: 296.66666}
 =======
   m_TargetSize: {x: 683.75, y: 248.75}
 >>>>>>> origin/develop
+=======
+  m_TargetSize: {x: 600.75, y: 248.5}
+>>>>>>> origin/GameMaster&PlayerAction
   m_TextureFilterMode: 0
   m_TextureHideFlags: 61
   m_RenderIMGUI: 1
@@ -93,6 +113,7 @@ MonoBehaviour:
     hZoomLockedByDefault: 0
     vZoomLockedByDefault: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
     m_HBaseRangeMin: -417.7778
     m_HBaseRangeMax: 417.7778
     m_VBaseRangeMin: -189.7778
@@ -103,6 +124,12 @@ MonoBehaviour:
     m_VBaseRangeMin: -99.5
     m_VBaseRangeMax: 99.5
 >>>>>>> origin/develop
+=======
+    m_HBaseRangeMin: -240.3
+    m_HBaseRangeMax: 240.3
+    m_VBaseRangeMin: -99.4
+    m_VBaseRangeMax: 99.4
+>>>>>>> origin/GameMaster&PlayerAction
     m_HAllowExceedBaseRangeMin: 1
     m_HAllowExceedBaseRangeMax: 1
     m_VAllowExceedBaseRangeMin: 1
@@ -121,6 +148,7 @@ MonoBehaviour:
       x: 0
       y: 21
 <<<<<<< HEAD
+<<<<<<< HEAD
       width: 1253.3334
       height: 569.3334
     m_Scale: {x: 1.5849444, y: 1.5849444}
@@ -131,12 +159,19 @@ MonoBehaviour:
     m_Scale: {x: 1, y: 1}
     m_Translation: {x: 273.5, y: 99.5}
 >>>>>>> origin/develop
+=======
+      width: 480.6
+      height: 198.8
+    m_Scale: {x: 1, y: 1}
+    m_Translation: {x: 240.3, y: 99.4}
+>>>>>>> origin/GameMaster&PlayerAction
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
+<<<<<<< HEAD
 <<<<<<< HEAD
       x: -395.38718
       y: -179.60674
@@ -154,6 +189,15 @@ MonoBehaviour:
   m_defaultScale: 1
   m_LastWindowPixelSize: {x: 683.75, y: 275}
 >>>>>>> origin/develop
+=======
+      x: -240.3
+      y: -99.4
+      width: 480.6
+      height: 198.8
+    m_MinimalGUI: 1
+  m_defaultScale: 1
+  m_LastWindowPixelSize: {x: 600.75, y: 274.75}
+>>>>>>> origin/GameMaster&PlayerAction
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
   m_LowResolutionForAspectRatios: 00000000000000000000
@@ -179,6 +223,7 @@ MonoBehaviour:
     x: 0
     y: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
     width: 880.6667
     height: 609.3334
   m_MinSize: {x: 403, y: 471}
@@ -193,6 +238,14 @@ MonoBehaviour:
   vertical: 1
   controlID: 131
 >>>>>>> origin/develop
+=======
+    width: 481.6
+    height: 723
+  m_MinSize: {x: 201, y: 442}
+  m_MaxSize: {x: 4001, y: 8042}
+  vertical: 1
+  controlID: 1019
+>>>>>>> origin/GameMaster&PlayerAction
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -211,6 +264,7 @@ MonoBehaviour:
     x: 0
     y: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
     width: 880.6667
     height: 338.66666
   m_MinSize: {x: 403, y: 221}
@@ -220,6 +274,10 @@ MonoBehaviour:
 =======
     width: 548
     height: 241
+=======
+    width: 481.6
+    height: 240.8
+>>>>>>> origin/GameMaster&PlayerAction
   m_MinSize: {x: 201, y: 221}
   m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 2}
@@ -227,7 +285,10 @@ MonoBehaviour:
   - {fileID: 2}
   m_Selected: 0
   m_LastSelected: 0
+<<<<<<< HEAD
 >>>>>>> origin/develop
+=======
+>>>>>>> origin/GameMaster&PlayerAction
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -245,6 +306,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
     y: 0
     width: 282
     height: 338.66666
@@ -253,6 +315,11 @@ MonoBehaviour:
     width: 548
     height: 482
 >>>>>>> origin/develop
+=======
+    y: 240.8
+    width: 481.6
+    height: 482.2
+>>>>>>> origin/GameMaster&PlayerAction
   m_MinSize: {x: 201, y: 221}
   m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 7}
@@ -281,6 +348,7 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
+<<<<<<< HEAD
 <<<<<<< HEAD
     x: 7.3333335
     y: 83.333336
@@ -322,6 +390,13 @@ MonoBehaviour:
     width: 687.8
     height: 466
   m_ViewDataDictionary: {fileID: 0}
+=======
+    x: 0
+    y: 317.6
+    width: 687.8
+    height: 466
+  m_ViewDataDictionary: {fileID: 0}
+>>>>>>> origin/GameMaster&PlayerAction
   m_ViewTransforms:
     m_KeySerializationHelper:
     - {fileID: -6510502008623496, guid: a0894a48483d98947adc01f4e6d1064d, type: 2}
@@ -377,7 +452,10 @@ MonoBehaviour:
   m_CurrentEditor: 1
   m_LayerEditor:
     m_SelectedLayerIndex: 0
+<<<<<<< HEAD
 >>>>>>> origin/develop
+=======
+>>>>>>> origin/GameMaster&PlayerAction
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -387,6 +465,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 1
+<<<<<<< HEAD
 <<<<<<< HEAD
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: GameView
@@ -417,6 +496,8 @@ MonoBehaviour:
   m_EditorHideFlags: 1
 =======
 >>>>>>> origin/develop
+=======
+>>>>>>> origin/GameMaster&PlayerAction
   m_Script: {fileID: 12013, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -429,6 +510,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
 <<<<<<< HEAD
+<<<<<<< HEAD
     x: 289.33334
     y: 83.333336
     width: 596.6667
@@ -439,6 +521,12 @@ MonoBehaviour:
     width: 547
     height: 461
 >>>>>>> origin/develop
+=======
+    x: 0
+    y: 314.4
+    width: 480.6
+    height: 461.2
+>>>>>>> origin/GameMaster&PlayerAction
   m_ViewDataDictionary: {fileID: 0}
   m_ShowContextualTools: 0
   m_WindowGUID: f8bbabcebf8805145b2958b3fbb534b1
@@ -452,6 +540,7 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_Position:
 <<<<<<< HEAD
+<<<<<<< HEAD
     m_Target: {x: 417.63605, y: 3.2518196, z: 97.27189}
     speed: 2
     m_Value: {x: 417.63605, y: 3.2518384, z: 97.271904}
@@ -460,6 +549,11 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 273.94626, y: 213.9901, z: 758.50543}
 >>>>>>> origin/develop
+=======
+    m_Target: {x: -237.32457, y: -81.372406, z: 758.58746}
+    speed: 2
+    m_Value: {x: -237.32457, y: -81.372406, z: 758.58746}
+>>>>>>> origin/GameMaster&PlayerAction
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -490,12 +584,24 @@ MonoBehaviour:
       m_Fade:
         m_Target: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
 =======
         speed: 2
         m_Value: 0
       m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 0.4}
       m_Pivot: {x: 0, y: 0, z: 0}
       m_Size: {x: 1, y: 1}
+    zGrid:
+      m_Fade:
+        m_Target: 1
+>>>>>>> origin/GameMaster&PlayerAction
+        speed: 2
+        m_Value: 0
+      m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 0.4}
+      m_Pivot: {x: 0, y: 0, z: 0}
+      m_Size: {x: 1, y: 1}
+<<<<<<< HEAD
     zGrid:
       m_Fade:
         m_Target: 1
@@ -516,6 +622,8 @@ MonoBehaviour:
       m_Size: {x: 1, y: 1}
     m_ShowGrid: 0
 =======
+=======
+>>>>>>> origin/GameMaster&PlayerAction
     m_ShowGrid: 1
 >>>>>>> origin/develop
     m_GridAxis: 1
@@ -526,6 +634,7 @@ MonoBehaviour:
     m_Value: {x: 0.7071037, y: 0, z: 0, w: 0.7071099}
   m_Size:
 <<<<<<< HEAD
+<<<<<<< HEAD
     m_Target: 10.787534
     speed: 2
     m_Value: 10.322999
@@ -534,6 +643,11 @@ MonoBehaviour:
     speed: 2
     m_Value: 420.98044
 >>>>>>> origin/develop
+=======
+    m_Target: 314.1011
+    speed: 2
+    m_Value: 314.1011
+>>>>>>> origin/GameMaster&PlayerAction
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -575,14 +689,24 @@ MonoBehaviour:
   - {fileID: 11}
   m_Position:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 548
     y: 0
     width: 505
+=======
+    x: 481.6
+    y: 0
+    width: 571.2
+>>>>>>> origin/GameMaster&PlayerAction
     height: 723
   m_MinSize: {x: 230, y: 471}
   m_MaxSize: {x: 10000, y: 14021}
   vertical: 1
+<<<<<<< HEAD
   controlID: 39
+=======
+  controlID: 1072
+>>>>>>> origin/GameMaster&PlayerAction
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -600,6 +724,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
     y: 338.66666
     width: 880.6667
     height: 270.66672
@@ -612,6 +737,13 @@ MonoBehaviour:
   m_MinSize: {x: 202, y: 221}
   m_MaxSize: {x: 4002, y: 4021}
 >>>>>>> origin/develop
+=======
+    y: 0
+    width: 571.2
+    height: 316.8
+  m_MinSize: {x: 202, y: 221}
+  m_MaxSize: {x: 4002, y: 4021}
+>>>>>>> origin/GameMaster&PlayerAction
   m_ActualView: {fileID: 10}
   m_Panes:
   - {fileID: 10}
@@ -637,17 +769,28 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 548
     y: 73.6
     width: 503
     height: 296
+=======
+    x: 481.6
+    y: 73.6
+    width: 569.2
+    height: 295.8
+>>>>>>> origin/GameMaster&PlayerAction
   m_ViewDataDictionary: {fileID: 0}
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
+<<<<<<< HEAD
       m_ExpandedIDs: 6af9ffff8af9ffffaaf9ffff2afaffff4afaffff6efbffff
+=======
+      m_ExpandedIDs: 4cfbffff
+>>>>>>> origin/GameMaster&PlayerAction
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -687,9 +830,15 @@ MonoBehaviour:
   m_Position:
     serializedVersion: 2
     x: 0
+<<<<<<< HEAD
     y: 317
     width: 505
     height: 406
+=======
+    y: 316.8
+    width: 571.2
+    height: 406.2
+>>>>>>> origin/GameMaster&PlayerAction
   m_MinSize: {x: 230, y: 250}
   m_MaxSize: {x: 10000, y: 10000}
   m_ActualView: {fileID: 12}
@@ -718,6 +867,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
 <<<<<<< HEAD
+<<<<<<< HEAD
     x: 7.3333335
     y: 422
     width: 879.6667
@@ -728,6 +878,12 @@ MonoBehaviour:
     width: 503
     height: 385
 >>>>>>> origin/develop
+=======
+    x: 481.6
+    y: 390.4
+    width: 569.2
+    height: 385.2
+>>>>>>> origin/GameMaster&PlayerAction
   m_ViewDataDictionary: {fileID: 0}
   m_SearchFilter:
     m_NameFilter: 
@@ -743,20 +899,28 @@ MonoBehaviour:
     m_SearchArea: 1
     m_Folders:
 <<<<<<< HEAD
+<<<<<<< HEAD
     - Assets/Scripts
 =======
     - Assets/Scenes
 >>>>>>> origin/develop
+=======
+    - Assets/Scenes
+>>>>>>> origin/GameMaster&PlayerAction
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
 <<<<<<< HEAD
+<<<<<<< HEAD
   - Assets/Scripts
 =======
   - Assets/Scenes
 >>>>>>> origin/develop
+=======
+  - Assets/Scenes
+>>>>>>> origin/GameMaster&PlayerAction
   m_LastFoldersGridSize: -1
   m_LastProjectPath: D:\Working\Program\ScienceA\GS2022\GStrategy2022-frontend
   m_LockTracker:
@@ -769,10 +933,16 @@ MonoBehaviour:
     m_ExpandedIDs: 000000002c4000002e4000003040000000ca9a3b
 =======
     scrollPos: {x: 0, y: 0}
+<<<<<<< HEAD
     m_SelectedIDs: 463e0000
     m_LastClickedID: 15942
     m_ExpandedIDs: 00000000303e0000343e0000
 >>>>>>> origin/develop
+=======
+    m_SelectedIDs: 10400000
+    m_LastClickedID: 16400
+    m_ExpandedIDs: 00000000084000000e400000
+>>>>>>> origin/GameMaster&PlayerAction
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -789,10 +959,14 @@ MonoBehaviour:
       m_OriginalEventType: 11
       m_IsRenamingFilename: 1
 <<<<<<< HEAD
+<<<<<<< HEAD
       m_ClientGUIView: {fileID: 9}
 =======
       m_ClientGUIView: {fileID: 11}
 >>>>>>> origin/develop
+=======
+      m_ClientGUIView: {fileID: 11}
+>>>>>>> origin/GameMaster&PlayerAction
     m_SearchString: 
     m_CreateAssetUtility:
       m_EndAction: {fileID: 0}
@@ -805,10 +979,14 @@ MonoBehaviour:
     m_SelectedIDs: 
     m_LastClickedID: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
     m_ExpandedIDs: 000000002c4000002e4000003040000000ca9a3b
 =======
     m_ExpandedIDs: 00000000303e0000
 >>>>>>> origin/develop
+=======
+    m_ExpandedIDs: 0000000008400000
+>>>>>>> origin/GameMaster&PlayerAction
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -834,6 +1012,7 @@ MonoBehaviour:
       m_ResourceFile: 
   m_ListAreaState:
 <<<<<<< HEAD
+<<<<<<< HEAD
     m_SelectedInstanceIDs: c662feff
     m_LastClickedInstanceID: -105786
     m_HadKeyboardFocusLastEvent: 0
@@ -844,6 +1023,12 @@ MonoBehaviour:
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c6230000fa420000646c0000743d0000883d0000823d0000763d00008c3d0000
 >>>>>>> origin/develop
+=======
+    m_SelectedInstanceIDs: 
+    m_LastClickedInstanceID: 0
+    m_HadKeyboardFocusLastEvent: 0
+    m_ExpandedInstanceIDs: c6230000fa420000646c0000743d0000883d0000823d0000763d00008c3d0000
+>>>>>>> origin/GameMaster&PlayerAction
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -870,6 +1055,7 @@ MonoBehaviour:
     m_ScrollPosition: {x: 0, y: 0}
     m_GridSize: 64
   m_SkipHiddenPackages: 0
+<<<<<<< HEAD
 <<<<<<< HEAD
   m_DirectoriesAreaWidth: 207
 --- !u!114 &11
@@ -902,6 +1088,10 @@ MonoBehaviour:
   m_DirectoriesAreaWidth: 110
 --- !u!114 &13
 >>>>>>> origin/develop
+=======
+  m_DirectoriesAreaWidth: 110
+--- !u!114 &13
+>>>>>>> origin/GameMaster&PlayerAction
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -919,6 +1109,7 @@ MonoBehaviour:
 <<<<<<< HEAD
     x: 880.6667
     y: 0
+<<<<<<< HEAD
     width: 372.6667
     height: 609.3334
   m_MinSize: {x: 276, y: 71}
@@ -928,11 +1119,17 @@ MonoBehaviour:
     x: 1053
     y: 0
     width: 483
+=======
+    width: 483.19995
+>>>>>>> origin/GameMaster&PlayerAction
     height: 723
   m_MinSize: {x: 276, y: 71}
   m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 14}
+<<<<<<< HEAD
 >>>>>>> origin/develop
+=======
+>>>>>>> origin/GameMaster&PlayerAction
   m_Panes:
   - {fileID: 14}
   m_Selected: 0
@@ -965,9 +1162,14 @@ MonoBehaviour:
 =======
     x: 1052.8
     y: 73.6
+<<<<<<< HEAD
     width: 482
     height: 702
 >>>>>>> origin/develop
+=======
+    width: 482.19995
+    height: 702
+>>>>>>> origin/GameMaster&PlayerAction
   m_ViewDataDictionary: {fileID: 0}
   m_ObjectsLockedBeforeSerialization: []
   m_InstanceIDsLockedBeforeSerialization: 
@@ -976,10 +1178,14 @@ MonoBehaviour:
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_LastInspectedObjectInstanceID: -1
 =======
   m_LastInspectedObjectInstanceID: 15952
 >>>>>>> origin/develop
+=======
+  m_LastInspectedObjectInstanceID: -1
+>>>>>>> origin/GameMaster&PlayerAction
   m_LastVerticalScrollValue: 0
   m_GlobalObjectId: 
   m_LockTracker:

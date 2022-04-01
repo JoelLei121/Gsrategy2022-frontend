@@ -2,11 +2,11 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 
-public class HexGrid : MonoBehaviour //TODO:Óëºó¶ËÎÄ¼þÁª¶¯
+public class HexGrid : MonoBehaviour //TODO:ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½
 {
-    public int width = 10;//±ß³¤
+    public int width = 10;//ï¿½ß³ï¿½
     private int w = 20;
-    public float length = 1;//Ò»¿éµÄ±ß³¤
+    public float length = 1;//Ò»ï¿½ï¿½Ä±ß³ï¿½
 
     public GameObject hexPrefab;
     //public GameObject monsterPrefab;
@@ -83,7 +83,7 @@ public class HexGrid : MonoBehaviour //TODO:Óëºó¶ËÎÄ¼þÁª¶¯
     }
     public GameObject createHex(int t_x, int t_z, float length)
     {
-        //Éú³ÉµØÍ¼¿é
+        //ï¿½ï¿½ï¿½Éµï¿½Í¼ï¿½ï¿½
         float innerRadius = 1.73205081f * length * 0.5f;
         float outerRadius = length;
         Vector3 position;

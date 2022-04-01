@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-enum Types { nor, bar, res };//0:normal 1:barrier 2:resource TODO:ËõÈ¦,¸ü¸Ä×ÊÔ´
+enum Types { nor, bar, res };//0:normal 1:barrier 2:resource TODO:ï¿½ï¿½È¦,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô´
 public class MapUnit : MonoBehaviour
 {
     private int x = 0;
@@ -40,7 +40,7 @@ public class MapUnit : MonoBehaviour
 
         switch (type)
         {
-            case 1://ÕÏ°­
+            case 1://ï¿½Ï°ï¿½
                 {
                     Vector3 pos_obs = GetCell().transform.localPosition;
                     pos_obs.y = 100f;
@@ -50,7 +50,7 @@ public class MapUnit : MonoBehaviour
                     GetCell().transform.localScale = scale_obs;
                     break;
                 }
-            case 2://×ÊÔ´ TODO£º¸ù¾Ý×ÊÔ´ÊýÐÞ¸ÄÄ£ÐÍ
+            case 2://ï¿½ï¿½Ô´ TODOï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô´ï¿½ï¿½ï¿½Þ¸ï¿½Ä£ï¿½ï¿½
                 {
                     Vector3 pos_res = Vector3.zero;
                     pos_res.y = 1f;
@@ -66,21 +66,21 @@ public class MapUnit : MonoBehaviour
 
    
 
-    public int[] GetHexCoor() //Áù±ßÐÎ×ø±êÎ»ÖÃ
+    public int[] GetHexCoor() //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½
     {
         int[] res = { x, y, z };
         return res;
     }
 
-    public Vector3 GetGloPos() //È«¾Ö×ø±ê
+    public Vector3 GetGloPos() //È«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     {
         return transform.TransformPoint(GetCell().transform.position);
     }
-    public Vector3 GetResPos() //Ïà¶Ô×ø±ê
+    public Vector3 GetResPos() //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     {
         return GetCell().transform.position;
     }
-    public GameObject GetCell()//·µ»ØµØÍ¼¿é
+    public GameObject GetCell()//ï¿½ï¿½ï¿½Øµï¿½Í¼ï¿½ï¿½
     {
         return this.transform.parent.gameObject;
     }
@@ -90,7 +90,7 @@ public class MapUnit : MonoBehaviour
         return monster;
     }*/
 
-    public GameObject GetRes()//·µ»Ø×ÊÔ´
+    public GameObject GetRes()//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô´
     {
         return resource;
     }
