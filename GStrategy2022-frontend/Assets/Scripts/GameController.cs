@@ -39,15 +39,16 @@ public class GameController : MonoBehaviour
 
     void GameStart()
     {
-        int i = 0;
         foreach(GameObject p in players)
         {
-            p.transform.position = map.GetUnitTransform(i, i);
-            i++;
+            PlayerStatus pStatus = p.GetComponent<PlayerStatus>();
+            int x = pStatus.pos[0];
+            int z = pStatus.pos[2];
+            p.transform.position = map.GetUnitPosition(x, z);
         }
         Debug.Log("Players are placed");
-        // while(!commandIsDone)
-        //     commandLoader.LoadCommand();
+        StartCoroutine(commandLoader.LoadCommand());
+        // if isDone, stop coroutines
     }
 
     public PlayerStatus GetPlayerStatus(int id)

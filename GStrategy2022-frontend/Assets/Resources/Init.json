@@ -33,7 +33,7 @@
       "mine_speed": 7,
       "at": 2,
       "hp": 80,
-      "Position": [ 1, 2, 3 ]
+      "Position": [ -3, 0, 3 ]
     }
   ]
 }

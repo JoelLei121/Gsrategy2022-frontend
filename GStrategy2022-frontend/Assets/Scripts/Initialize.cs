@@ -41,20 +41,13 @@ public class Initialize : MonoBehaviour
         gameController.playerNum = state.players.Length;
         gameController.players = new GameObject[gameController.playerNum];
 
-        // Have to create instances, not data only.
         for(int i = 0; i < gameController.playerNum; i++)
         {
             GameObject player = Instantiate<GameObject>(gameController.playerPrefab);
+            gameController.players[i] = player;
             PlayerStatus playerStatus = player.GetComponent<PlayerStatus>();
             playerStatus.init(state.players[i]);
-            // is it works?
-            gameController.players[i] = player;
-            gameController.players[i].transform.Translate(10, 0, 0);
         }
-        // foreach (PlayerInitialize p in state.players)
-        // {
-        //     gameController.players[p.id].set(p);
-        // }
         Debug.Log("Players are ready.");
         gameController.isInstantiated = true;
         Response<GameState> tmp = new Response<GameState>();

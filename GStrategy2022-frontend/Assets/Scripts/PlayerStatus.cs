@@ -7,7 +7,7 @@ public class PlayerInitialize
 {
     public int id;
     public string name;
-    public int[] pos;           //Œª÷√
+    public int[] Position;           //Œª÷√
     public int attack_range;   //π•ª˜∑∂Œß
     public int sight_range; // ”“∞∑∂Œß
     public int move_range; //“∆∂Ø∑∂Œß
@@ -22,6 +22,7 @@ public class PlayerStatus : MonoBehaviour
     // Start is called before the first frame update
     public string teamName;
     public int id;
+    public int[] pos;
     public float exp;
     public float hp;
     public int atk;
@@ -35,6 +36,9 @@ public class PlayerStatus : MonoBehaviour
 
     public void init(PlayerInitialize p)
     {
+        pos = new int[3];
+        for(int i = 0; i < 3; i++)
+            pos[i] = p.Position[i];
         id = p.id;
         exp = 0;
         hp = p.hp;

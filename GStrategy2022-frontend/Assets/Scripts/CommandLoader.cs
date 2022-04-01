@@ -2,6 +2,7 @@ using UnityEngine;
 using System.IO;
 using System;
 using System.Collections.Generic;
+using System.Collections;
 
 
 [Serializable]
@@ -34,10 +35,12 @@ public class Response<T>
 public class CommandLoader : MonoBehaviour
 {
     private int index;
+    private int gameLength;
     public GameController gameController;
     public PlayerAction playerAction;
     private List<GameState> gameStates;
     private GameState runningState;
+    // private IEnumerator coroutine; 
     void Start()
     {
         index = 0;
@@ -50,6 +53,7 @@ public class CommandLoader : MonoBehaviour
 
         if (gameStates != null)
             Debug.Log("Game process read successfully.");
+        gameLength = gameStates.Count;
     }
     void NextCommand()
     {
@@ -58,52 +62,61 @@ public class CommandLoader : MonoBehaviour
         index++;
     }
 
-    public void testCommand()
+    public IEnumerator LoadCommand()
     {
-
-    }
-    public void LoadCommand()
-    {
-        NextCommand();
-        // PlayerStatus target = gameController.GetPlayerStatus(runningState.ActivePlayerId);
-        GameObject target = gameController.players[runningState.ActivePlayerId];
-        int[] pos = runningState.ActivePos;
-
-        switch (runningState.CurrentEvent)
+        Debug.Log("Waiting...");
+        yield return new WaitForSeconds(5f);
+        while(true)
         {
-            case GameEvent.MOVE:
+            if(index >= gameLength)
+            {
+                gameController.commandIsDone = true;
+                Debug.Log("Stop running game");
+                yield break;
+            }
+            NextCommand();
+            // PlayerStatus target = gameController.GetPlayerStatus(runningState.ActivePlayerId);
+            GameObject target = gameController.players[runningState.ActivePlayerId];
 
-                playerAction.MoveTo(target, pos[0], pos[1], pos[2]);
-                break;
+            switch (runningState.CurrentEvent)
+            {
+                case GameEvent.MOVE:
+                    int[] pos = runningState.ActivePos;
+                    yield return StartCoroutine(playerAction.MoveTo(target, pos[0], pos[1], pos[2]));
+                    break;
 
-            case GameEvent.ATTACK:
-                GameObject[] victim = new GameObject[runningState.VictimId.Length];
-                for (int i = 0; i < runningState.VictimId.Length; i++)
-                {
-                    victim[i] = gameController.players[runningState.VictimId[i]];
-                }
-                playerAction.Attack(target, victim);
-                break;
-            case GameEvent.GATHER:
-                playerAction.Gather(target, (float)runningState.exp);
-                break;
-            case GameEvent.ERROR:
-                playerAction.DoNothing(target);
-                break;
-            case GameEvent.DIED:
-                playerAction.Died(target);
-                break;
+                case GameEvent.ATTACK:
+                    GameObject[] victim = new GameObject[runningState.VictimId.Length];
+                    for (int i = 0; i < runningState.VictimId.Length; i++)
+                    {
+                        victim[i] = gameController.players[runningState.VictimId[i]];
+                    }
+                    yield return StartCoroutine(playerAction.Attack(target, victim));
+                    break;
+
+                case GameEvent.GATHER:
+                    yield return StartCoroutine(playerAction.Gather(target, (float)runningState.exp));
+                    break;
+
+                case GameEvent.ERROR:
+                    yield return StartCoroutine(playerAction.DoNothing(target));
+                    break;
+
+                case GameEvent.DIED:
+                    yield return StartCoroutine(playerAction.Died(target));
+                    break;
+            }
+
+            if (runningState.WinnerId != null)
+            {
+                gameController.commandIsDone = true;
+                Debug.Log("Game is Finish!");
+                PlayerStatus winner = gameController.GetPlayerStatus((int)runningState.WinnerId);
+                Debug.Log("Player " + winner.ordering + ": " + winner.teamName + " is the winner!");
+                // end game
+            }
+            yield return new WaitForSeconds(0.5f);
         }
-
-        if (runningState.WinnerId != null)
-        {
-            gameController.commandIsDone = true;
-            Debug.Log("Game is Finish!");
-            PlayerStatus winner = gameController.GetPlayerStatus((int)runningState.WinnerId);
-            Debug.Log("Player " + winner.ordering + ": " + winner.teamName + " is the winner!");
-            // end game
-        }
-        return;
     }
 
 }

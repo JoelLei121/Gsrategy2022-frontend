@@ -69,7 +69,7 @@ public class HexGrid : MonoBehaviour //TODO:与后端文件联动
         return (units[n_z * w + n_x].GetComponent<MapUnit>());
     }
 
-    public Vector3 GetUnitTransform(int h_x, int h_z)
+    public Vector3 GetUnitPosition(int h_x, int h_z)
     {
         int[] n = hexToNormal(h_x, h_z);
         int n_x = n[0];
