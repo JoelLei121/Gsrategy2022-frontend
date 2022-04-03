@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Children:
   - {fileID: 3}
-  - {fileID: 8}
-  - {fileID: 13}
+  - {fileID: 11}
   m_Position:
     serializedVersion: 2
     x: 0
     y: 30
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     width: 1253.3334
@@ -29,11 +29,14 @@ MonoBehaviour:
   vertical: 0
   controlID: 1226
 =======
+=======
+>>>>>>> origin/develop
     width: 1536
-    height: 723
-  m_MinSize: {x: 707, y: 471}
-  m_MaxSize: {x: 18002, y: 14021}
+    height: 731
+  m_MinSize: {x: 677, y: 492}
+  m_MaxSize: {x: 14001, y: 14042}
   vertical: 0
+<<<<<<< HEAD
   controlID: 130
 >>>>>>> origin/develop
 =======
@@ -44,6 +47,9 @@ MonoBehaviour:
   vertical: 0
   controlID: 1071
 >>>>>>> origin/GameMaster&PlayerAction
+=======
+  controlID: 2245
+>>>>>>> origin/develop
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -59,11 +65,12 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 4000, y: 4000}
   m_TitleContent:
-    m_Text: "\u6E38\u620F"
+    m_Text: Game
     m_Image: {fileID: 4621777727084837110, guid: 0000000000000000d000000000000000, type: 0}
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     x: 283
@@ -82,6 +89,12 @@ MonoBehaviour:
     width: 480.6
     height: 219.8
 >>>>>>> origin/GameMaster&PlayerAction
+=======
+    x: 290.6
+    y: 19
+    width: 880.4
+    height: 412.6
+>>>>>>> origin/develop
   m_ViewDataDictionary: {fileID: 0}
   m_SerializedViewNames: []
   m_SerializedViewValues: []
@@ -91,6 +104,7 @@ MonoBehaviour:
   m_ClearColor: {r: 0, g: 0, b: 0, a: 0}
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_TargetSize: {x: 596.6667, y: 296.66666}
 =======
   m_TargetSize: {x: 683.75, y: 248.75}
@@ -98,6 +112,9 @@ MonoBehaviour:
 =======
   m_TargetSize: {x: 600.75, y: 248.5}
 >>>>>>> origin/GameMaster&PlayerAction
+=======
+  m_TargetSize: {x: 880.4, y: 391.6}
+>>>>>>> origin/develop
   m_TextureFilterMode: 0
   m_TextureHideFlags: 61
   m_RenderIMGUI: 1
@@ -112,6 +129,7 @@ MonoBehaviour:
     m_VRangeLocked: 0
     hZoomLockedByDefault: 0
     vZoomLockedByDefault: 0
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     m_HBaseRangeMin: -417.7778
@@ -130,6 +148,12 @@ MonoBehaviour:
     m_VBaseRangeMin: -99.4
     m_VBaseRangeMax: 99.4
 >>>>>>> origin/GameMaster&PlayerAction
+=======
+    m_HBaseRangeMin: -352.16
+    m_HBaseRangeMax: 352.16
+    m_VBaseRangeMin: -156.64
+    m_VBaseRangeMax: 156.64
+>>>>>>> origin/develop
     m_HAllowExceedBaseRangeMin: 1
     m_HAllowExceedBaseRangeMax: 1
     m_VAllowExceedBaseRangeMin: 1
@@ -149,6 +173,7 @@ MonoBehaviour:
       y: 21
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       width: 1253.3334
       height: 569.3334
     m_Scale: {x: 1.5849444, y: 1.5849444}
@@ -165,12 +190,19 @@ MonoBehaviour:
     m_Scale: {x: 1, y: 1}
     m_Translation: {x: 240.3, y: 99.4}
 >>>>>>> origin/GameMaster&PlayerAction
+=======
+      width: 880.4
+      height: 391.6
+    m_Scale: {x: 1, y: 1}
+    m_Translation: {x: 440.2, y: 195.8}
+>>>>>>> origin/develop
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
       x: -395.38718
@@ -198,9 +230,18 @@ MonoBehaviour:
   m_defaultScale: 1
   m_LastWindowPixelSize: {x: 600.75, y: 274.75}
 >>>>>>> origin/GameMaster&PlayerAction
+=======
+      x: -440.2
+      y: -195.8
+      width: 880.4
+      height: 391.6
+    m_MinimalGUI: 1
+  m_defaultScale: 1
+  m_LastWindowPixelSize: {x: 1100.5, y: 515.75}
+>>>>>>> origin/develop
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
-  m_LowResolutionForAspectRatios: 00000000000000000000
+  m_LowResolutionForAspectRatios: 01000000000000000000
   m_XRRenderMode: 0
   m_RenderTexture: {fileID: 0}
 --- !u!114 &3
@@ -211,17 +252,18 @@ MonoBehaviour:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
-  m_EditorHideFlags: 0
+  m_EditorHideFlags: 1
   m_Script: {fileID: 12010, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Children:
   - {fileID: 4}
-  - {fileID: 5}
+  - {fileID: 9}
   m_Position:
     serializedVersion: 2
     x: 0
     y: 0
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     width: 880.6667
@@ -246,6 +288,14 @@ MonoBehaviour:
   vertical: 1
   controlID: 1019
 >>>>>>> origin/GameMaster&PlayerAction
+=======
+    width: 1172
+    height: 731
+  m_MinSize: {x: 402, y: 492}
+  m_MaxSize: {x: 10001, y: 14042}
+  vertical: 1
+  controlID: 2246
+>>>>>>> origin/develop
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -254,15 +304,18 @@ MonoBehaviour:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: GameView
+  m_EditorHideFlags: 1
+  m_Script: {fileID: 12010, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
   m_EditorClassIdentifier: 
-  m_Children: []
+  m_Children:
+  - {fileID: 5}
+  - {fileID: 7}
   m_Position:
     serializedVersion: 2
     x: 0
     y: 0
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     width: 880.6667
@@ -289,6 +342,14 @@ MonoBehaviour:
 >>>>>>> origin/develop
 =======
 >>>>>>> origin/GameMaster&PlayerAction
+=======
+    width: 1172
+    height: 433.6
+  m_MinSize: {x: 402, y: 221}
+  m_MaxSize: {x: 8002, y: 4021}
+  vertical: 0
+  controlID: 2247
+>>>>>>> origin/develop
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -299,12 +360,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: SceneView
+  m_Name: 
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
     serializedVersion: 2
     x: 0
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     y: 0
@@ -323,10 +385,17 @@ MonoBehaviour:
   m_MinSize: {x: 201, y: 221}
   m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 7}
+=======
+    y: 0
+    width: 289.6
+    height: 433.6
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
+  m_ActualView: {fileID: 6}
+>>>>>>> origin/develop
   m_Panes:
   - {fileID: 6}
-  - {fileID: 7}
-  m_Selected: 1
+  m_Selected: 0
   m_LastSelected: 0
 --- !u!114 &6
 MonoBehaviour:
@@ -336,31 +405,38 @@ MonoBehaviour:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 12914, guid: 0000000000000000e000000000000000, type: 0}
+  m_EditorHideFlags: 1
+  m_Script: {fileID: 12061, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_MinSize: {x: 100, y: 100}
+  m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 4000, y: 4000}
   m_TitleContent:
-    m_Text: "\u52A8\u753B\u5668"
-    m_Image: {fileID: 1711060831702674872, guid: 0000000000000000d000000000000000, type: 0}
+    m_Text: Hierarchy
+    m_Image: {fileID: -3734745235275155857, guid: 0000000000000000d000000000000000, type: 0}
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     x: 7.3333335
     y: 83.333336
     width: 281
     height: 317.66666
+=======
+    x: 0
+    y: 73.6
+    width: 288.6
+    height: 412.6
+>>>>>>> origin/develop
   m_ViewDataDictionary: {fileID: 0}
   m_SceneHierarchy:
     m_TreeViewState:
-      scrollPos: {x: 0, y: 3056}
-      m_SelectedIDs: c662feff
-      m_LastClickedID: -105786
-      m_ExpandedIDs: 165bfeffce62feff1a63feff50fbffffac3d0000
+      scrollPos: {x: 0, y: 0}
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: 3afbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -384,6 +460,7 @@ MonoBehaviour:
       m_IsLocked: 0
     m_CurrentSortingName: TransformSorting
   m_WindowGUID: 4c969a2b90040154d917609493e03593
+<<<<<<< HEAD
 =======
     x: 0
     y: 317.6
@@ -456,6 +533,8 @@ MonoBehaviour:
 >>>>>>> origin/develop
 =======
 >>>>>>> origin/GameMaster&PlayerAction
+=======
+>>>>>>> origin/develop
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -467,16 +546,19 @@ MonoBehaviour:
   m_EditorHideFlags: 1
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/develop
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: GameView
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 282
+    x: 289.6
     y: 0
-    width: 598.6667
-    height: 338.66666
+    width: 882.4
+    height: 433.6
   m_MinSize: {x: 202, y: 221}
   m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 2}
@@ -494,21 +576,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 1
+<<<<<<< HEAD
 =======
 >>>>>>> origin/develop
 =======
 >>>>>>> origin/GameMaster&PlayerAction
+=======
+>>>>>>> origin/develop
   m_Script: {fileID: 12013, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: 
   m_EditorClassIdentifier: 
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 4000, y: 4000}
   m_TitleContent:
-    m_Text: "\u573A\u666F"
+    m_Text: Scene
     m_Image: {fileID: 8634526014445323508, guid: 0000000000000000d000000000000000, type: 0}
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     x: 289.33334
@@ -527,9 +613,15 @@ MonoBehaviour:
     width: 480.6
     height: 461.2
 >>>>>>> origin/GameMaster&PlayerAction
+=======
+    x: 289.6
+    y: 73.6
+    width: 880.4
+    height: 412.6
+>>>>>>> origin/develop
   m_ViewDataDictionary: {fileID: 0}
   m_ShowContextualTools: 0
-  m_WindowGUID: f8bbabcebf8805145b2958b3fbb534b1
+  m_WindowGUID: cc27987af1a868c49b0894db9c0f5429
   m_Gizmos: 1
   m_OverrideSceneCullingMask: 6917529027641081856
   m_SceneIsLit: 1
@@ -539,6 +631,7 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     m_Target: {x: 417.63605, y: 3.2518196, z: 97.27189}
@@ -554,6 +647,11 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: -237.32457, y: -81.372406, z: 758.58746}
 >>>>>>> origin/GameMaster&PlayerAction
+=======
+    m_Target: {x: 15.955889, y: 10.606381, z: 13.878389}
+    speed: 2
+    m_Value: {x: 15.955889, y: 10.606381, z: 13.878389}
+>>>>>>> origin/develop
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -579,9 +677,10 @@ MonoBehaviour:
         m_Value: 0
       m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 0.4}
       m_Pivot: {x: 0, y: 0, z: 0}
-      m_Size: {x: 1, y: 1}
+      m_Size: {x: 0, y: 0}
     yGrid:
       m_Fade:
+<<<<<<< HEAD
         m_Target: 0
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -606,12 +705,14 @@ MonoBehaviour:
       m_Fade:
         m_Target: 1
 >>>>>>> origin/develop
+=======
+        m_Target: 1
+>>>>>>> origin/develop
         speed: 2
-        m_Value: 0
+        m_Value: 1
       m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 0.4}
       m_Pivot: {x: 0, y: 0, z: 0}
       m_Size: {x: 1, y: 1}
-<<<<<<< HEAD
     zGrid:
       m_Fade:
         m_Target: 0
@@ -619,20 +720,24 @@ MonoBehaviour:
         m_Value: 0
       m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 0.4}
       m_Pivot: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD
       m_Size: {x: 1, y: 1}
     m_ShowGrid: 0
 =======
 =======
 >>>>>>> origin/GameMaster&PlayerAction
-    m_ShowGrid: 1
+=======
+      m_Size: {x: 0, y: 0}
 >>>>>>> origin/develop
+    m_ShowGrid: 1
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+    m_Target: {x: -0.5327865, y: 0.4656241, z: -0.47069755, w: -0.5270571}
     speed: 2
-    m_Value: {x: 0.7071037, y: 0, z: 0, w: 0.7071099}
+    m_Value: {x: -0.53278315, y: 0.46562114, z: -0.47069457, w: -0.5270538}
   m_Size:
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     m_Target: 10.787534
@@ -648,10 +753,15 @@ MonoBehaviour:
     speed: 2
     m_Value: 314.1011
 >>>>>>> origin/GameMaster&PlayerAction
-  m_Ortho:
-    m_Target: 1
+=======
+    m_Target: 3.8917358
     speed: 2
-    m_Value: 1
+    m_Value: 3.8917358
+>>>>>>> origin/develop
+  m_Ortho:
+    m_Target: 0
+    speed: 2
+    m_Value: 0
   m_CameraSettings:
     m_Speed: 1
     m_SpeedNormalized: 0.5
@@ -665,13 +775,14 @@ MonoBehaviour:
     m_FarClip: 10000
     m_DynamicClip: 1
     m_OcclusionCulling: 0
-  m_LastSceneViewRotation: {x: 0, y: 0.0014999995, z: 0, w: 0.99999887}
+  m_LastSceneViewRotation: {x: 0, y: 0, z: 0, w: 0}
   m_LastSceneViewOrtho: 0
   m_ReplacementShader: {fileID: 0}
   m_ReplacementString: 
   m_SceneVisActive: 1
   m_LastLockedObject: {fileID: 0}
   m_ViewIsLockedToObject: 0
+<<<<<<< HEAD
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -707,6 +818,8 @@ MonoBehaviour:
 =======
   controlID: 1072
 >>>>>>> origin/GameMaster&PlayerAction
+=======
+>>>>>>> origin/develop
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -717,12 +830,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: 
+  m_Name: ProjectBrowser
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
     serializedVersion: 2
     x: 0
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     y: 338.66666
@@ -744,6 +858,13 @@ MonoBehaviour:
   m_MinSize: {x: 202, y: 221}
   m_MaxSize: {x: 4002, y: 4021}
 >>>>>>> origin/GameMaster&PlayerAction
+=======
+    y: 433.6
+    width: 1172
+    height: 297.4
+  m_MinSize: {x: 231, y: 271}
+  m_MaxSize: {x: 10001, y: 10021}
+>>>>>>> origin/develop
   m_ActualView: {fileID: 10}
   m_Panes:
   - {fileID: 10}
@@ -758,6 +879,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 1
+<<<<<<< HEAD
   m_Script: {fileID: 12061, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -855,17 +977,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 1
+=======
+>>>>>>> origin/develop
   m_Script: {fileID: 12014, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: 
   m_EditorClassIdentifier: 
   m_MinSize: {x: 230, y: 250}
   m_MaxSize: {x: 10000, y: 10000}
   m_TitleContent:
-    m_Text: "\u9879\u76EE"
+    m_Text: Project
     m_Image: {fileID: -5179483145760003458, guid: 0000000000000000d000000000000000, type: 0}
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     x: 7.3333335
@@ -884,6 +1009,12 @@ MonoBehaviour:
     width: 569.2
     height: 385.2
 >>>>>>> origin/GameMaster&PlayerAction
+=======
+    x: 0
+    y: 507.2
+    width: 1171
+    height: 276.4
+>>>>>>> origin/develop
   m_ViewDataDictionary: {fileID: 0}
   m_SearchFilter:
     m_NameFilter: 
@@ -900,6 +1031,7 @@ MonoBehaviour:
     m_Folders:
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     - Assets/Scripts
 =======
     - Assets/Scenes
@@ -907,11 +1039,15 @@ MonoBehaviour:
 =======
     - Assets/Scenes
 >>>>>>> origin/GameMaster&PlayerAction
+=======
+    - Assets/Prefabs
+>>>>>>> origin/develop
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
   - Assets/Scripts
@@ -921,11 +1057,15 @@ MonoBehaviour:
 =======
   - Assets/Scenes
 >>>>>>> origin/GameMaster&PlayerAction
+=======
+  - Assets/Prefabs
+>>>>>>> origin/develop
   m_LastFoldersGridSize: -1
-  m_LastProjectPath: D:\Working\Program\ScienceA\GS2022\GStrategy2022-frontend
+  m_LastProjectPath: D:\Github\GStrategy2022-frontend\GStrategy2022-frontend
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
+<<<<<<< HEAD
 <<<<<<< HEAD
     scrollPos: {x: 0, y: 60}
     m_SelectedIDs: 3e400000
@@ -943,6 +1083,12 @@ MonoBehaviour:
     m_LastClickedID: 16400
     m_ExpandedIDs: 00000000084000000e400000
 >>>>>>> origin/GameMaster&PlayerAction
+=======
+    scrollPos: {x: 0, y: 35}
+    m_SelectedIDs: 543f0000
+    m_LastClickedID: 16212
+    m_ExpandedIDs: 00000000443f000000ca9a3b
+>>>>>>> origin/develop
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -960,6 +1106,7 @@ MonoBehaviour:
       m_IsRenamingFilename: 1
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       m_ClientGUIView: {fileID: 9}
 =======
       m_ClientGUIView: {fileID: 11}
@@ -967,6 +1114,9 @@ MonoBehaviour:
 =======
       m_ClientGUIView: {fileID: 11}
 >>>>>>> origin/GameMaster&PlayerAction
+=======
+      m_ClientGUIView: {fileID: 9}
+>>>>>>> origin/develop
     m_SearchString: 
     m_CreateAssetUtility:
       m_EndAction: {fileID: 0}
@@ -980,6 +1130,7 @@ MonoBehaviour:
     m_LastClickedID: 0
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     m_ExpandedIDs: 000000002c4000002e4000003040000000ca9a3b
 =======
     m_ExpandedIDs: 00000000303e0000
@@ -987,6 +1138,9 @@ MonoBehaviour:
 =======
     m_ExpandedIDs: 0000000008400000
 >>>>>>> origin/GameMaster&PlayerAction
+=======
+    m_ExpandedIDs: 00000000443f000000ca9a3b
+>>>>>>> origin/develop
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1013,6 +1167,7 @@ MonoBehaviour:
   m_ListAreaState:
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     m_SelectedInstanceIDs: c662feff
     m_LastClickedInstanceID: -105786
     m_HadKeyboardFocusLastEvent: 0
@@ -1029,6 +1184,12 @@ MonoBehaviour:
     m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c6230000fa420000646c0000743d0000883d0000823d0000763d00008c3d0000
 >>>>>>> origin/GameMaster&PlayerAction
+=======
+    m_SelectedInstanceIDs: fa3e0000
+    m_LastClickedInstanceID: 16122
+    m_HadKeyboardFocusLastEvent: 0
+    m_ExpandedInstanceIDs: c6230000
+>>>>>>> origin/develop
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1044,7 +1205,7 @@ MonoBehaviour:
       m_IsRenaming: 0
       m_OriginalEventType: 11
       m_IsRenamingFilename: 1
-      m_ClientGUIView: {fileID: 11}
+      m_ClientGUIView: {fileID: 9}
     m_CreateAssetUtility:
       m_EndAction: {fileID: 0}
       m_InstanceID: 0
@@ -1057,6 +1218,9 @@ MonoBehaviour:
   m_SkipHiddenPackages: 0
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/develop
   m_DirectoriesAreaWidth: 207
 --- !u!114 &11
 MonoBehaviour:
@@ -1067,6 +1231,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 1
+<<<<<<< HEAD
   m_Script: {fileID: 12003, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -1100,15 +1265,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 1
+=======
+>>>>>>> origin/develop
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: 
+  m_Name: InspectorWindow
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
     serializedVersion: 2
-<<<<<<< HEAD
-    x: 880.6667
+    x: 1172
     y: 0
+<<<<<<< HEAD
 <<<<<<< HEAD
     width: 372.6667
     height: 609.3334
@@ -1130,11 +1297,19 @@ MonoBehaviour:
 >>>>>>> origin/develop
 =======
 >>>>>>> origin/GameMaster&PlayerAction
+=======
+    width: 364
+    height: 731
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
+  m_ActualView: {fileID: 12}
+>>>>>>> origin/develop
   m_Panes:
-  - {fileID: 14}
+  - {fileID: 12}
+  - {fileID: 13}
   m_Selected: 0
-  m_LastSelected: 0
---- !u!114 &14
+  m_LastSelected: 1
+--- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1149,19 +1324,14 @@ MonoBehaviour:
   m_MinSize: {x: 275, y: 50}
   m_MaxSize: {x: 4000, y: 4000}
   m_TitleContent:
-    m_Text: "\u68C0\u67E5\u5668"
+    m_Text: Inspector
     m_Image: {fileID: -440750813802333266, guid: 0000000000000000d000000000000000, type: 0}
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-<<<<<<< HEAD
-    x: 888
-    y: 83.333336
-    width: 371.6667
-    height: 588.3334
-=======
-    x: 1052.8
+    x: 1172
     y: 73.6
+<<<<<<< HEAD
 <<<<<<< HEAD
     width: 482
     height: 702
@@ -1170,13 +1340,18 @@ MonoBehaviour:
     width: 482.19995
     height: 702
 >>>>>>> origin/GameMaster&PlayerAction
+=======
+    width: 363
+    height: 710
+>>>>>>> origin/develop
   m_ViewDataDictionary: {fileID: 0}
   m_ObjectsLockedBeforeSerialization: []
   m_InstanceIDsLockedBeforeSerialization: 
   m_PreviewResizer:
-    m_CachedPref: -160
+    m_CachedPref: 160
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
   m_LastInspectedObjectInstanceID: -1
@@ -1187,7 +1362,36 @@ MonoBehaviour:
   m_LastInspectedObjectInstanceID: -1
 >>>>>>> origin/GameMaster&PlayerAction
   m_LastVerticalScrollValue: 0
+=======
+  m_LastInspectedObjectInstanceID: 16122
+  m_LastVerticalScrollValue: 108.79999
+>>>>>>> origin/develop
   m_GlobalObjectId: 
   m_LockTracker:
     m_IsLocked: 0
   m_PreviewWindow: {fileID: 0}
+--- !u!114 &13
+MonoBehaviour:
+  m_ObjectHideFlags: 52
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 1
+  m_Script: {fileID: 12003, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_MinSize: {x: 100, y: 100}
+  m_MaxSize: {x: 4000, y: 4000}
+  m_TitleContent:
+    m_Text: Console
+    m_Image: {fileID: -4950941429401207979, guid: 0000000000000000d000000000000000, type: 0}
+    m_Tooltip: 
+  m_Pos:
+    serializedVersion: 2
+    x: 1172
+    y: 73.6
+    width: 363
+    height: 710
+  m_ViewDataDictionary: {fileID: 0}

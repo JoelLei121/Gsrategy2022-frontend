@@ -105,7 +105,7 @@ public class PlayerAction : MonoBehaviour
         }
         //go back
         player.transform.Rotate(0f, -30f, 0f);
-
+        // play too early
         yield return StartCoroutine(Damaged(target, playerStatus.atk));
         yield return new WaitForSeconds(0.5f);
         //MoveTo(0, 0, 0);

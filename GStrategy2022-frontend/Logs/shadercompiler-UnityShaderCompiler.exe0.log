@@ -1,5 +1,9 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 Base path: 'D:/Program Files/Unity/Hub/Editor/2020.3.26f1c1/Editor/Data', plugins path 'D:/Program Files/Unity/Hub/Editor/2020.3.26f1c1/Editor/Data/PlaybackEngines'
+=======
+Base path: 'D:/Unity/UnityEngine/2020.3.26f1c1/Editor/Data', plugins path 'D:/Unity/UnityEngine/2020.3.26f1c1/Editor/Data/PlaybackEngines'
+>>>>>>> origin/develop
 Cmd: initializeCompiler
 
 =======
@@ -48,4 +52,7 @@ Cmd: preprocess
 Cmd: shutdown
 
 Quitting shader compiler process
+<<<<<<< HEAD
 >>>>>>> origin/GameMaster&PlayerAction
+=======
+>>>>>>> origin/develop

@@ -19,7 +19,7 @@ public class HexGrid : MonoBehaviour //TODO:�����ļ�����
     {
     }
 
-    void init()
+    public void init()
     {
         if (width % 2 == 1)
         {
@@ -71,7 +71,7 @@ public class HexGrid : MonoBehaviour //TODO:�����ļ�����
         return (units[n_z * w + n_x].GetComponent<MapUnit>());
     }
 
-    public Vector3 GetUnitTransform(int h_x, int h_z)
+    public Vector3 GetUnitPosition(int h_x, int h_z)
     {
         int[] n = hexToNormal(h_x, h_z);
         int n_x = n[0];
