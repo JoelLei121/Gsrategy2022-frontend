@@ -83,7 +83,7 @@ MonoBehaviour:
   players: []
   playerNum: 0
   mapSize: 20
-  playerPrefab: {fileID: 8938559579105387397, guid: c615188887e76d7419ad23da89a507ce, type: 3}
+  playerPrefab: {fileID: 262835396085849487, guid: 4c55492260952e34cad83d67e698d0c4, type: 3}
   map: {fileID: 1108448443531961005}
   initialize: {fileID: 2180520255852304629}
   isInstantiated: 0

@@ -7,15 +7,14 @@ using System.Collections;
 [Serializable]
 class GameState
 {
-    public int Round;
-    public String CurrentEvent;
     public int ActivePlayerId;
-    public int[] VictimId;
     public int[] ActivePos;
+    public String CurrentEvent;
+    public int[] MapSize = { 10, 10, 10 };
+    public int Round;
+    public int[] VictimId;
     public int? WinnerId;
     public float? exp;
-
-    public int[] MapSize = { 10, 10, 10 };
 
 }
 
@@ -33,6 +32,7 @@ public class CommandLoader : MonoBehaviour
     public PlayerAction playerAction;
     private List<GameState> gameStates;
     private GameState runningState;
+    public string path = "Assets/Resources/Play.json";
     // private IEnumerator coroutine; 
     void Start()
     {
@@ -40,7 +40,7 @@ public class CommandLoader : MonoBehaviour
     }
     public void GetCommandFromDocument()
     {
-        String gameStateJson = File.ReadAllText("Assets/Resources/Play.json");
+        String gameStateJson = File.ReadAllText(path);
         Response<GameState> response = JsonUtility.FromJson<Response<GameState>>(gameStateJson);
         gameStates = response.list;
 
@@ -58,7 +58,7 @@ public class CommandLoader : MonoBehaviour
     public IEnumerator LoadCommand()
     {
         Debug.Log("Waiting...");
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(2f);
         while(true)
         {
             if(index >= gameLength)
@@ -88,7 +88,9 @@ public class CommandLoader : MonoBehaviour
                     break;
 
                 case "GATHER":
-                    yield return StartCoroutine(playerAction.Gather(target, (float)runningState.exp));
+                    // float exp = (float)runningState.exp;
+                    // Debug.Log(exp);
+                    yield return StartCoroutine(playerAction.Gather(target, 0));
                     break;
 
                 case "ERROR":
