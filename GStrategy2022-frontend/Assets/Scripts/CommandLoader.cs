@@ -14,7 +14,7 @@ class GameState
     public int Round;
     public int[] VictimId;
     public int? WinnerId;
-    public float? exp;
+    public float exp;
 
 }
 
@@ -69,12 +69,22 @@ public class CommandLoader : MonoBehaviour
             }
             NextCommand();
             // PlayerStatus target = gameController.GetPlayerStatus(runningState.ActivePlayerId);
+            gameController.map.checkWidth(runningState.MapSize[0]);
+            yield return new WaitForSeconds(2f);
             GameObject target = gameController.players[runningState.ActivePlayerId];
+            int[] pos = runningState.ActivePos;
+            gameController.map.highRole(pos[0], pos[2]);
+            yield return new WaitForSeconds(2f);
+            PlayerStatus status = gameController.players[runningState.ActivePlayerId].GetComponent<PlayerStatus>();
+            gameController.map.setFow(pos[0], pos[2], status.visibility);
+            yield return new WaitForSeconds(2f);
+            gameController.map.clearState();
+            yield return new WaitForSeconds(2f);
 
             switch (runningState.CurrentEvent)
             {
                 case "MOVE":
-                    int[] pos = runningState.ActivePos;
+                    // int[] pos = runningState.ActivePos;
                     yield return StartCoroutine(playerAction.MoveTo(target, pos[0], pos[1], pos[2]));
                     break;
 
@@ -88,9 +98,7 @@ public class CommandLoader : MonoBehaviour
                     break;
 
                 case "GATHER":
-                    // float exp = (float)runningState.exp;
-                    // Debug.Log(exp);
-                    yield return StartCoroutine(playerAction.Gather(target, 0));
+                    yield return StartCoroutine(playerAction.Gather(target, runningState.exp));
                     break;
 
                 case "ERROR":

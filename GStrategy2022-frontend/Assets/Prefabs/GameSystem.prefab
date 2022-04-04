@@ -131,6 +131,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameController: {fileID: 5871034852355324042}
   playerAction: {fileID: 3043813441000269335}
+  path: Assets/Resources/Play.json
 --- !u!1 &3506964756824110081
 GameObject:
   m_ObjectHideFlags: 0
@@ -177,5 +178,11 @@ MonoBehaviour:
   width: 10
   length: 1
   hexPrefab: {fileID: 3069722108475870739, guid: f4532767a3fbe3f4d993bce980b91874, type: 3}
+  treePrefab: {fileID: 1899384856240072844, guid: 3b1dcf4157f417648b1847f095d378b8, type: 3}
+  rockPrefab: {fileID: 3739014139248135317, guid: 5fd1cf9281141144281d3065c4a2f7b4, type: 3}
+  normalMaterial: {fileID: 2100000, guid: ec6813be84e27e341bd3835617ddd33d, type: 2}
+  highlightMaterial: {fileID: 2100000, guid: 547662f63c3272f44bb0b47c16908fa4, type: 2}
+  deleteMaterial: {fileID: 2100000, guid: d1fec6ea4240e604193990205320238e, type: 2}
+  fowMaterial: {fileID: 2100000, guid: ed3b7a80b4ef34d4bb5dcf4bb310506c, type: 2}
   resPrefab: {fileID: 0}
   textPrefab: {fileID: 6410730326384502734, guid: fb329646950d5e44ab4fec510a77681a, type: 3}

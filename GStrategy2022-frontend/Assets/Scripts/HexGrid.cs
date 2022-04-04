@@ -2,13 +2,22 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 
-public class HexGrid : MonoBehaviour //TODO:�����ļ�����
+public class HexGrid : MonoBehaviour //TODO:缩圈
 {
-    public int width = 10;//�߳�
+    public int width = 10;//地图边长
     private int w = 20;
-    public float length = 1;//һ��ı߳�
+    public float length = 1;//元件长度
 
     public GameObject hexPrefab;
+    //装饰
+    public GameObject treePrefab;
+    public GameObject rockPrefab;
+
+    public Material normalMaterial;
+    public Material highlightMaterial;
+    public Material deleteMaterial;
+    public Material fowMaterial;
+
     //public GameObject monsterPrefab;
     public GameObject resPrefab;
     public Text textPrefab;
@@ -50,7 +59,7 @@ public class HexGrid : MonoBehaviour //TODO:�����ļ�����
             {
                 GameObject tmp_hex = units[z * w + x] = createHex(x, z, length);
                 tmp_hex.AddComponent<MapUnit>();
-                tmp_hex.GetComponent<MapUnit>().init(x, z,w, (int)Types.nor, tmp_hex, resPrefab,0,textPrefab);
+                tmp_hex.GetComponent<MapUnit>().init(x, z,w, (int)Types.nor, tmp_hex, resPrefab,treePrefab,rockPrefab,0,textPrefab);
             }
         }
     }
@@ -83,7 +92,7 @@ public class HexGrid : MonoBehaviour //TODO:�����ļ�����
     }
     public GameObject createHex(int t_x, int t_z, float length)
     {
-        //���ɵ�ͼ��
+        //生成六边形
         float innerRadius = 1.73205081f * length * 0.5f;
         float outerRadius = length;
         Vector3 position;
@@ -96,4 +105,93 @@ public class HexGrid : MonoBehaviour //TODO:�����ļ�����
         return cell;
     }
 
+    public void checkWidth(int t_width)
+    {
+        if (t_width == width)
+            return;
+        else
+        {
+            
+            for (int z = 0; z < w-1; z++)
+            {
+                if (z==0||z==w-2)
+                {
+                    int width_tmp = Mathf.Abs((w - 2) / 2 - z);
+                    int tmp_s = (width_tmp + 1) / 2;
+                    int tmp_e = w - 2 - width_tmp / 2;
+                    for (int x = tmp_s; x <= tmp_e; x++)
+                    {
+                        units[z * w + x].GetComponent<MapUnit>().state = (int)States.del;
+                        units[z * w + x].GetComponent<Renderer>().material = deleteMaterial;
+                    }
+                }
+                else
+                {
+                    int width_tmp = Mathf.Abs((w - 2) / 2 - z);
+                    int tmp_s = (width_tmp + 1) / 2;
+                    int tmp_e = w - 2 - width_tmp / 2;
+                    units[z * w + tmp_s].GetComponent<MapUnit>().state = (int)States.del;
+                    units[z * w + tmp_s].GetComponent<Renderer>().material=deleteMaterial;
+                    units[z * w + tmp_e].GetComponent<MapUnit>().state = (int)States.del;
+                    units[z * w + tmp_e].GetComponent<Renderer>().material = deleteMaterial;
+                }
+                
+            }
+            width = t_width;
+            w = 2 * width;
+        }
+    }
+
+    public void setFow(int h_x,int h_z,int range)
+    {
+        for (int z = 0; z < w - 1; z++)
+        {
+            int width_tmp = Mathf.Abs((w - 2) / 2 - z);
+            int tmp_s = (width_tmp + 1) / 2;
+            int tmp_e = w - 2 - width_tmp / 2;
+            for (int x = tmp_s; x <= tmp_e; x++)
+            {
+                int[] u_coor = units[z * w + x].GetComponent<MapUnit>().GetHexCoor();
+                int h_y = -h_x - h_z;
+                if (Mathf.Sqrt((h_x - u_coor[0]) ^ 2 + (h_y - u_coor[1]) ^ 2 + (h_z - u_coor[2]) ^ 2) < (float)range * Mathf.Sqrt(2)) { }
+                else
+                {
+                    units[z * w + x].GetComponent<MapUnit>().state = (int)States.fow;
+                    units[z * w + x].GetComponent<Renderer>().material = fowMaterial;
+                }
+            }
+        }
+    }
+
+    public void clearState()
+    {
+        for (int z = 0; z < w - 1; z++)
+        {
+            int width_tmp = Mathf.Abs((w - 2) / 2 - z);
+            int tmp_s = (width_tmp + 1) / 2;
+            int tmp_e = w - 2 - width_tmp / 2;
+            for (int x = tmp_s; x <= tmp_e; x++)
+            {
+                    units[z * w + x].GetComponent<MapUnit>().state = (int)States.nor;
+                    units[z * w + x].GetComponent<Renderer>().material = normalMaterial;
+            }
+        }
+    }
+
+    public void highRole(int h_x,int h_z)
+    {
+        for (int z = 0; z < w - 1; z++)
+        {
+            int width_tmp = Mathf.Abs((w - 2) / 2 - z);
+            int tmp_s = (width_tmp + 1) / 2;
+            int tmp_e = w - 2 - width_tmp / 2;
+            for (int x = tmp_s; x <= tmp_e; x++)
+            {
+                units[z * w + x].GetComponent<MapUnit>().state = (int)States.del;
+                units[z * w + x].GetComponent<Renderer>().material = deleteMaterial;
+            }
+        }
+        GetMapUnit(h_x, h_z).GetCell().GetComponent<Renderer>().material = normalMaterial;
+        GetMapUnit(h_x, h_z).state = (int)States.nor;
+    }
 }

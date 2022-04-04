@@ -16,7 +16,7 @@
       "ActivePlayerId" : 0,
       "ActivePos" : [ 1, 0, -1 ],
       "CurrentEvent" : "MOVE",
-      "MapSize" : [ 10, 10, 10 ],
+      "MapSize" : [ 9, 9, 9 ],
       "MinesLeft" : null,
       "Round" : 1,
       "UpgradeType" : null,
