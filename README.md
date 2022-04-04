@@ -43,9 +43,19 @@ initialize: 读取init.json，初始化角色
 
 ### 在Unity的调试方法
 
+一、自行调试
+
+- 另开Scene进行测试
+
 - 自行创建测试脚本，放在Scene中的目标GameObject上
 - 在Update函数中，对简单的输入事件(如滑鼠点击、键盘输入)进行判断，调用测试函数
 
 - 使用Debug.Log(var)在Console面板中输出var
 
 关于Update函数的使用、输入事件的判断，请自行查阅。
+
+
+
+二、在游戏过程中调试
+
+- 修改CommandLoader中的程序，加上合适的语句。详情见Function及Coroutine。
