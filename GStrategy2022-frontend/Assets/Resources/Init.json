@@ -20,7 +20,7 @@
       "sight_range": 10,
       "move_range": 5,
       "mine_speed": 5,
-      "at": 2,
+      "at": 50,
       "hp": 100,
       "Position": [ 0, 0, 0 ]
     },

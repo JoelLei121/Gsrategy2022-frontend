@@ -1,31 +1,64 @@
 {
   "list": [
     {
-      "Round": 1,
-      "CurrentEvent": "MOVE",
-      "ActivePlayerId": 0,
-      "VictimId": [ 1, 2, 3 ],
-      "ActivePos": [ 1, 0, -1 ],
-      "MapSize": [ 10, 10, 10 ]
-
+      "ActivePlayerId" : 1,
+      "ActivePos" : [ -3, 0, 3 ],
+      "CurrentEvent" : "GATHER",
+      "MapSize" : [ 10, 10, 10 ],
+      "MinesLeft" : null,
+      "Round" : 4,
+      "UpgradeType" : null,
+      "VictimId" : [ ],
+      "WinnerId" : null,
+      "exp" : 1.5
     },
     {
-      "Round": 2,
-      "CurrentEvent": "MOVE",
-      "ActivePlayerId": 0,
-      "VictimId": [ 1, 2, 3 ],
-      "ActivePos": [ 1, -1, 0 ],
-      "MapSize": [ 10, 10, 10 ]
-
+      "ActivePlayerId" : 0,
+      "ActivePos" : [ 1, 0, -1 ],
+      "CurrentEvent" : "MOVE",
+      "MapSize" : [ 9, 9, 9 ],
+      "MinesLeft" : null,
+      "Round" : 1,
+      "UpgradeType" : null,
+      "VictimId" : [],
+      "WinnerId" : null,
+      "exp" : null
     },
     {
-      "Round": 3,
-      "CurrentEvent": "ATTACK",
-      "ActivePlayerId": 0,
-      "VictimId": [ 1 ],
-      "ActivePos": [ 1, -1, 1 ],
-      "WinnerId": 0,
-      "MapSize": [ 10, 10, 10 ]
+      "ActivePlayerId" : 0,
+      "ActivePos" : [ -2, 0, 2 ],
+      "CurrentEvent" : "MOVE",
+      "MapSize" : [ 10, 10, 10 ],
+      "MinesLeft" : null,
+      "Round" : 2,
+      "UpgradeType" : null,
+      "VictimId" : [],
+      "WinnerId" : null,
+      "exp" : null
+    },
+    {
+      "ActivePlayerId" : 0,
+      "ActivePos" : [ -2, 0, 2 ],
+      "CurrentEvent" : "ATTACK",
+      "MapSize" : [ 10, 10, 10 ],
+      "MinesLeft" : null,
+      "Round" : 3,
+      "UpgradeType" : null,
+      "VictimId" : [ 1 ],
+      "WinnerId" : null,
+      "exp" : null
+    },
+    {
+      "ActivePlayerId" : 0,
+      "ActivePos" : [ -2, 0, 2 ],
+      "CurrentEvent" : "ATTACK",
+      "MapSize" : [ 10, 10, 10 ],
+      "MinesLeft" : null,
+      "Round" : 5,
+      "UpgradeType" : null,
+      "VictimId" : [ 1 ],
+      "WinnerId" : null,
+      "exp" : null
 
     }
   ]

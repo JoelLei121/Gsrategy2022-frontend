@@ -51,5 +51,10 @@ public class PlayerStatus : MonoBehaviour
         exp = 0;
     }
 
+    public bool isDead()
+    {
+        return hp <= 0;
+    }
+
 
 }

@@ -897,3 +897,13 @@ candidates check time : 57ms
 console write time    : 0ms
 >>>>>>> origin/GameMaster&PlayerAction
 
+[api-updater (non-obsolete-error-filter)] 2022/4/4 3:13:20 : Starting D:/Unity/UnityEngine/2020.3.26f1c1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 1318.762ms
+moved types parse time: 134ms
+candidates parse time : 1ms
+C# parse time         : 1119ms
+candidates check time : 81ms
+console write time    : 16ms
+

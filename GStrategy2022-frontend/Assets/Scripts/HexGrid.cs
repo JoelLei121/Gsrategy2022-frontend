@@ -105,7 +105,7 @@ public class HexGrid : MonoBehaviour //TODO:缩圈
         return cell;
     }
 
-    void checkWidth(int t_width)
+    public void checkWidth(int t_width)
     {
         if (t_width == width)
             return;
@@ -142,7 +142,7 @@ public class HexGrid : MonoBehaviour //TODO:缩圈
         }
     }
 
-    void setFow(int h_x,int h_z,int range)
+    public void setFow(int h_x,int h_z,int range)
     {
         for (int z = 0; z < w - 1; z++)
         {
@@ -163,7 +163,7 @@ public class HexGrid : MonoBehaviour //TODO:缩圈
         }
     }
 
-    void clearState()
+    public void clearState()
     {
         for (int z = 0; z < w - 1; z++)
         {
@@ -178,7 +178,7 @@ public class HexGrid : MonoBehaviour //TODO:缩圈
         }
     }
 
-    void highRole(int h_x,int h_z)
+    public void highRole(int h_x,int h_z)
     {
         for (int z = 0; z < w - 1; z++)
         {

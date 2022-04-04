@@ -9,7 +9,9 @@ public class PlayerAction : MonoBehaviour
     public float moveSpeed = 0.1f;
     public bool isMoving;
     public bool isAttacking;
-    float margin = 0.5f;
+    float rotationMargin = 0.01f;
+    float runningMargin = 0.5f;
+    float turnSpeed = 20f;
     void Start()
     {
         isMoving = false;
@@ -18,11 +20,14 @@ public class PlayerAction : MonoBehaviour
 
     bool isArrived(Vector3 start, Vector3 end)
     {
-        if(Mathf.Abs(start.x - end.x) <= margin && Mathf.Abs(start.z - end.z) <= margin)
-        {
-            return true;
-        }
-        return false;
+        Vector3 a = new Vector3(start.x, 0, start.z);
+        Vector3 b = new Vector3(end.x, 0, end.z);
+        return Vector3.Distance(a, b) < runningMargin;
+        // if(Mathf.Abs(start.x - end.x) <= margin && Mathf.Abs(start.z - end.z) <= margin)
+        // {
+        //     return true;
+        // }
+        // return false;
     }
 
     // MoveTo(x, y, z)
@@ -30,7 +35,6 @@ public class PlayerAction : MonoBehaviour
     {
         //go to specify point
         //play moving animation
-        float turnSpeed = 10f;
         PlayerStatus status = player.GetComponent<PlayerStatus>();
         Vector3 startPosition = player.transform.position;
         Vector3 endPosition = map.GetUnitPosition(x, z);
@@ -38,13 +42,16 @@ public class PlayerAction : MonoBehaviour
         // turning to target
         Vector3 dir = endPosition - startPosition;
         Debug.Log("facing");
-        while(true)
+        float counter = 0f;
+        // could not face to position perfectly
+        while(counter < 1f)
         {
             Quaternion lookRotation = Quaternion.LookRotation(dir);
             Vector3 rotation = Quaternion.Lerp(player.transform.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
             player.transform.rotation = Quaternion.Euler(0f, rotation.y, 0f);
+            counter += Time.deltaTime;
             yield return null;
-            if(Mathf.Abs(player.transform.rotation.y - lookRotation.y) < 0.05f) break;
+            if(Mathf.Abs(player.transform.rotation.y - lookRotation.y) < rotationMargin) break;
         }
 
         // moving
@@ -55,6 +62,10 @@ public class PlayerAction : MonoBehaviour
         {
             // animation
             startPosition = player.transform.position;
+            dir = endPosition - startPosition;
+            Quaternion lookRotation = Quaternion.LookRotation(dir);
+            Vector3 rotation = Quaternion.Lerp(player.transform.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
+            player.transform.rotation = Quaternion.Euler(0f, rotation.y, 0f);
             if(isArrived(startPosition, endPosition)) break;
             yield return null;
         }
@@ -63,7 +74,7 @@ public class PlayerAction : MonoBehaviour
         // update position
         status.pos = new int[] {x, y, z};
         Debug.Log("Player " + status.id + ": moving to (" + x + ", " + y + ", " + z + ")");
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(0.5f);
         yield break;
     }
 
@@ -90,24 +101,39 @@ public class PlayerAction : MonoBehaviour
 
         Debug.Log("Player " + playerStatus.id + " attack Player " + targetStatus.id);
         yield return new WaitForSeconds(0.5f);
-
-        player.transform.Rotate(0f, 30f, 0f);
-        animator.SetBool("isAttacking", true);
-        while(true)
+        Vector3 dir = target.transform.position - player.transform.position;
+        // rotate y 60
+        float counter = 0f;
+        while(counter < 0.8f)
         {
-            // do some animation
+            Quaternion lookRotation = Quaternion.LookRotation(dir);
+            Vector3 rotation = Quaternion.Lerp(player.transform.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
+            player.transform.rotation = Quaternion.Euler(0f, rotation.y, 0f);
+            counter += Time.deltaTime;
             yield return null;
-            if(!animator.GetCurrentAnimatorStateInfo(0).IsName("Cross Punch"))
-            {
-                animator.SetBool("isAttacking", false);
-                break;
-            }
+            if(Mathf.Abs(player.transform.rotation.y - lookRotation.y) < rotationMargin) break;
         }
-        //go back
-        player.transform.Rotate(0f, -30f, 0f);
-        // play too early
+;
+        animator.SetBool("isAttacking", true);
+        // lookat + delta
+        player.transform.Rotate(0f, 60f, 0f);
+        yield return new WaitForSeconds(1f);
+
+        animator.SetBool("isAttacking", false);
+        yield return null;
+        // try turn back smoothly
+        counter = 0f;
+        while(counter < 0.8f)
+        {
+            Quaternion lookRotation = Quaternion.LookRotation(dir);
+            Vector3 rotation = Quaternion.Lerp(player.transform.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
+            player.transform.rotation = Quaternion.Euler(0f, rotation.y, 0f);
+            counter += Time.deltaTime;
+            yield return null;
+            if(Mathf.Abs(player.transform.rotation.y - lookRotation.y) < rotationMargin) break;
+        }
         yield return StartCoroutine(Damaged(target, playerStatus.atk));
-        yield return new WaitForSeconds(0.5f);
+        //go back
         //MoveTo(0, 0, 0);
         yield break;
     }
@@ -119,21 +145,19 @@ public class PlayerAction : MonoBehaviour
         PlayerStatus status = player.GetComponent<PlayerStatus>();
         status.hp -= atk;
         animator.SetBool("isDamaged", true);
-        while(true)
+        if(status.isDead())
         {
-            // do some animation
-            yield return null;
-            if(!animator.GetCurrentAnimatorStateInfo(0).IsName("Damaged"))
-            {
-                animator.SetBool("isDamaged", false);
-                break;
-            }
+            animator.SetBool("isDying", true);
+            StartCoroutine(Died(player));
+            yield break;
         }
+        yield return new WaitForSeconds(1f);
+        animator.SetBool("isDamaged", false);
         Debug.Log("Player " + status.id + " is damaged. HP left: " + status.hp);
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         if(status.hp <= 0)
         {
-            StartCoroutine(Died(player));
+            
         }
         yield break;
     }
@@ -143,13 +167,9 @@ public class PlayerAction : MonoBehaviour
     {
         PlayerStatus status = player.GetComponent<PlayerStatus>();
         Debug.Log("Player " + status.id + " is killed.");
-        while(true)
-        {
-            //play die animation
-            yield return null;
-            if(true) break;
-        }
-        
+        yield return new WaitForSeconds(1.5f);
+        StartCoroutine(DestroyPlayer(player));
+
         // Destroy player's gameobject?
         yield break;
     }
@@ -157,14 +177,12 @@ public class PlayerAction : MonoBehaviour
     // Grab(Vector3 setPoint)
     public IEnumerator Gather(GameObject player, float exp)
     {
+        Animator animator = player.GetComponent<Animator>();
         PlayerStatus status = player.GetComponent<PlayerStatus>();
+        animator.SetBool("isGathering", true);
         Debug.Log("Player " + status.id + " is gathering. exp + " + exp);
-        while(true)
-        {
-            // play gathering animation
-            yield return null;
-            if(true) break;
-        }
+        yield return new WaitForSeconds(4f);
+        animator.SetBool("isGathering", false);
         yield break;
     }
 
@@ -184,7 +202,8 @@ public class PlayerAction : MonoBehaviour
     IEnumerator DestroyPlayer(GameObject player)
     {
         // play destroy animation
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(5f);
+        player.SetActive(false);
         // destroy gameObject
         yield break;
     }
