@@ -12,6 +12,7 @@ public class HexGrid : MonoBehaviour //TODO:缩圈
     //装饰
     public GameObject treePrefab;
     public GameObject rockPrefab;
+    public GameObject beautifulPrefab;
 
     public Material normalMaterial;
     public Material highlightMaterial;
@@ -111,34 +112,38 @@ public class HexGrid : MonoBehaviour //TODO:缩圈
             return;
         else
         {
-            
-            for (int z = 0; z < w-1; z++)
+            while (width == t_width)
             {
-                if (z==0||z==w-2)
+                for (int z = 0; z < w-1; z++)
                 {
-                    int width_tmp = Mathf.Abs((w - 2) / 2 - z);
-                    int tmp_s = (width_tmp + 1) / 2;
-                    int tmp_e = w - 2 - width_tmp / 2;
-                    for (int x = tmp_s; x <= tmp_e; x++)
+                    if (z==0||z==w-2)
                     {
-                        units[z * w + x].GetComponent<MapUnit>().state = (int)States.del;
-                        units[z * w + x].GetComponent<Renderer>().material = deleteMaterial;
+                        int width_tmp = Mathf.Abs((w - 2) / 2 - z);
+                        int tmp_s = (width_tmp + 1) / 2;
+                        int tmp_e = w - 2 - width_tmp / 2;
+                        for (int x = tmp_s; x <= tmp_e; x++)
+                        {
+                            units[z * w + x].GetComponent<MapUnit>().state = (int)States.del;
+                            units[z * w + x].GetComponent<Renderer>().material = deleteMaterial;
+                        }
                     }
+                    else
+                    {
+                        int width_tmp = Mathf.Abs((w - 2) / 2 - z);
+                        int tmp_s = (width_tmp + 1) / 2;
+                        int tmp_e = w - 2 - width_tmp / 2;
+                        units[z * w + tmp_s].GetComponent<MapUnit>().state = (int)States.del;
+                        units[z * w + tmp_s].GetComponent<Renderer>().material=deleteMaterial;
+                        units[z * w + tmp_e].GetComponent<MapUnit>().state = (int)States.del;
+                        units[z * w + tmp_e].GetComponent<Renderer>().material = deleteMaterial;
+                    }
+
                 }
-                else
-                {
-                    int width_tmp = Mathf.Abs((w - 2) / 2 - z);
-                    int tmp_s = (width_tmp + 1) / 2;
-                    int tmp_e = w - 2 - width_tmp / 2;
-                    units[z * w + tmp_s].GetComponent<MapUnit>().state = (int)States.del;
-                    units[z * w + tmp_s].GetComponent<Renderer>().material=deleteMaterial;
-                    units[z * w + tmp_e].GetComponent<MapUnit>().state = (int)States.del;
-                    units[z * w + tmp_e].GetComponent<Renderer>().material = deleteMaterial;
-                }
-                
+                width--;
+                w = 2 * width;
+
             }
-            width = t_width;
-            w = 2 * width;
+            
         }
     }
 
@@ -192,5 +197,14 @@ public class HexGrid : MonoBehaviour //TODO:缩圈
         }
         GetMapUnit(h_x, h_z).GetCell().GetComponent<Renderer>().material = normalMaterial;
         GetMapUnit(h_x, h_z).state = (int)States.nor;
+    }
+
+    public void setBeautifulUnits(int h_x,int h_z)
+    {
+        Vector3 pos_dec = Vector3.zero;
+        GameObject decoration = Instantiate<GameObject>(beautifulPrefab);
+        GameObject cell = GetMapUnit(h_x, h_z).GetCell();
+        decoration.transform.SetParent(cell.transform, false);
+        decoration.transform.localPosition = pos_dec;
     }
 }
