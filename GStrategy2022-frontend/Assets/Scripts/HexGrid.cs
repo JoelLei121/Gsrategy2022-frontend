@@ -184,19 +184,8 @@ public class HexGrid : MonoBehaviour //TODO:缩圈
 
     public void highRole(int h_x,int h_z)
     {
-        for (int z = 0; z < w - 1; z++)
-        {
-            int width_tmp = Mathf.Abs((w - 2) / 2 - z);
-            int tmp_s = (width_tmp + 1) / 2;
-            int tmp_e = w - 2 - width_tmp / 2;
-            for (int x = tmp_s; x <= tmp_e; x++)
-            {
-                units[z * w + x].GetComponent<MapUnit>().state = (int)States.del;
-                units[z * w + x].GetComponent<Renderer>().material = deleteMaterial;
-            }
-        }
-        GetMapUnit(h_x, h_z).GetCell().GetComponent<Renderer>().material = normalMaterial;
-        GetMapUnit(h_x, h_z).state = (int)States.nor;
+        GetMapUnit(h_x, h_z).GetCell().GetComponent<Renderer>().material = highlightMaterial;
+        GetMapUnit(h_x, h_z).state = (int)States.high;
     }
 
     public void setBeautifulUnits(int h_x,int h_z)
