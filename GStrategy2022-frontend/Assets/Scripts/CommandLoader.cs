@@ -73,10 +73,10 @@ public class CommandLoader : MonoBehaviour
             yield return new WaitForSeconds(2f);
             GameObject target = gameController.players[runningState.ActivePlayerId];
             int[] pos = runningState.ActivePos;
-            gameController.map.highRole(pos[0], pos[2]);
-            yield return new WaitForSeconds(2f);
             PlayerStatus status = gameController.players[runningState.ActivePlayerId].GetComponent<PlayerStatus>();
             gameController.map.setFow(pos[0], pos[2], status.visibility);
+            yield return new WaitForSeconds(2f);
+            gameController.map.highRole(pos[0], pos[2]);
             yield return new WaitForSeconds(2f);
             gameController.map.clearState();
             yield return new WaitForSeconds(2f);

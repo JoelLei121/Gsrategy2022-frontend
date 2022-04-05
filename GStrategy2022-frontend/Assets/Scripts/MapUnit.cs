@@ -7,9 +7,9 @@ enum Types { nor, bar, res };//0:normal 1:barrier 2:resource TODO:类型
 enum States { nor,del,high,fow};//0:normal 1:deleted 2:highlighted 3:fowed
 public class MapUnit : MonoBehaviour
 {
-    private int x = 0;
-    private int y = 0;
-    private int z = 0;
+    public int x = 0;
+    public int y = 0;
+    public int z = 0;
     private GameObject cell;
     private GameObject resource;
     private int type = (int)Types.nor;

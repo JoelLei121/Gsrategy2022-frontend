@@ -158,7 +158,7 @@ public class HexGrid : MonoBehaviour //TODO:缩圈
             {
                 int[] u_coor = units[z * w + x].GetComponent<MapUnit>().GetHexCoor();
                 int h_y = -h_x - h_z;
-                if (units[z * w + x].GetComponent<MapUnit>().state!=(int)States.del &&Mathf.Sqrt((h_x - u_coor[0]) ^ 2 + (h_y - u_coor[1]) ^ 2 + (h_z - u_coor[2]) ^ 2) < (float)range * Mathf.Sqrt(2))
+                if (units[z * w + x].GetComponent<MapUnit>().state!=(int)States.del &&((Mathf.Sqrt(Mathf.Pow((h_x - u_coor[0]),2)  + Mathf.Pow(h_y - u_coor[1],2) + Mathf.Pow(h_z - u_coor[2],2)) - ((float)range * Mathf.Sqrt(2)))<0.1))
                 {
                     units[z * w + x].GetComponent<MapUnit>().state = (int)States.fow;
                     units[z * w + x].GetComponent<Renderer>().material = fowMaterial;
