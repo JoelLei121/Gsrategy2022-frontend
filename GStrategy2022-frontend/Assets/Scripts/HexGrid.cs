@@ -27,13 +27,7 @@ public class HexGrid : MonoBehaviour //TODO:缩圈
     GameObject[] units;
 
     void Awake()
-    {
-        init();
-        checkWidth(8);
-        new WaitForSeconds(2f);
-        setFow(-8, 0, 1);
-        new WaitForSeconds(2f);
-            
+    {            
     }
 
     public void init()
