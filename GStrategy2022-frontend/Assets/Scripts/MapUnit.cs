@@ -7,10 +7,10 @@ enum Types { nor, bar, res };//0:normal 1:barrier 2:resource TODO:类型
 enum States { nor,del,high,fow};//0:normal 1:deleted 2:highlighted 3:fowed
 public class MapUnit : MonoBehaviour
 {
-    private int x = 0;
-    private int y = 0;
-    private int z = 0;
-    //private GameObject cell;
+    public int x = 0;
+    public int y = 0;
+    public int z = 0;
+    private GameObject cell;
     private GameObject resource;
     private int type = (int)Types.nor;
     private int resource_num = 0;
@@ -29,7 +29,7 @@ public class MapUnit : MonoBehaviour
             resource_num = t_res_num;
 
         this.transform.SetParent(hexParent.transform,false);
-
+        cell = hexParent;
         //文本
         if(textPrefab !=null)
         {
@@ -43,28 +43,37 @@ public class MapUnit : MonoBehaviour
         if (ifDecoration<5)//生成树
         {
             Vector3 pos_dec = Vector3.zero;
-            pos_dec.y = 1f;
+            Vector3 scale_dec = Vector3.one;
+            scale_dec.x = 0.5f;
+            scale_dec.y = 0.5f;
+            scale_dec.z = 0.5f;
             GameObject decoration = Instantiate<GameObject>(treePrefab);
-            decoration.transform.SetParent(GetCell().transform, false);
+            decoration.transform.SetParent(cell.transform, false);
             decoration.transform.localPosition = pos_dec;
+            decoration.transform.transform.localScale = scale_dec;
         }
         else if(ifDecoration<10)//生成石头
         {
             Vector3 pos_dec = Vector3.zero;
-            pos_dec.y = 1f;
+            pos_dec.y = 0.1f;
+            Vector3 scale_dec = Vector3.one;
+            scale_dec.x = 0.5f;
+            scale_dec.y = 0.5f;
+            scale_dec.z = 0.5f;
             GameObject decoration = Instantiate<GameObject>(rockPrefab);
-            decoration.transform.SetParent(GetCell().transform, false);
+            decoration.transform.SetParent(cell.transform, false);
             decoration.transform.localPosition = pos_dec;
+            decoration.transform.transform.localScale = scale_dec;
         }
 
         switch (type)
         {
             case 1://障碍
                 {
-                    Vector3 pos_obs = GetCell().transform.localPosition;
+                    Vector3 pos_obs = cell.transform.localPosition;
                     pos_obs.y = 100f;
                     GetCell().transform.localPosition = pos_obs;
-                    Vector3 scale_obs = GetCell().transform.localScale;
+                    Vector3 scale_obs = cell.transform.localScale;
                     scale_obs.y = 1000f;
                     GetCell().transform.localScale = scale_obs;
                     break;
@@ -74,7 +83,7 @@ public class MapUnit : MonoBehaviour
                     Vector3 pos_res = Vector3.zero;
                     pos_res.y = 1f;
                     GameObject resource = Instantiate<GameObject>(resPrefab);
-                    resource.transform.SetParent(GetCell().transform, false);
+                    resource.transform.SetParent(cell.transform, false);
                     resource.transform.localPosition = pos_res;
                     break;
                 }
@@ -101,7 +110,7 @@ public class MapUnit : MonoBehaviour
     }
     public GameObject GetCell()//返回六边形
     {
-        return this.transform.parent.gameObject;
+        return cell;
     }
 
     /*public GameObject GetMonster()

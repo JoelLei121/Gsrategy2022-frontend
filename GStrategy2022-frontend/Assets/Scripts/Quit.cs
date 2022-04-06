@@ -1,12 +1,16 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class Quit : MonoBehaviour
 {
-    public void QuitGame()
+    public IEnumerator QuitGame()
     {
+        yield return new WaitForSeconds(2f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        System.Threading.Thread.Sleep(2000);
+        yield return new WaitForSeconds(5f);
+        // System.Threading.Thread.Sleep(5000);
         Application.Quit();
+        yield break;
     }
 }
