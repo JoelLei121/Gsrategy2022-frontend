@@ -49,21 +49,21 @@ public class CommandLoader : MonoBehaviour
         dialog.maxFile = dialog.file.Length;
         dialog.fileTitle = new string(new char[64]);
         dialog.maxFileTitle = dialog.fileTitle.Length;
-        dialog.initialDir = "C:";  //默认路径
+        dialog.initialDir = "C:";  //???·??
         dialog.title = "Choose game history file";
-        dialog.defExt = "json";//显示文件的类型
-        //注意一下项目不一定要全选 但是0x00000008项不要缺少
+        dialog.defExt = "json";//????????????
+        //????????????????? ????0x00000008??????
         dialog.flags = 0x00080000 | 0x00001000 | 0x00000800 | 0x00000200 | 0x00000008;  //OFN_EXPLORER|OFN_FILEMUSTEXIST|OFN_PATHMUSTEXIST| OFN_ALLOWMULTISELECT|OFN_NOCHANGEDIR
         while (true)
         {
             if (!DialogShow.GetOpenFileName(dialog))
             {
-                Messagebox.MessageBox(IntPtr.Zero, "Choose correct game file！", "Warning", 0);
+                Messagebox.MessageBox(IntPtr.Zero, "Choose correct game file??", "Warning", 0);
                 continue;
             }
             else if (!dialog.file.Contains(".json"))
             {
-                Messagebox.MessageBox(IntPtr.Zero, "Choose correct game file！", "Warning", 0);
+                Messagebox.MessageBox(IntPtr.Zero, "Choose correct game file??", "Warning", 0);
                 continue;
             }
             else break;

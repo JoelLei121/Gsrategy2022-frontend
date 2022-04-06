@@ -19,7 +19,7 @@ public class MapUnit : MonoBehaviour
     {
 
     }
-    public void init(int t_x,int t_z,int width, int t_type, GameObject hexParent, GameObject resPrefab,GameObject treePrefab,GameObject rockPrefab, int t_res_num = 0,Text textPrefab=null)
+    public void init(int t_x,int t_z,int width, int t_type, GameObject hexParent, GameObject resPrefab,GameObject treePrefab,GameObject rockPrefab, int t_res_num = 0)
     {
         z = t_z - (width - 1) / 2;
         x = t_x - t_z / 2 - width  / 4;
@@ -31,13 +31,13 @@ public class MapUnit : MonoBehaviour
         this.transform.SetParent(hexParent.transform,false);
         cell = hexParent;
         //文本
-        if(textPrefab !=null)
-        {
-            Text label = Instantiate<Text>(textPrefab);
-            label.rectTransform.SetParent(hexParent.transform, false);
-            label.rectTransform.anchoredPosition = new Vector2(hexParent.transform.position.x, hexParent.transform.position.z);
-            label.text = x.ToString() + "\n" + z.ToString();
-        }
+        // if(textPrefab !=null)
+        // {
+        //     Text label = Instantiate<Text>(textPrefab);
+        //     label.rectTransform.SetParent(hexParent.transform, false);
+        //     label.rectTransform.anchoredPosition = new Vector2(hexParent.transform.position.x, hexParent.transform.position.z);
+        //     label.text = x.ToString() + "\n" + z.ToString();
+        // }
         //装饰
         int ifDecoration = Random.Range(0, 100);
         if (ifDecoration<5)//生成树

@@ -6,6 +6,7 @@ public class HexGrid : MonoBehaviour //TODO:缩圈
 {
     public int width = 10;//地图边长
     private int w = 20;
+    private int diff = 0;
     public float length = 1;//元件长度
 
     public GameObject hexPrefab;
@@ -21,12 +22,18 @@ public class HexGrid : MonoBehaviour //TODO:缩圈
 
     //public GameObject monsterPrefab;
     public GameObject resPrefab;
-    public Text textPrefab;
+    //public Text textPrefab;
 
     GameObject[] units;
 
     void Awake()
     {
+        init();
+        checkWidth(8);
+        new WaitForSeconds(2f);
+        setFow(-8, 0, 1);
+        new WaitForSeconds(2f);
+            
     }
 
     public void init()
@@ -37,6 +44,7 @@ public class HexGrid : MonoBehaviour //TODO:缩圈
         }
         if (width <= 2)
             return;
+        w = 2 * width;
         w = 2 * width;
         units = new GameObject[w * w];
 
@@ -60,7 +68,7 @@ public class HexGrid : MonoBehaviour //TODO:缩圈
             {
                 GameObject tmp_hex = units[z * w + x] = createHex(x, z, length);
                 tmp_hex.AddComponent<MapUnit>();
-                tmp_hex.GetComponent<MapUnit>().init(x, z,w, (int)Types.nor, tmp_hex, resPrefab,treePrefab,rockPrefab,0,textPrefab);
+                tmp_hex.GetComponent<MapUnit>().init(x, z,w, (int)Types.nor, tmp_hex, resPrefab,treePrefab,rockPrefab,0);
             }
         }
     }
@@ -108,19 +116,21 @@ public class HexGrid : MonoBehaviour //TODO:缩圈
 
     public void checkWidth(int t_width)
     {
-        if (t_width == width)
+        if(t_width % 2 == 1)
+            return;
+        if (diff*2 == width - t_width)
             return;
         else
         {
-            while (width == t_width)
+            while (diff*2 < width - t_width)
             {
-                for (int z = 0; z < w-1; z++)
+                for (int z = diff; z < w-1- diff; z++)
                 {
-                    if (z==0||z==w-2)
+                    if (z==diff||z==w-2- diff)
                     {
                         int width_tmp = Mathf.Abs((w - 2) / 2 - z);
-                        int tmp_s = (width_tmp + 1) / 2;
-                        int tmp_e = w - 2 - width_tmp / 2;
+                        int tmp_s = (width_tmp + 1) / 2 + diff;
+                        int tmp_e = w - 2 - width_tmp / 2 - diff;
                         for (int x = tmp_s; x <= tmp_e; x++)
                         {
                             units[z * w + x].GetComponent<MapUnit>().state = (int)States.del;
@@ -130,8 +140,8 @@ public class HexGrid : MonoBehaviour //TODO:缩圈
                     else
                     {
                         int width_tmp = Mathf.Abs((w - 2) / 2 - z);
-                        int tmp_s = (width_tmp + 1) / 2;
-                        int tmp_e = w - 2 - width_tmp / 2;
+                        int tmp_s = (width_tmp + 1) / 2 + diff;
+                        int tmp_e = w - 2 - width_tmp / 2 - diff;
                         units[z * w + tmp_s].GetComponent<MapUnit>().state = (int)States.del;
                         units[z * w + tmp_s].GetComponent<Renderer>().material=deleteMaterial;
                         units[z * w + tmp_e].GetComponent<MapUnit>().state = (int)States.del;
@@ -139,9 +149,7 @@ public class HexGrid : MonoBehaviour //TODO:缩圈
                     }
 
                 }
-                width--;
-                w = 2 * width;
-
+                diff++;
             }
             
         }
@@ -149,11 +157,11 @@ public class HexGrid : MonoBehaviour //TODO:缩圈
 
     public void setFow(int h_x,int h_z,int range)
     {
-        for (int z = 0; z < w - 1; z++)
+        for (int z = diff; z < w-1- diff; z++)
         {
             int width_tmp = Mathf.Abs((w - 2) / 2 - z);
-            int tmp_s = (width_tmp + 1) / 2;
-            int tmp_e = w - 2 - width_tmp / 2;
+            int tmp_s = (width_tmp + 1) / 2 + diff;
+            int tmp_e = w - 2 - width_tmp / 2 - diff;
             for (int x = tmp_s; x <= tmp_e; x++)
             {
                 int[] u_coor = units[z * w + x].GetComponent<MapUnit>().GetHexCoor();
@@ -169,11 +177,11 @@ public class HexGrid : MonoBehaviour //TODO:缩圈
 
     public void clearState()
     {
-        for (int z = 0; z < w - 1; z++)
+        for (int z = diff; z < w-1- diff; z++)
         {
             int width_tmp = Mathf.Abs((w - 2) / 2 - z);
-            int tmp_s = (width_tmp + 1) / 2;
-            int tmp_e = w - 2 - width_tmp / 2;
+            int tmp_s = (width_tmp + 1) / 2 + diff;
+            int tmp_e = w - 2 - width_tmp / 2 - diff;
             for (int x = tmp_s; x <= tmp_e; x++)
             {
                     units[z * w + x].GetComponent<MapUnit>().state = (int)States.nor;
