@@ -18,6 +18,7 @@ public class GameController : MonoBehaviour
     public GameObject playerPrefab;
     public HexGrid map;
     public Initialize initialize;
+    public GameUI UI;
 
     public bool isInstantiated = false;
 

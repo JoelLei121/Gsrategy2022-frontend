@@ -8,7 +8,7 @@ public class Quit : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(10f);
         // System.Threading.Thread.Sleep(5000);
         Application.Quit();
         yield break;

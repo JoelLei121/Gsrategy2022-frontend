@@ -34,6 +34,7 @@ public class CommandLoader : MonoBehaviour
     public PlayerAction playerAction;
     private List<GameState> gameStates;
     private GameState runningState;
+    public Quit quitGame;
     // private IEnumerator coroutine; 
     void Start()
     {
@@ -98,11 +99,12 @@ public class CommandLoader : MonoBehaviour
                 break;
             }
             NextCommand();
+            gameController.UI.updateRound(runningState.Round);
             // PlayerStatus target = gameController.GetPlayerStatus(runningState.ActivePlayerId);
             gameController.map.checkWidth(runningState.MapSize[0]);
             Debug.Log("checking boundary " + runningState.MapSize[0]);
-            yield return new WaitForSeconds(3f);
             GameObject currentPlayer = gameController.players[runningState.ActivePlayerId];
+            gameController.UI.updateCurrentPlayer(currentPlayer.GetComponent<PlayerStatus>(), runningState.CurrentEvent);
             int[] playerPos = currentPlayer.GetComponent<PlayerStatus>().pos;
             PlayerStatus status = gameController.players[runningState.ActivePlayerId].GetComponent<PlayerStatus>();
             gameController.map.setFow(playerPos[0], playerPos[2], status.visibility);
@@ -164,9 +166,9 @@ public class CommandLoader : MonoBehaviour
         }
         // game is end
         // call function to end scene
-        Quit quit = new Quit();
+        yield return new WaitForSeconds(10f);
         Debug.Log("Quit!");
-        StartCoroutine(quit.QuitGame());
+        StartCoroutine(quitGame.QuitGame());
         yield break;
     }
 

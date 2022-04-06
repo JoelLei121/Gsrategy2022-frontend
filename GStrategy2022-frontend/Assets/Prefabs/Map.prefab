@@ -54,4 +54,3 @@ MonoBehaviour:
   deleteMaterial: {fileID: 2100000, guid: d1fec6ea4240e604193990205320238e, type: 2}
   fowMaterial: {fileID: 2100000, guid: ed3b7a80b4ef34d4bb5dcf4bb310506c, type: 2}
   resPrefab: {fileID: 919132149155446097, guid: 7672bbc60e3df1f48b3af7d4001f1ef5, type: 3}
-  textPrefab: {fileID: 6410730326384502734, guid: fb329646950d5e44ab4fec510a77681a, type: 3}

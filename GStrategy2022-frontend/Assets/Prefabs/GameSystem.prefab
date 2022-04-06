@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 2180520255852304629}
   - component: {fileID: 3043813441000269335}
   - component: {fileID: 3005906007356551973}
+  - component: {fileID: 2579632083911738841}
   m_Layer: 0
   m_Name: GameMaster
   m_TagString: Untagged
@@ -86,6 +87,7 @@ MonoBehaviour:
   playerPrefab: {fileID: 262835396085849487, guid: 4c55492260952e34cad83d67e698d0c4, type: 3}
   map: {fileID: 1108448443531961005}
   initialize: {fileID: 2180520255852304629}
+  UI: {fileID: 0}
   isInstantiated: 0
 --- !u!114 &2180520255852304629
 MonoBehaviour:
@@ -99,7 +101,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cd506a4a7e754946843399666c79119, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  path: Assets/Resources/Init.json
   gameController: {fileID: 5871034852355324042}
 --- !u!114 &3043813441000269335
 MonoBehaviour:
@@ -113,6 +114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b04072065e675148b3580409210e667, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UI: {fileID: 0}
   map: {fileID: 1108448443531961005}
   moveSpeed: 0.1
   isMoving: 0
@@ -131,7 +133,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameController: {fileID: 5871034852355324042}
   playerAction: {fileID: 3043813441000269335}
-  path: Assets/Resources/Play.json
+  quitGame: {fileID: 2579632083911738841}
+--- !u!114 &2579632083911738841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3353683177671704485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb814c888d21ffc4ca7b14610a2eddb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7967639151152800303
 PrefabInstance:
   m_ObjectHideFlags: 0
