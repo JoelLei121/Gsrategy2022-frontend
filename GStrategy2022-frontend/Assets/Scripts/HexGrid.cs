@@ -27,18 +27,13 @@ public class HexGrid : MonoBehaviour //TODO:缩圈
     GameObject[] units;
 
     void Awake()
-    {            
+    {
     }
 
     public void init()
     {
-        if (width % 2 == 1)
-        {
-            width++;
-        }
-        if (width <= 2)
+        if (width < 2)
             return;
-        w = 2 * width;
         w = 2 * width;
         units = new GameObject[w * w];
 
@@ -110,13 +105,11 @@ public class HexGrid : MonoBehaviour //TODO:缩圈
 
     public void checkWidth(int t_width)
     {
-        if(t_width % 2 == 1)
-            return;
-        if (diff*2 == width - t_width)
+        if (diff == width - t_width)
             return;
         else
         {
-            while (diff*2 < width - t_width)
+            while (diff < width - t_width)
             {
                 for (int z = diff; z < w-1- diff; z++)
                 {
