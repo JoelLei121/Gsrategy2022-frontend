@@ -11,7 +11,7 @@ public class MapUnit : MonoBehaviour
     private int y = 0;
     private int z = 0;
     //private GameObject cell;
-    private GameObject resdource;
+    private GameObject resource;
     private int type = (int)Types.nor;
     private int resource_num = 0;
     public int state = (int) States.nor;
