@@ -2,6 +2,7 @@ using UnityEngine;
 using System.IO;
 using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 
 [Serializable]
 class Map
@@ -22,7 +23,6 @@ class InitialState
 
 public class Initialize : MonoBehaviour
 {
-    public string path = "Assets/Resources/Init.json";
     public GameController gameController;
 
     void Awake()
@@ -33,7 +33,35 @@ public class Initialize : MonoBehaviour
     public void Run()
     {
         Debug.Log("waiting for init");
-        String initialJson = File.ReadAllText(path);
+        FileOpenDialog dialog = new FileOpenDialog();
+        dialog.structSize = Marshal.SizeOf(dialog);
+        dialog.filter = "json files\0*.json\0All Files\0*.*\0\0";
+        dialog.file = new string(new char[256]);
+        dialog.maxFile = dialog.file.Length;
+        dialog.fileTitle = new string(new char[64]);
+        dialog.maxFileTitle = dialog.fileTitle.Length;
+        dialog.initialDir = "C:";  //默认路径
+        dialog.title = "Choose Initialization data file";
+        dialog.defExt = "json";//显示文件的类型
+        //注意一下项目不一定要全选 但是0x00000008项不要缺少
+        dialog.flags = 0x00080000 | 0x00001000 | 0x00000800 | 0x00000200 | 0x00000008;  //OFN_EXPLORER|OFN_FILEMUSTEXIST|OFN_PATHMUSTEXIST| OFN_ALLOWMULTISELECT|OFN_NOCHANGEDIR
+        while (true)
+        {
+            if (!DialogShow.GetOpenFileName(dialog))
+            {
+                Messagebox.MessageBox(IntPtr.Zero, "Choose correct game file！", "Warning", 0);
+                continue;
+            }
+            else if (!dialog.file.Contains(".json"))
+            {
+                Messagebox.MessageBox(IntPtr.Zero, "Choose correct game file！", "Warning", 0);
+                continue;
+            }
+            else
+                break;
+        }
+
+        String initialJson = File.ReadAllText(dialog.file);
         InitialState state = JsonUtility.FromJson<InitialState>(initialJson);
         //Initialize Map
 
