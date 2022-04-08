@@ -12,21 +12,19 @@ public class MapUnit : MonoBehaviour
     public int z = 0;
     private GameObject cell;
     private GameObject resource;
-    private int type = (int)Types.nor;
+    public int type = (int)Types.nor;
     private int resource_num = 0;
     public int state = (int) States.nor;
     public MapUnit()
     {
 
     }
-    public void init(int t_x,int t_z,int width, int t_type, GameObject hexParent, GameObject resPrefab,GameObject treePrefab,GameObject rockPrefab, int t_res_num = 0)
+    public void init(int t_x,int t_z,int width, GameObject hexParent,GameObject treePrefab,GameObject rockPrefab)
     {
         z = t_z - (width - 1) / 2;
         x = t_x - t_z / 2 - width  / 4;
         y = -x - z;
-        type = t_type;
-        if (type == (int)Types.res)
-            resource_num = t_res_num;
+            
 
         this.transform.SetParent(hexParent.transform,false);
         cell = hexParent;
@@ -65,8 +63,13 @@ public class MapUnit : MonoBehaviour
             decoration.transform.localPosition = pos_dec;
             decoration.transform.transform.localScale = scale_dec;
         }
+    }
+        
 
-        switch (type)
+   public void setType(int t_type, GameObject resPrefab=null, int t_res_num = 0)
+   {
+       type = t_type;
+       switch (type)
         {
             case 1://障碍
                 {
@@ -80,6 +83,7 @@ public class MapUnit : MonoBehaviour
                 }
             case 2://资源
                 {
+                    resource_num = t_res_num;
                     Vector3 pos_res = Vector3.zero;
                     pos_res.y = 1f;
                     GameObject resource = Instantiate<GameObject>(resPrefab);
@@ -90,9 +94,7 @@ public class MapUnit : MonoBehaviour
             default:
                 break;
         }
-    }
-
-   
+   }
 
     public int[] GetHexCoor() //六边形坐标
     {

@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 
-public class HexGrid : MonoBehaviour //TODO:缩圈
+public class HexGrid : MonoBehaviour 
 {
     public int width = 10;//地图边长
     private int w = 20;
@@ -30,8 +30,9 @@ public class HexGrid : MonoBehaviour //TODO:缩圈
     {
     }
 
-    public void init()
+    public void init(int t_width,int[,] barrier,int[,]resources)
     {
+        width = t_width;
         if (width < 2)
             return;
         w = 2 * width;
@@ -57,8 +58,38 @@ public class HexGrid : MonoBehaviour //TODO:缩圈
             {
                 GameObject tmp_hex = units[z * w + x] = createHex(x, z, length);
                 tmp_hex.AddComponent<MapUnit>();
-                tmp_hex.GetComponent<MapUnit>().init(x, z,w, (int)Types.nor, tmp_hex, resPrefab,treePrefab,rockPrefab,0);
+                tmp_hex.GetComponent<MapUnit>().init(x, z, w, tmp_hex, treePrefab, rockPrefab);
             }
+        }
+        
+        int b_R = barrier.Rank;
+        for(int i = 0;i < b_R;i++)
+        {
+            int a_x = barrier[i,0];
+            int a_z = barrier[i,2];
+            int[] n = hexToOur(a_x, a_z);
+            int h_x = n[0];
+            int h_z = n[1];
+            int[] t = hexToNormal(h_x,h_z);
+            int t_x = t[0];
+            int t_z = t[1];
+            GameObject tmp_hex = units[t_z * w + t_x];
+            tmp_hex.GetComponent<MapUnit>().setType((int)Types.bar);
+        }
+
+        int r_R = resources.Rank;
+        for(int i = 0;i < r_R;i++)
+        {
+            int a_x = resources[i,0];
+            int a_z = resources[i,2];
+            int[] n = hexToOur(a_x, a_z);
+            int h_x = n[0];
+            int h_z = n[1];
+            int[] t = hexToNormal(h_x,h_z);
+            int t_x = t[0];
+            int t_z = t[1];
+            GameObject tmp_hex = units[t_z * w + t_x];
+            tmp_hex.GetComponent<MapUnit>().setType((int)Types.res,resPrefab);
         }
     }
 
@@ -66,6 +97,14 @@ public class HexGrid : MonoBehaviour //TODO:缩圈
     {
         int t_z = h_z + (2 * width - 1) / 2;
         int t_x = h_x + width / 2 + t_z / 2;
+        int[] normal = { t_x, t_z };
+        return normal;
+    }
+
+    public int[] hexToOur(int h_x,int h_z)
+    {
+        int t_z = h_z - width + 1;
+        int t_x = h_x - width + 1;
         int[] normal = { t_x, t_z };
         return normal;
     }
@@ -80,7 +119,7 @@ public class HexGrid : MonoBehaviour //TODO:缩圈
 
     public Vector3 GetUnitPosition(int h_x, int h_z)
     {
-        int[] n = hexToNormal(h_x, h_z);
+        int[] n = hexToNormal(hexToOur(h_x, h_z)[0],hexToOur(h_x, h_z)[1]);
         int n_x = n[0];
         int n_z = n[1];
         GameObject unit = units[n_z * w + n_x];
@@ -142,8 +181,11 @@ public class HexGrid : MonoBehaviour //TODO:缩圈
         }
     }
 
-    public void setFow(int h_x,int h_z,int range)
+    public void setFow(int a_x,int a_z,int range)
     {
+        int[] n = hexToNormal(a_x, a_z);
+        int h_x = n[0];
+        int h_z = n[1];
         for (int z = diff; z < w-1- diff; z++)
         {
             int width_tmp = Mathf.Abs((w - 2) / 2 - z);
@@ -153,7 +195,7 @@ public class HexGrid : MonoBehaviour //TODO:缩圈
             {
                 int[] u_coor = units[z * w + x].GetComponent<MapUnit>().GetHexCoor();
                 int h_y = -h_x - h_z;
-                if (units[z * w + x].GetComponent<MapUnit>().state!=(int)States.del &&((Mathf.Sqrt(Mathf.Pow((h_x - u_coor[0]),2)  + Mathf.Pow(h_y - u_coor[1],2) + Mathf.Pow(h_z - u_coor[2],2)) - ((float)range * Mathf.Sqrt(2)))<0.1))
+                if (units[z * w + x].GetComponent<MapUnit>().state!=(int)States.del&&units[z * w + x].GetComponent<MapUnit>().type!=(int)Types.bar &&((Mathf.Sqrt(Mathf.Pow((h_x - u_coor[0]),2)  + Mathf.Pow(h_y - u_coor[1],2) + Mathf.Pow(h_z - u_coor[2],2)) - ((float)range * Mathf.Sqrt(2)))<0.1))
                 {
                     units[z * w + x].GetComponent<MapUnit>().state = (int)States.fow;
                     units[z * w + x].GetComponent<Renderer>().material = fowMaterial;
@@ -177,14 +219,20 @@ public class HexGrid : MonoBehaviour //TODO:缩圈
         }
     }
 
-    public void highRole(int h_x,int h_z)
+    public void highRole(int a_x,int a_z)
     {
+        int[] n = hexToNormal(a_x, a_z);
+        int h_x = n[0];
+        int h_z = n[1];
         GetMapUnit(h_x, h_z).GetCell().GetComponent<Renderer>().material = highlightMaterial;
         GetMapUnit(h_x, h_z).state = (int)States.high;
     }
 
-    public void setBeautifulUnits(int h_x,int h_z)
+    public void setBeautifulUnits(int a_x,int a_z)
     {
+        int[] n = hexToNormal(a_x, a_z);
+        int h_x = n[0];
+        int h_z = n[1];
         Vector3 pos_dec = Vector3.zero;
         GameObject decoration = Instantiate<GameObject>(beautifulPrefab);
         GameObject cell = GetMapUnit(h_x, h_z).GetCell();
