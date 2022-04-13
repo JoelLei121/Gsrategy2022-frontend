@@ -74,6 +74,7 @@ GameObject:
   - component: {fileID: 1130466440072188987}
   - component: {fileID: 5036126445708198263}
   - component: {fileID: 801290510127216856}
+  - component: {fileID: 419904212607963299}
   m_Layer: 0
   m_Name: player
   m_TagString: Untagged
@@ -143,6 +144,21 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &419904212607963299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 262835396085849487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1f81b445d12de94c8b2991038453bd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireballPrefab: {fileID: 4876410231685030949, guid: 209503038cea93d4faeeef36a1dd7acb, type: 3}
+  shootPoint: {fileID: 1556384588549408953}
+  enemyTransform: {fileID: 0}
 --- !u!1 &690162212114866001
 GameObject:
   m_ObjectHideFlags: 0

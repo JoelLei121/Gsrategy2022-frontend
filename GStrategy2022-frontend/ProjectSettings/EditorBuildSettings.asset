@@ -15,9 +15,17 @@ EditorBuildSettings:
     path: Assets/Scenes/Thanks.unity
     guid: c0a183fccda8cf84ba9b6b60425416f9
   - enabled: 0
+<<<<<<< HEAD
     path: Assets/Scenes/AnimationScene.unity
     guid: 40c40b304344a8347bf2f632b82b20c1
   - enabled: 0
     path: Assets/Scenes/Gameover.unity
     guid: b604c5ba399748a4987fef864ba20d54
+=======
+    path: Assets/Scenes/Gameover.unity
+    guid: b604c5ba399748a4987fef864ba20d54
+  - enabled: 0
+    path: Assets/Scenes/Animations.unity
+    guid: 40c40b304344a8347bf2f632b82b20c1
+>>>>>>> origin/develop
   m_configObjects: {}
