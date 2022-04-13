@@ -1,8 +1,10 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System.Collections.Generic;
+using System;
 
-public class HexGrid : MonoBehaviour 
+public class HexGrid : MonoBehaviour
 {
     public int width = 10;//地图边长
     private int w = 20;
@@ -28,10 +30,26 @@ public class HexGrid : MonoBehaviour
 
     void Awake()
     {
+        //Map map = new Map();
+        //map.size = new int[] { 50, 50, 50 };
+        //map.barriers= new int[,] { 
+        //    { 0, 50, 97 },
+        //    { 0, 59, 88 },
+        //    { 0, 62, 85 },
+        //    { 0, 64, 83 },
+        //    { 0, 67, 80 },
+        //    { 0, 73, 74 },
+        //    { 0, 83, 64 },
+        //    { 0, 85, 62 },
+        //    { 0, 95, 52 }, };
     }
 
-    public void init(int t_width,int[,] barrier,int[,]resources)
+    public void init(Map map)
     {
+        int[] size = map.size;
+        List<int[]> barriers = new List<int[]>(map.barriers);
+        List<int[]> resources = new List<int[]>(map.resources);
+        int t_width = size[0];
         width = t_width;
         if (width < 2)
             return;
@@ -53,7 +71,7 @@ public class HexGrid : MonoBehaviour
         {
             int width_tmp = Mathf.Abs((w - 2) / 2 - z);
             int tmp_s = (width_tmp + 1) / 2;
-            int tmp_e = w - 2 - width_tmp  / 2;
+            int tmp_e = w - 2 - width_tmp / 2;
             for (int x = tmp_s; x <= tmp_e; x++)
             {
                 GameObject tmp_hex = units[z * w + x] = createHex(x, z, length);
@@ -61,35 +79,41 @@ public class HexGrid : MonoBehaviour
                 tmp_hex.GetComponent<MapUnit>().init(x, z, w, tmp_hex, treePrefab, rockPrefab);
             }
         }
-        
-        int b_R = barrier.Rank;
-        for(int i = 0;i < b_R;i++)
+
+        int b_R = barriers.Count;
+        for (int i = 0; i < b_R; i++)
         {
-            int a_x = barrier[i,0];
-            int a_z = barrier[i,2];
+            int a_x = barriers[i][0];
+            int a_z = barriers[i][2];
             int[] n = hexToOur(a_x, a_z);
             int h_x = n[0];
             int h_z = n[1];
-            int[] t = hexToNormal(h_x,h_z);
+            int[] t = hexToNormal(h_x, h_z);
             int t_x = t[0];
             int t_z = t[1];
             GameObject tmp_hex = units[t_z * w + t_x];
-            tmp_hex.GetComponent<MapUnit>().setType((int)Types.bar);
+            if (tmp_hex != null)
+                tmp_hex.GetComponent<MapUnit>().setType((int)Types.bar,rockPrefab);
+            else
+                Debug.Log("initERROR");
         }
 
-        int r_R = resources.Rank;
-        for(int i = 0;i < r_R;i++)
+        int r_R = resources.Count;
+        for (int i = 0; i < r_R; i++)
         {
-            int a_x = resources[i,0];
-            int a_z = resources[i,2];
+            int a_x = resources[i][0];
+            int a_z = resources[i][2];
             int[] n = hexToOur(a_x, a_z);
             int h_x = n[0];
             int h_z = n[1];
-            int[] t = hexToNormal(h_x,h_z);
+            int[] t = hexToNormal(h_x, h_z);
             int t_x = t[0];
             int t_z = t[1];
             GameObject tmp_hex = units[t_z * w + t_x];
-            tmp_hex.GetComponent<MapUnit>().setType((int)Types.res,resPrefab);
+            if (tmp_hex != null)
+                tmp_hex.GetComponent<MapUnit>().setType((int)Types.res, resPrefab);
+            else
+                Debug.Log("initERROR");
         }
     }
 
@@ -101,7 +125,7 @@ public class HexGrid : MonoBehaviour
         return normal;
     }
 
-    public int[] hexToOur(int h_x,int h_z)
+    public int[] hexToOur(int h_x, int h_z)
     {
         int t_z = h_z - width + 1;
         int t_x = h_x - width + 1;
@@ -114,16 +138,19 @@ public class HexGrid : MonoBehaviour
         int[] n = hexToNormal(h_x, h_z);
         int n_x = n[0];
         int n_z = n[1];
+        if (units[n_z * w + n_x] == null)
+            Debug.Log("HighLightError");
         return (units[n_z * w + n_x].GetComponent<MapUnit>());
     }
 
     public Vector3 GetUnitPosition(int h_x, int h_z)
     {
-        int[] n = hexToNormal(hexToOur(h_x, h_z)[0],hexToOur(h_x, h_z)[1]);
+        int[] n = hexToNormal(hexToOur(h_x, h_z)[0], hexToOur(h_x, h_z)[1]);
         int n_x = n[0];
         int n_z = n[1];
+        Debug.Log(n_z * w + n_x);
         GameObject unit = units[n_z * w + n_x];
-        if (unit == null) Debug.Log("ERROR");
+        if (unit == null) Debug.Log("GetUnitPositionERROR");
         Vector3 point = new Vector3(unit.transform.position.x, 0, unit.transform.position.z);
         return point;
     }
@@ -150,9 +177,9 @@ public class HexGrid : MonoBehaviour
         {
             while (diff < width - t_width)
             {
-                for (int z = diff; z < w-1- diff; z++)
+                for (int z = diff; z < w - 1 - diff; z++)
                 {
-                    if (z==diff||z==w-2- diff)
+                    if (z == diff || z == w - 2 - diff)
                     {
                         int width_tmp = Mathf.Abs((w - 2) / 2 - z);
                         int tmp_s = (width_tmp + 1) / 2 + diff;
@@ -169,7 +196,7 @@ public class HexGrid : MonoBehaviour
                         int tmp_s = (width_tmp + 1) / 2 + diff;
                         int tmp_e = w - 2 - width_tmp / 2 - diff;
                         units[z * w + tmp_s].GetComponent<MapUnit>().state = (int)States.del;
-                        units[z * w + tmp_s].GetComponent<Renderer>().material=deleteMaterial;
+                        units[z * w + tmp_s].GetComponent<Renderer>().material = deleteMaterial;
                         units[z * w + tmp_e].GetComponent<MapUnit>().state = (int)States.del;
                         units[z * w + tmp_e].GetComponent<Renderer>().material = deleteMaterial;
                     }
@@ -177,25 +204,30 @@ public class HexGrid : MonoBehaviour
                 }
                 diff++;
             }
-            
+
         }
     }
 
-    public void setFow(int a_x,int a_z,int range)
+    public void setFow(int a_x, int a_z, int range)
     {
-        int[] n = hexToNormal(a_x, a_z);
+        int[] n = hexToOur(a_x, a_z);
         int h_x = n[0];
         int h_z = n[1];
-        for (int z = diff; z < w-1- diff; z++)
+        for (int z = diff; z < w - 1 - diff; z++)
         {
             int width_tmp = Mathf.Abs((w - 2) / 2 - z);
             int tmp_s = (width_tmp + 1) / 2 + diff;
             int tmp_e = w - 2 - width_tmp / 2 - diff;
             for (int x = tmp_s; x <= tmp_e; x++)
             {
+                if (units[z * w + x] == null)
+                {
+                    Debug.Log("setFowERROR");
+                    return;
+                }
                 int[] u_coor = units[z * w + x].GetComponent<MapUnit>().GetHexCoor();
                 int h_y = -h_x - h_z;
-                if (units[z * w + x].GetComponent<MapUnit>().state!=(int)States.del&&units[z * w + x].GetComponent<MapUnit>().type!=(int)Types.bar &&((Mathf.Sqrt(Mathf.Pow((h_x - u_coor[0]),2)  + Mathf.Pow(h_y - u_coor[1],2) + Mathf.Pow(h_z - u_coor[2],2)) - ((float)range * Mathf.Sqrt(2)))<0.1))
+                if (units[z * w + x].GetComponent<MapUnit>().state != (int)States.del && units[z * w + x].GetComponent<MapUnit>().type != (int)Types.bar && ((Mathf.Sqrt(Mathf.Pow((h_x - u_coor[0]), 2) + Mathf.Pow(h_y - u_coor[1], 2) + Mathf.Pow(h_z - u_coor[2], 2)) - ((float)range * Mathf.Sqrt(2))) < 0.1))
                 {
                     units[z * w + x].GetComponent<MapUnit>().state = (int)States.fow;
                     units[z * w + x].GetComponent<Renderer>().material = fowMaterial;
@@ -206,31 +238,37 @@ public class HexGrid : MonoBehaviour
 
     public void clearState()
     {
-        for (int z = diff; z < w-1- diff; z++)
+        for (int z = diff; z < w - 1 - diff; z++)
         {
             int width_tmp = Mathf.Abs((w - 2) / 2 - z);
             int tmp_s = (width_tmp + 1) / 2 + diff;
             int tmp_e = w - 2 - width_tmp / 2 - diff;
             for (int x = tmp_s; x <= tmp_e; x++)
             {
-                    units[z * w + x].GetComponent<MapUnit>().state = (int)States.nor;
-                    units[z * w + x].GetComponent<Renderer>().material = normalMaterial;
+                if (units[z * w + x] == null)
+                {
+                    Debug.Log("clearERROR");
+                    return;
+                }
+                units[z * w + x].GetComponent<MapUnit>().state = (int)States.nor;
+                units[z * w + x].GetComponent<Renderer>().material = normalMaterial;
             }
         }
     }
 
-    public void highRole(int a_x,int a_z)
+    public void highRole(int a_x, int a_z)
     {
-        int[] n = hexToNormal(a_x, a_z);
+        int[] n = hexToOur(a_x, a_z);
         int h_x = n[0];
         int h_z = n[1];
+
         GetMapUnit(h_x, h_z).GetCell().GetComponent<Renderer>().material = highlightMaterial;
         GetMapUnit(h_x, h_z).state = (int)States.high;
     }
 
-    public void setBeautifulUnits(int a_x,int a_z)
+    public void setBeautifulUnits(int a_x, int a_z)
     {
-        int[] n = hexToNormal(a_x, a_z);
+        int[] n = hexToOur(a_x, a_z);
         int h_x = n[0];
         int h_z = n[1];
         Vector3 pos_dec = Vector3.zero;
@@ -238,5 +276,15 @@ public class HexGrid : MonoBehaviour
         GameObject cell = GetMapUnit(h_x, h_z).GetCell();
         decoration.transform.SetParent(cell.transform, false);
         decoration.transform.localPosition = pos_dec;
+    }
+
+    public void checkres(int a_x, int a_z)
+    {
+        int[] n = hexToOur(a_x, a_z);
+        int h_x = n[0];
+        int h_z = n[1];
+        if (GetMapUnit(h_x, h_z).GetComponent<MapUnit>().getUnitType() != (int)Types.res)
+            return;
+        GetMapUnit(h_x, h_z).GetComponent<MapUnit>().CheckRes();
     }
 }

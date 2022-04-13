@@ -3,7 +3,11 @@ sceneSetups:
   isLoaded: 0
   isActive: 0
   isSubScene: 0
-- path: Assets/1.unity
+- path: Assets/Scenes/Start.unity
   isLoaded: 1
   isActive: 1
+  isSubScene: 0
+- path: Assets/Scenes/Game.unity
+  isLoaded: 0
+  isActive: 0
   isSubScene: 0

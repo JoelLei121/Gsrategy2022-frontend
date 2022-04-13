@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 public class PlayerAction : MonoBehaviour
 {
+    public GameUI UI;
     public HexGrid map;
     public float moveSpeed = 0.1f;
     public bool isMoving;
@@ -144,6 +145,7 @@ public class PlayerAction : MonoBehaviour
         Animator animator = player.GetComponent<Animator>();
         PlayerStatus status = player.GetComponent<PlayerStatus>();
         status.hp -= atk;
+        UI.updateBloodline(player.GetComponent<PlayerStatus>());
         animator.SetBool("isDamaged", true);
         if(status.isDead())
         {
@@ -154,11 +156,6 @@ public class PlayerAction : MonoBehaviour
         yield return new WaitForSeconds(1f);
         animator.SetBool("isDamaged", false);
         Debug.Log("Player " + status.id + " is damaged. HP left: " + status.hp);
-        yield return new WaitForSeconds(1f);
-        if(status.hp <= 0)
-        {
-            
-        }
         yield break;
     }
 

@@ -7,13 +7,13 @@ public class PlayerInitialize
 {
     public int id;
     public string name;
-    public int[] Position;           //Î»ÖÃ
-    public int attack_range;   //¹¥»÷·¶Î§
-    public int sight_range; //ÊÓÒ°·¶Î§
-    public int move_range; //ÒÆ¶¯·¶Î§
-    public int mine_speed; //²É¼¯ËÙ¶È
-    public int at; //¹¥»÷Á¦
-    public int hp; //ÑªÁ¿
+    public int[] Position;           //Î»ï¿½ï¿½
+    public int attack_range;   //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î§
+    public int sight_range; //ï¿½ï¿½Ò°ï¿½ï¿½Î§
+    public int move_range; //ï¿½Æ¶ï¿½ï¿½ï¿½Î§
+    public int mine_speed; //ï¿½É¼ï¿½ï¿½Ù¶ï¿½
+    public int at; //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    public int hp; //Ñªï¿½ï¿½
 }
 
 
@@ -36,6 +36,7 @@ public class PlayerStatus : MonoBehaviour
 
     public void init(PlayerInitialize p)
     {
+        teamName = p.name;
         pos = new int[3];
         for(int i = 0; i < 3; i++)
             pos[i] = p.Position[i];

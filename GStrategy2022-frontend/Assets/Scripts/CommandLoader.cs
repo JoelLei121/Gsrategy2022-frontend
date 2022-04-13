@@ -6,24 +6,6 @@ using System.Collections;
 using System.Runtime.InteropServices;
 using System.Windows;
 
-[Serializable]
-class GameState
-{
-    public int ActivePlayerId;
-    public int[] ActivePos;
-    public String CurrentEvent;
-    public int[] MapSize = { 10, 10, 10 };
-    public int Round;
-    public int[] VictimId;
-    public int? WinnerId;
-    public float exp;
-
-}
-
-public class Response<T>
-{
-    public List<T> list;
-}
 
 
 public class CommandLoader : MonoBehaviour
@@ -34,46 +16,21 @@ public class CommandLoader : MonoBehaviour
     public PlayerAction playerAction;
     private List<GameState> gameStates;
     private GameState runningState;
+    private String gameHistory;
+    public Quit quitGame;
+    [DllImport("__Internal")]
+    private static extern String ReadGameHistory();
+
     // private IEnumerator coroutine; 
     void Start()
     {
         index = 0;
     }
-    public void GetCommandFromDocument()
+    public void GetCommandFromDocument(List<GameState> states)
     {
         Debug.Log("waiting for init");
-        FileOpenDialog dialog = new FileOpenDialog();
-        dialog.structSize = Marshal.SizeOf(dialog);
-        dialog.filter = "json files\0*.json\0All Files\0*.*\0\0";
-        dialog.file = new string(new char[256]);
-        dialog.maxFile = dialog.file.Length;
-        dialog.fileTitle = new string(new char[64]);
-        dialog.maxFileTitle = dialog.fileTitle.Length;
-        dialog.initialDir = "C:";  //???¡¤??
-        dialog.title = "Choose game history file";
-        dialog.defExt = "json";//????????????
-        //????????????????? ????0x00000008??????
-        dialog.flags = 0x00080000 | 0x00001000 | 0x00000800 | 0x00000200 | 0x00000008;  //OFN_EXPLORER|OFN_FILEMUSTEXIST|OFN_PATHMUSTEXIST| OFN_ALLOWMULTISELECT|OFN_NOCHANGEDIR
-        while (true)
-        {
-            if (!DialogShow.GetOpenFileName(dialog))
-            {
-                Messagebox.MessageBox(IntPtr.Zero, "Choose correct game file??", "Warning", 0);
-                continue;
-            }
-            else if (!dialog.file.Contains(".json"))
-            {
-                Messagebox.MessageBox(IntPtr.Zero, "Choose correct game file??", "Warning", 0);
-                continue;
-            }
-            else break;
 
-        }
-
-        String gameStateJson = File.ReadAllText(dialog.file);
-        Response<GameState> response = JsonUtility.FromJson<Response<GameState>>(gameStateJson);
-        gameStates = response.list;
-
+        gameStates = states;
         if (gameStates != null)
             Debug.Log("Game process read successfully.");
         gameLength = gameStates.Count;
@@ -95,27 +52,29 @@ public class CommandLoader : MonoBehaviour
             {
                 gameController.commandIsDone = true;
                 Debug.Log("Stop running game");
-                yield break;
+                break;
             }
             NextCommand();
+            gameController.UI.updateRound(runningState.Round);
             // PlayerStatus target = gameController.GetPlayerStatus(runningState.ActivePlayerId);
             gameController.map.checkWidth(runningState.MapSize[0]);
-            yield return new WaitForSeconds(2f);
-            GameObject target = gameController.players[runningState.ActivePlayerId];
-            int[] pos = runningState.ActivePos;
+            Debug.Log("checking boundary " + runningState.MapSize[0]);
+            GameObject currentPlayer = gameController.players[runningState.ActivePlayerId];
+            gameController.UI.updateCurrentPlayer(currentPlayer.GetComponent<PlayerStatus>(), runningState.CurrentEvent);
+            int[] playerPos = currentPlayer.GetComponent<PlayerStatus>().pos;
             PlayerStatus status = gameController.players[runningState.ActivePlayerId].GetComponent<PlayerStatus>();
-            gameController.map.setFow(pos[0], pos[2], status.visibility);
-            yield return new WaitForSeconds(2f);
-            gameController.map.highRole(pos[0], pos[2]);
-            yield return new WaitForSeconds(2f);
+            gameController.map.setFow(playerPos[0], playerPos[2], status.visibility);
+            yield return new WaitForSeconds(1f);
             gameController.map.clearState();
-            yield return new WaitForSeconds(2f);
 
+            int[] pos;
             switch (runningState.CurrentEvent)
             {
                 case "MOVE":
-                    // int[] pos = runningState.ActivePos;
-                    yield return StartCoroutine(playerAction.MoveTo(target, pos[0], pos[1], pos[2]));
+                    pos = runningState.ActivePos;
+                    gameController.map.highRole(pos[0], pos[2]);
+                    yield return new WaitForSeconds(1f);
+                    yield return StartCoroutine(playerAction.MoveTo(currentPlayer, pos[0], pos[1], pos[2]));
                     break;
 
                 case "ATTACK":
@@ -123,33 +82,51 @@ public class CommandLoader : MonoBehaviour
                     for (int i = 0; i < runningState.VictimId.Length; i++)
                     {
                         victim[i] = gameController.players[runningState.VictimId[i]];
+                        int[] victimPos = victim[i].GetComponent<PlayerStatus>().pos;
+                        gameController.map.highRole(victimPos[0], victimPos[2]);
                     }
-                    yield return StartCoroutine(playerAction.Attack(target, victim));
+                    yield return new WaitForSeconds(1f);
+                    yield return StartCoroutine(playerAction.Attack(currentPlayer, victim));
                     break;
 
                 case "GATHER":
-                    yield return StartCoroutine(playerAction.Gather(target, runningState.exp));
+                    pos = runningState.ActivePos;
+                    gameController.map.highRole(pos[0], pos[2]);
+                    gameController.map.checkres(pos[0], pos[2]);
+                    yield return new WaitForSeconds(1f);
+                    yield return StartCoroutine(playerAction.Gather(currentPlayer, runningState.exp));
                     break;
 
                 case "ERROR":
-                    yield return StartCoroutine(playerAction.DoNothing(target));
+                    pos = runningState.ActivePos;
+                    gameController.map.highRole(pos[0], pos[2]);
+                    yield return new WaitForSeconds(1f);
+                    yield return StartCoroutine(playerAction.DoNothing(currentPlayer));
                     break;
 
                 case "DIED":
-                    yield return StartCoroutine(playerAction.Died(target));
+                    yield return StartCoroutine(playerAction.Died(currentPlayer));
                     break;
             }
 
-            if (runningState.WinnerId != null)
+            if (runningState.WinnerId != -1)
             {
                 gameController.commandIsDone = true;
                 Debug.Log("Game is Finish!");
                 PlayerStatus winner = gameController.GetPlayerStatus((int)runningState.WinnerId);
                 Debug.Log("Player " + winner.ordering + ": " + winner.teamName + " is the winner!");
+                break;
                 // end game
             }
+            gameController.map.clearState();
             yield return new WaitForSeconds(0.5f);
         }
+        // game is end
+        // call function to end scene
+        yield return new WaitForSeconds(10f);
+        Debug.Log("Quit!");
+        StartCoroutine(quitGame.QuitGame());
+        yield break;
     }
 
 }

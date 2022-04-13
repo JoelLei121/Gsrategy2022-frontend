@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 enum Types { nor, bar, res };//0:normal 1:barrier 2:resource TODO:类型
-enum States { nor,del,high,fow};//0:normal 1:deleted 2:highlighted 3:fowed
+enum States { nor, del, high, fow };//0:normal 1:deleted 2:highlighted 3:fowed
 public class MapUnit : MonoBehaviour
 {
     public int x = 0;
@@ -14,19 +14,19 @@ public class MapUnit : MonoBehaviour
     private GameObject resource;
     public int type = (int)Types.nor;
     private int resource_num = 0;
-    public int state = (int) States.nor;
+    public int state = (int)States.nor;
     public MapUnit()
     {
 
     }
-    public void init(int t_x,int t_z,int width, GameObject hexParent,GameObject treePrefab,GameObject rockPrefab)
+    public void init(int t_x, int t_z, int width, GameObject hexParent, GameObject treePrefab, GameObject rockPrefab)
     {
         z = t_z - (width - 1) / 2;
-        x = t_x - t_z / 2 - width  / 4;
+        x = t_x - t_z / 2 - width / 4;
         y = -x - z;
-            
 
-        this.transform.SetParent(hexParent.transform,false);
+
+        this.transform.SetParent(hexParent.transform, false);
         cell = hexParent;
         //文本
         // if(textPrefab !=null)
@@ -38,7 +38,7 @@ public class MapUnit : MonoBehaviour
         // }
         //装饰
         int ifDecoration = Random.Range(0, 100);
-        if (ifDecoration<5)//生成树
+        if (ifDecoration < 5)//生成树
         {
             Vector3 pos_dec = Vector3.zero;
             Vector3 scale_dec = Vector3.one;
@@ -50,43 +50,53 @@ public class MapUnit : MonoBehaviour
             decoration.transform.localPosition = pos_dec;
             decoration.transform.transform.localScale = scale_dec;
         }
-        else if(ifDecoration<10)//生成石头
-        {
-            Vector3 pos_dec = Vector3.zero;
-            pos_dec.y = 0.1f;
-            Vector3 scale_dec = Vector3.one;
-            scale_dec.x = 0.5f;
-            scale_dec.y = 0.5f;
-            scale_dec.z = 0.5f;
-            GameObject decoration = Instantiate<GameObject>(rockPrefab);
-            decoration.transform.SetParent(cell.transform, false);
-            decoration.transform.localPosition = pos_dec;
-            decoration.transform.transform.localScale = scale_dec;
-        }
+        //else if (ifDecoration < 10)//生成石头
+        //{
+        //    Vector3 pos_dec = Vector3.zero;
+        //    pos_dec.y = 0.1f;
+        //    Vector3 scale_dec = Vector3.one;
+        //    scale_dec.x = 0.5f;
+        //    scale_dec.y = 0.5f;
+        //    scale_dec.z = 0.5f;
+        //    GameObject decoration = Instantiate<GameObject>(rockPrefab);
+        //    decoration.transform.SetParent(cell.transform, false);
+        //    decoration.transform.localPosition = pos_dec;
+        //    decoration.transform.transform.localScale = scale_dec;
+        //}
     }
-        
 
-   public void setType(int t_type, GameObject resPrefab=null, int t_res_num = 0)
-   {
-       type = t_type;
-       switch (type)
+
+    public void setType(int t_type, GameObject thePrefab, int t_res_num = 0)
+    {
+        type = t_type;
+        switch (type)
         {
             case 1://障碍
                 {
-                    Vector3 pos_obs = cell.transform.localPosition;
-                    pos_obs.y = 100f;
-                    GetCell().transform.localPosition = pos_obs;
-                    Vector3 scale_obs = cell.transform.localScale;
-                    scale_obs.y = 1000f;
-                    GetCell().transform.localScale = scale_obs;
+                    Vector3 pos_dec = Vector3.zero;
+                    //Vector3 scale_dec = Vector3.one;
+                    //scale_dec.x = 0.6f;
+                    //scale_dec.y = 0.6f;
+                    //scale_dec.z = 0.6f;
+                    GameObject decoration = Instantiate<GameObject>(thePrefab);
+                    decoration.transform.SetParent(cell.transform, false);
+                    decoration.transform.localPosition = pos_dec;
+                    //decoration.transform.transform.localScale = scale_dec;
+
+                    //Vector3 pos_obs = cell.transform.localPosition;
+                    //pos_obs.y = 100f;
+                    //GetCell().transform.localPosition = pos_obs;
+                    //Vector3 scale_obs = cell.transform.localScale;
+                    //scale_obs.y = 1000f;
+                    //GetCell().transform.localScale = scale_obs;
                     break;
                 }
             case 2://资源
                 {
                     resource_num = t_res_num;
                     Vector3 pos_res = Vector3.zero;
-                    pos_res.y = 1f;
-                    GameObject resource = Instantiate<GameObject>(resPrefab);
+                    //pos_res.y = 1f;
+                    GameObject resource = Instantiate<GameObject>(thePrefab);
                     resource.transform.SetParent(cell.transform, false);
                     resource.transform.localPosition = pos_res;
                     break;
@@ -94,7 +104,7 @@ public class MapUnit : MonoBehaviour
             default:
                 break;
         }
-   }
+    }
 
     public int[] GetHexCoor() //六边形坐标
     {
@@ -123,5 +133,19 @@ public class MapUnit : MonoBehaviour
     public GameObject GetRes()//返回资源
     {
         return resource;
+    }
+    public void CheckRes()//检查资源
+    {
+        if (resource_num <= 0)
+            return;
+        resource_num--;
+        if (resource_num <= 0)
+            Destroy(resource);
+            return;
+    }
+
+    public int getUnitType()//
+    {
+        return type;
     }
 }
