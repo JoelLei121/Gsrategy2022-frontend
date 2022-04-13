@@ -40,21 +40,21 @@ public class Initialize : MonoBehaviour
         dialog.maxFile = dialog.file.Length;
         dialog.fileTitle = new string(new char[64]);
         dialog.maxFileTitle = dialog.fileTitle.Length;
-        dialog.initialDir = "C:";  //默认路径
+        dialog.initialDir = "C:";  //默锟斤拷路锟斤拷
         dialog.title = "Choose Initialization data file";
-        dialog.defExt = "json";//显示文件的类型
-        //注意一下项目不一定要全选 但是0x00000008项不要缺少
+        dialog.defExt = "json";//锟斤拷示锟侥硷拷锟斤拷锟斤拷锟斤拷
+        //注锟斤拷一锟斤拷锟斤拷目锟斤拷一锟斤拷要全选 锟斤拷锟斤拷0x00000008锟筋不要缺锟斤拷
         dialog.flags = 0x00080000 | 0x00001000 | 0x00000800 | 0x00000200 | 0x00000008;  //OFN_EXPLORER|OFN_FILEMUSTEXIST|OFN_PATHMUSTEXIST| OFN_ALLOWMULTISELECT|OFN_NOCHANGEDIR
         while (true)
         {
             if (!DialogShow.GetOpenFileName(dialog))
             {
-                Messagebox.MessageBox(IntPtr.Zero, "Choose correct game file！", "Warning", 0);
+                Messagebox.MessageBox(IntPtr.Zero, "Choose correct game file锟斤拷", "Warning", 0);
                 continue;
             }
             else if (!dialog.file.Contains(".json"))
             {
-                Messagebox.MessageBox(IntPtr.Zero, "Choose correct game file！", "Warning", 0);
+                Messagebox.MessageBox(IntPtr.Zero, "Choose correct game file锟斤拷", "Warning", 0);
                 continue;
             }
             else
@@ -66,16 +66,14 @@ public class Initialize : MonoBehaviour
         //Initialize Map
 
         //Initialize Players
-        gameController.playerNum = state.players.Length;
-        gameController.players = new GameObject[gameController.playerNum];
-
-        for(int i = 0; i < gameController.playerNum; i++)
+        foreach (GameObject player in gameController.players)
         {
-            GameObject player = Instantiate<GameObject>(gameController.playerPrefab);
-            gameController.players[i] = player;
-            PlayerStatus playerStatus = player.GetComponent<PlayerStatus>();
-            playerStatus.init(state.players[i]);
+            PlayerStatus redPlayer = gameController.players[0].GetComponent<PlayerStatus>();
+            redPlayer.init(state.players[0]);
+            PlayerStatus bluePlayer = gameController.players[1].GetComponent<PlayerStatus>();
+            bluePlayer.init(state.players[1]);
         }
+
         Debug.Log("Players are ready.");
         gameController.isInstantiated = true;
         Response<GameState> tmp = new Response<GameState>();

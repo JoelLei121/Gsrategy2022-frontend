@@ -42,7 +42,7 @@ public class Fireball : MonoBehaviour
     void HitTarget()
     {
         // Damage(target);
-        Destroy(gameObject, 1f);
+        Destroy(gameObject, 01f);
         return;
     }
 

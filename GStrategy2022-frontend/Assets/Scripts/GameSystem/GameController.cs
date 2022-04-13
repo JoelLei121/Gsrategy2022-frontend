@@ -15,7 +15,7 @@ public class GameController : MonoBehaviour
 
     //public Map map; // waiting for map data development
     public int mapSize = 20;
-    public GameObject playerPrefab;
+    // public GameObject playerPrefab;
     public HexGrid map;
     public Initialize initialize;
     public GameUI UI;
