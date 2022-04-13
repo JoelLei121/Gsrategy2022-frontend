@@ -10,7 +10,7 @@ public class GameController : MonoBehaviour
     public bool commandIsDone;
 
     // public PlayerStatus[] players;
-    public GameObject[] players;
+    public GameObject[] players = new GameObject[2];
     public int playerNum;
 
     //public Map map; // waiting for map data development
@@ -24,7 +24,6 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
-        
         initialize.Run();
         map.init();
         // After initialize done
