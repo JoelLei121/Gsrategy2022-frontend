@@ -18,6 +18,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Gameover.unity
     guid: b604c5ba399748a4987fef864ba20d54
   - enabled: 0
-    path: Assets/Scenes/AnimationScene.unity
+    path: Assets/Scenes/Animations.unity
     guid: 40c40b304344a8347bf2f632b82b20c1
   m_configObjects: {}
