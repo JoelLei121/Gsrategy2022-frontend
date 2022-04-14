@@ -98,6 +98,7 @@ MonoBehaviour:
   initialize: {fileID: 2180520255852304629}
   UI: {fileID: 0}
   isInstantiated: 0
+  gameJson: Assets\Resources\Play.json
 --- !u!114 &2180520255852304629
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128,7 +129,7 @@ MonoBehaviour:
   moveSpeed: 0.1
   isMoving: 0
   isAttacking: 0
-  LevelUpPrefab: {fileID: 0}
+  LevelUpPrefab: {fileID: 194316, guid: 767bda51e092d384e9bf7b98ab5e9218, type: 3}
 --- !u!114 &3005906007356551973
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -590,6 +591,10 @@ PrefabInstance:
       value: Map
       objectReference: {fileID: 0}
     - target: {fileID: 7058058070068002946, guid: ad3f7f1f18dc1c748a88656149695912, type: 3}
+      propertyPath: gemPrefab
+      value: 
+      objectReference: {fileID: 1473933667410898, guid: d262fa3d32b08c444b6b71bf659d80e6, type: 3}
+    - target: {fileID: 7058058070068002946, guid: ad3f7f1f18dc1c748a88656149695912, type: 3}
       propertyPath: rockPrefab
       value: 
       objectReference: {fileID: 919132149155446097, guid: 4b6ec27eba561574eb018d1812fd5d13, type: 3}
@@ -652,6 +657,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a79bef3c263281040bdeecc1bc21b192, type: 3}
+  m_Script: {fileID: 11500000, guid: 2814876760075fd4a84927e60902ae47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

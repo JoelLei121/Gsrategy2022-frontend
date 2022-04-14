@@ -46,21 +46,21 @@ public class PlayerActions : MonoBehaviour
         // Debug.Log("facing");
         float counter = 0f;
         // could not face to position perfectly
-        while(counter < 1f)
+        while (counter < 1f)
         {
             Quaternion lookRotation = Quaternion.LookRotation(dir);
             Vector3 rotation = Quaternion.Lerp(player.transform.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
             player.transform.rotation = Quaternion.Euler(0f, rotation.y, 0f);
             counter += Time.deltaTime;
             yield return null;
-            if(Mathf.Abs(player.transform.rotation.y - lookRotation.y) < rotationMargin) break;
+            if (Mathf.Abs(player.transform.rotation.y - lookRotation.y) < rotationMargin) break;
         }
 
         // moving
         Animator animator = player.GetComponent<Animator>();
         animator.SetBool("isRunning", true);
         // adjust animation
-        while(true)
+        while (true)
         {
             // animation
             startPosition = player.transform.position;
@@ -68,13 +68,13 @@ public class PlayerActions : MonoBehaviour
             Quaternion lookRotation = Quaternion.LookRotation(dir);
             Vector3 rotation = Quaternion.Lerp(player.transform.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
             player.transform.rotation = Quaternion.Euler(0f, rotation.y, 0f);
-            if(isArrived(startPosition, endPosition)) break;
+            if (isArrived(startPosition, endPosition)) break;
             yield return null;
         }
         animator.SetBool("isRunning", false);
 
         // update position
-        status.pos = new int[] {x, y, z};
+        status.pos = new int[] { x, y, z };
         Debug.Log("Player " + status.id + ": moving to (" + x + ", " + y + ", " + z + ")");
         yield return new WaitForSeconds(0.5f);
         yield break;
@@ -104,14 +104,14 @@ public class PlayerActions : MonoBehaviour
         Vector3 dir = target.transform.position - player.transform.position;
         // rotate y 60
         float counter = 0f;
-        while(counter < 0.8f)
+        while (counter < 0.8f)
         {
             Quaternion lookRotation = Quaternion.LookRotation(dir);
             Vector3 rotation = Quaternion.Lerp(player.transform.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
             player.transform.rotation = Quaternion.Euler(0f, rotation.y, 0f);
             counter += Time.deltaTime;
             yield return null;
-            if(Mathf.Abs(player.transform.rotation.y - lookRotation.y) < rotationMargin) break;
+            if (Mathf.Abs(player.transform.rotation.y - lookRotation.y) < rotationMargin) break;
         }
 ;
         animator.SetBool("isAttacking", true);
@@ -122,14 +122,14 @@ public class PlayerActions : MonoBehaviour
         yield return null;
         // try turn back smoothly
         counter = 0f;
-        while(counter < 0.8f)
+        while (counter < 0.8f)
         {
             Quaternion lookRotation = Quaternion.LookRotation(dir);
             Vector3 rotation = Quaternion.Lerp(player.transform.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
             player.transform.rotation = Quaternion.Euler(0f, rotation.y, 0f);
             counter += Time.deltaTime;
             yield return null;
-            if(Mathf.Abs(player.transform.rotation.y - lookRotation.y) < rotationMargin) break;
+            if (Mathf.Abs(player.transform.rotation.y - lookRotation.y) < rotationMargin) break;
         }
         yield return StartCoroutine(Damaged(target, playerStatus.atk));
         //go back
@@ -145,7 +145,7 @@ public class PlayerActions : MonoBehaviour
         status.hp -= atk;
         UI.updateBloodline(player.GetComponent<PlayerStatus>());
         animator.SetBool("isDamaged", true);
-        if(status.isDead())
+        if (status.isDead())
         {
             animator.SetBool("isDying", true);
             StartCoroutine(Died(player));
@@ -188,6 +188,7 @@ public class PlayerActions : MonoBehaviour
         particle.transform.position = player.transform.position;
         Destroy(particle, 3f);
         Debug.Log("Player " + status.id + "upgrade level!");
+        yield return new WaitForSeconds(1f);
         yield break;
     }
     public IEnumerator DoNothing(GameObject player)

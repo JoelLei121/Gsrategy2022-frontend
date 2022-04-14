@@ -100,6 +100,11 @@ public class CommandLoader : MonoBehaviour
                     yield return StartCoroutine(playerAction.Gather(currentPlayer, runningState.Exp));
                     break;
 
+                case "UPGRADE":
+                    yield return new WaitForSeconds(waitTime);
+                    yield return StartCoroutine(playerAction.LevelUp(currentPlayer));
+                    break;
+
                 case "ERROR":
                     pos = runningState.ActivePos;
                     gameController.map.highRole(pos[0], pos[2]);

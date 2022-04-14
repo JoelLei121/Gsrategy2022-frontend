@@ -457,6 +457,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6571549035229371067, guid: 89290b8687cd0ea4596ba66a6f8f4a71, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 68.67114
+      objectReference: {fileID: 0}
+    - target: {fileID: 6571549035229371067, guid: 89290b8687cd0ea4596ba66a6f8f4a71, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -54.46997
       objectReference: {fileID: 0}
@@ -706,6 +710,18 @@ PrefabInstance:
       propertyPath: UI
       value: 
       objectReference: {fileID: 1008389479}
+    - target: {fileID: 3191349261647385885, guid: 789fdac2d8427e848aee7a136b0d815a, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3191349261647385885, guid: 789fdac2d8427e848aee7a136b0d815a, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3191349261647385885, guid: 789fdac2d8427e848aee7a136b0d815a, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3719282200985956943, guid: 789fdac2d8427e848aee7a136b0d815a, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.9890159
@@ -730,6 +746,10 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 1451361813}
+    - target: {fileID: 5871034852355324042, guid: 789fdac2d8427e848aee7a136b0d815a, type: 3}
+      propertyPath: gameJson
+      value: Assets\Resources\Play10.json
+      objectReference: {fileID: 0}
     - target: {fileID: 5937700792870189324, guid: 789fdac2d8427e848aee7a136b0d815a, type: 3}
       propertyPath: c.Array.data[0]
       value: 

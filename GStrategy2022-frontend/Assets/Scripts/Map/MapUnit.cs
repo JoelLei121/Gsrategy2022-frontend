@@ -41,10 +41,7 @@ public class MapUnit : MonoBehaviour
         if (ifDecoration < 5)//生成树
         {
             Vector3 pos_dec = Vector3.zero;
-            Vector3 scale_dec = Vector3.one;
-            scale_dec.x = 0.5f;
-            scale_dec.y = 0.5f;
-            scale_dec.z = 0.5f;
+            Vector3 scale_dec = new Vector3(0.5f, 0.5f, 0.5f);
             GameObject decoration = Instantiate<GameObject>(treePrefab);
             decoration.transform.SetParent(cell.transform, false);
             decoration.transform.localPosition = pos_dec;
@@ -99,6 +96,9 @@ public class MapUnit : MonoBehaviour
                     GameObject resource = Instantiate<GameObject>(thePrefab);
                     resource.transform.SetParent(cell.transform, false);
                     resource.transform.localPosition = pos_res;
+                    Vector3 offset = resource.transform.position;
+                    offset.y += 0.65f;
+                    resource.transform.position = offset;
                     break;
                 }
             default:
@@ -134,14 +134,24 @@ public class MapUnit : MonoBehaviour
     {
         return resource;
     }
-    public void CheckRes()//检查资源
+    public IEnumerator Mining(GameObject gem)//检查资源
     {
         if (resource_num <= 0)
-            return;
+        {
+            Debug.Log("Error: No resource left!");
+            yield break;
+        }
         resource_num--;
+
+        GameObject crystal = Instantiate<GameObject>(gem);
+        Debug.Log("gem is generated");
+        crystal.transform.position = GetCell().transform.position;
+        crystal.transform.eulerAngles = new Vector3(90f, 0f, 0f);
+        Destroy(crystal, 5f);
+
         if (resource_num <= 0)
             Destroy(resource);
-            return;
+            yield break;
     }
 
     public int getUnitType()//

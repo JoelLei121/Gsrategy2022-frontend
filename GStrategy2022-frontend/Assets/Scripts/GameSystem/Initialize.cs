@@ -24,7 +24,6 @@ public class Initialize : MonoBehaviour
             PlayerStatus bluePlayer = gameController.players[1].GetComponent<PlayerStatus>();
             bluePlayer.init(state.players[1]);
         }
-
         Debug.Log("Players are ready.");
     }
 }

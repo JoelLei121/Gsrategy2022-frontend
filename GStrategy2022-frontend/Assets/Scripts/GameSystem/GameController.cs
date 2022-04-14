@@ -64,11 +64,12 @@ public class GameController : MonoBehaviour
     [DllImport("__Internal")]
     private static extern String ReadGameHistory();
     private String gameHistory;
+    public string gameJson = "Assets\\Resources\\Play.json";
 
 
     void Start()
     {
-        gameHistory = File.ReadAllText("Assets\\Resources\\Play.json");
+        gameHistory = File.ReadAllText(gameJson);
         if (gameHistory == null)
         {
             Debug.Log("Empty String.");
