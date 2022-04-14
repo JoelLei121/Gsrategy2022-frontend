@@ -17,16 +17,14 @@ public class Initialize : MonoBehaviour
     {
         Debug.Log("waiting for init");
         //Initialize Players
-        gameController.playerNum = state.players.Length;
-        gameController.players = new GameObject[gameController.playerNum];
-
-        for(int i = 0; i < gameController.playerNum; i++)
+        foreach (GameObject player in gameController.players)
         {
-            GameObject player = Instantiate<GameObject>(gameController.playerPrefab);
-            gameController.players[i] = player;
-            PlayerStatus playerStatus = player.GetComponent<PlayerStatus>();
-            playerStatus.init(state.players[i]);
+            PlayerStatus redPlayer = gameController.players[0].GetComponent<PlayerStatus>();
+            redPlayer.init(state.players[0]);
+            PlayerStatus bluePlayer = gameController.players[1].GetComponent<PlayerStatus>();
+            bluePlayer.init(state.players[1]);
         }
+
         Debug.Log("Players are ready.");
     }
 }

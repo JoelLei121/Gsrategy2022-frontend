@@ -13,7 +13,7 @@ public class CommandLoader : MonoBehaviour
     private int index;
     private int gameLength;
     public GameController gameController;
-    public PlayerAction playerAction;
+    public PlayerActions playerAction;
     private List<GameState> gameStates;
     private GameState runningState;
     private String gameHistory;

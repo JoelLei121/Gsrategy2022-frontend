@@ -8,6 +8,7 @@ public class Fireball : MonoBehaviour
     
     private Transform target;
     public float speed = 5f;
+    public float time = 0.5f;
     // public int damage = 40;
 
 
@@ -42,7 +43,7 @@ public class Fireball : MonoBehaviour
     void HitTarget()
     {
         // Damage(target);
-        Destroy(gameObject, 1f);
+        Destroy(gameObject, time);
         return;
     }
 

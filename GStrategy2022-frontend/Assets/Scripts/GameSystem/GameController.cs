@@ -50,12 +50,12 @@ public class GameController : MonoBehaviour
     public bool commandIsDone;
     public GameObject cam;
     // public PlayerStatus[] players;
-    public GameObject[] players;
+    public GameObject[] players = new GameObject[2];
     public int playerNum;
 
     //public Map map; // waiting for map data development
     public int mapSize = 20;
-    public GameObject playerPrefab;
+    // public GameObject playerPrefab;
     public HexGrid map;
     public Initialize initialize;
     public GameUI UI;
