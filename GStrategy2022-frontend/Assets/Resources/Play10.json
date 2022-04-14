@@ -2,12 +2,12 @@
   "InitialState": {
     "map": {
       "size": [ 10, 10, 10 ],
-      "barriers": [
+      "Barrier": [
         [ 9, 3, 13 ],
         [ 10, 7, 11 ],
         [ 12, 2, 13 ]
       ],
-      "resources": [
+      "Resource": [
         [ 10, 7, 10, 1 ],
         [ 11, 5, 11, 2 ],
         [ 10, 5, 12, 4 ]
@@ -41,75 +41,75 @@
   "list": [
     {
       "ActivePlayerId" : 1,
-      "ActivePos" : [ -3, 0, 3 ],
+      "ActivePos" : [ 7, 10, 13 ],
       "CurrentEvent" : "GATHER",
       "MapSize" : [ 10, 10, 10 ],
-      "MinesLeft" : null,
+      "MinesLeft" : -1,
       "Round" : 1,
-      "UpgradeType" : null,
+      "UpgradeType" : -1,
       "VictimId" : [ ],
-      "WinnerId" : null,
+      "WinnerId" : -1,
       "exp" : 1.5
     },
     {
       "ActivePlayerId" : 0,
-      "ActivePos" : [ 1, 0, -1 ],
+      "ActivePos" : [ 11, 10, 9 ],
       "CurrentEvent" : "MOVE",
       "MapSize" : [ 10, 10, 10 ],
-      "MinesLeft" : null,
+      "MinesLeft" : -1,
       "Round" : 2,
-      "UpgradeType" : null,
+      "UpgradeType" : -1,
       "VictimId" : [],
-      "WinnerId" : null,
-      "exp" : null
+      "WinnerId" : -1,
+      "exp" : -1
     },
     {
       "ActivePlayerId" : 0,
-      "ActivePos" : [ -2, 0, 2 ],
+      "ActivePos" : [ 8, 10, 12 ],
       "CurrentEvent" : "MOVE",
       "MapSize" : [ 8, 8, 8 ],
-      "MinesLeft" : null,
+      "MinesLeft" : -1,
       "Round" : 3,
-      "UpgradeType" : null,
+      "UpgradeType" : -1,
       "VictimId" : [],
-      "WinnerId" : null,
-      "exp" : null
+      "WinnerId" : -1,
+      "exp" : -1
     },
     {
       "ActivePlayerId" : 0,
-      "ActivePos" : [ -2, 0, 2 ],
+      "ActivePos" : [ 8, 10, 12 ],
       "CurrentEvent" : "ATTACK",
       "MapSize" : [ 8, 8, 8 ],
-      "MinesLeft" : null,
+      "MinesLeft" : -1,
       "Round" : 4,
-      "UpgradeType" : null,
+      "UpgradeType" : -1,
       "VictimId" : [ 1 ],
-      "WinnerId" : null,
-      "exp" : null
+      "WinnerId" : -1,
+      "exp" : -1
     },
     {
       "ActivePlayerId" : 1,
-      "ActivePos" : [ -3, 0, 3 ],
+      "ActivePos" : [ 7, 10, 13 ],
       "CurrentEvent" : "ATTACK",
       "MapSize" : [ 8, 8, 8 ],
-      "MinesLeft" : null,
+      "MinesLeft" : -1,
       "Round" : 5,
-      "UpgradeType" : null,
+      "UpgradeType" : -1,
       "VictimId" : [ 0 ],
-      "WinnerId" : null,
-      "exp" : null
+      "WinnerId" : -1,
+      "exp" : -1
     },
     {
       "ActivePlayerId" : 0,
-      "ActivePos" : [ -2, 0, 2 ],
+      "ActivePos" : [ 8, 10, 12 ],
       "CurrentEvent" : "ATTACK",
       "MapSize" : [ 6, 6, 6 ],
-      "MinesLeft" : null,
+      "MinesLeft" : -1,
       "Round" : 6,
-      "UpgradeType" : null,
+      "UpgradeType" : -1,
       "VictimId" : [ 1 ],
-      "WinnerId" : null,
-      "exp" : null
+      "WinnerId" : -1,
+      "exp" : -1
 
     }
   ]

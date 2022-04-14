@@ -299,11 +299,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 21.172, y: -265.042, z: 0}
---- !u!1 &448743278 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4023007728591631426, guid: 789fdac2d8427e848aee7a136b0d815a, type: 3}
-  m_PrefabInstance: {fileID: 9015043105135593945}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &955100812 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3353683177671704485, guid: 789fdac2d8427e848aee7a136b0d815a, type: 3}
@@ -384,7 +379,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 121
   orthographic: 0
   orthographic size: 5
   m_Depth: 100

@@ -149,7 +149,10 @@ public class HexGrid : MonoBehaviour
         float innerRadius = 1.73205081f * length * 0.5f;
         float outerRadius = length;
         Vector3 position;
-        position.x = (t_x + (t_z % 2) * 0.5f) * (innerRadius * 2f);
+        if(width%2==0)
+            position.x = (t_x + (t_z % 2) * 0.5f) * (innerRadius * 2f);
+        else
+            position.x = (t_x + ((t_z+1) % 2) * 0.5f) * (innerRadius * 2f);
         position.y = 0f;
         position.z = t_z * (outerRadius * 1.5f);
         GameObject cell = Instantiate<GameObject>(hexPrefab);
