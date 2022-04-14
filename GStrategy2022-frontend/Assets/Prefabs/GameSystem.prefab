@@ -87,6 +87,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   commandLoader: {fileID: 3005906007356551973}
   commandIsDone: 0
+  cam: {fileID: 0}
+  ocean: {fileID: 3191349261647385881}
   players:
   - {fileID: 6307819687083048922}
   - {fileID: 4023007728591631426}
@@ -126,6 +128,7 @@ MonoBehaviour:
   moveSpeed: 0.1
   isMoving: 0
   isAttacking: 0
+  LevelUpPrefab: {fileID: 0}
 --- !u!114 &3005906007356551973
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -423,6 +426,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 273c0048381dd0a4eb2ae791f5751d21, type: 3}
+--- !u!1 &3191349261647385881 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1077045565885147513, guid: 273c0048381dd0a4eb2ae791f5751d21, type: 3}
+  m_PrefabInstance: {fileID: 2502765554361498720}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3191349261647385885 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1077045565885147517, guid: 273c0048381dd0a4eb2ae791f5751d21, type: 3}
@@ -581,6 +589,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Map
       objectReference: {fileID: 0}
+    - target: {fileID: 7058058070068002946, guid: ad3f7f1f18dc1c748a88656149695912, type: 3}
+      propertyPath: rockPrefab
+      value: 
+      objectReference: {fileID: 919132149155446097, guid: 4b6ec27eba561574eb018d1812fd5d13, type: 3}
     - target: {fileID: 7284852657053258002, guid: ad3f7f1f18dc1c748a88656149695912, type: 3}
       propertyPath: m_RootOrder
       value: 1
