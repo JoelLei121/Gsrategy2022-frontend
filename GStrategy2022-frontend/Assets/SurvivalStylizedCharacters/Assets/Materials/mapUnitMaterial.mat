@@ -4,14 +4,6 @@
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
-<<<<<<<< HEAD:GStrategy2022-frontend/Assets/SurvivalStylizedCharacters/Assets/Materials/Grid.mat
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: Grid
-  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: _GLOSSYREFLECTIONS_OFF _SPECULARHIGHLIGHTS_OFF
-  m_LightmapFlags: 4
-========
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -19,7 +11,6 @@ Material:
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 2
->>>>>>>> origin/GameMaster&PlayerAction:GStrategy2022-frontend/Assets/SurvivalStylizedCharacters/Assets/Materials/mapUnitMaterial.mat
   m_EnableInstancingVariants: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
@@ -69,13 +60,8 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _GlossMapScale: 1
-<<<<<<<< HEAD:GStrategy2022-frontend/Assets/SurvivalStylizedCharacters/Assets/Materials/Grid.mat
-    - _Glossiness: 0
-    - _GlossyReflections: 0
-========
     - _Glossiness: 1
     - _GlossyReflections: 1
->>>>>>>> origin/GameMaster&PlayerAction:GStrategy2022-frontend/Assets/SurvivalStylizedCharacters/Assets/Materials/mapUnitMaterial.mat
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
@@ -86,11 +72,6 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-<<<<<<<< HEAD:GStrategy2022-frontend/Assets/SurvivalStylizedCharacters/Assets/Materials/Grid.mat
-    - _Color: {r: 0.754717, g: 0.754717, b: 0.754717, a: 1}
-    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-========
     - _Color: {r: 0.2507945, g: 0.4811321, b: 0.00635455, a: 1}
     - _EmissionColor: {r: 0.128943, g: 0.128943, b: 0.128943, a: 1}
   m_BuildTextureStacks: []
->>>>>>>> origin/GameMaster&PlayerAction:GStrategy2022-frontend/Assets/SurvivalStylizedCharacters/Assets/Materials/mapUnitMaterial.mat

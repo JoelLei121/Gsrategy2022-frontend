@@ -10,8 +10,8 @@ using Newtonsoft.Json;
 public class Map
 {
     public int[] size;
-    public List<int[]> barriers;
-    public List<int[]> resources;
+    public List<int[]> Barrier;
+    public List<int[]> Resource;
 
 }
 
@@ -32,7 +32,7 @@ public class GameState
     public int Round;
     public int[] VictimId;
     public int? WinnerId;
-    public float exp;
+    public float Exp;
 
 }
 

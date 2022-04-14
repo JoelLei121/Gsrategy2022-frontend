@@ -1,17 +1,5 @@
 sceneSetups:
-<<<<<<< HEAD
-- path: Assets/Scenes/Thanks.unity
-  isLoaded: 0
-  isActive: 0
-  isSubScene: 0
 - path: Assets/Scenes/Start.unity
-=======
-- path: Assets/Scenes/Animations.unity
->>>>>>> origin/develop
   isLoaded: 1
   isActive: 1
-  isSubScene: 0
-- path: Assets/Scenes/Game.unity
-  isLoaded: 0
-  isActive: 0
   isSubScene: 0

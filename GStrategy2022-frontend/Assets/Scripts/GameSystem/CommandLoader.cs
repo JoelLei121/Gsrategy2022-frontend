@@ -16,7 +16,11 @@ public class CommandLoader : MonoBehaviour
     public PlayerAction playerAction;
     private List<GameState> gameStates;
     private GameState runningState;
+    private String gameHistory;
     public Quit quitGame;
+    [DllImport("__Internal")]
+    private static extern String ReadGameHistory();
+
     // private IEnumerator coroutine; 
     void Start()
     {
@@ -25,37 +29,6 @@ public class CommandLoader : MonoBehaviour
     public void GetCommandFromDocument(List<GameState> states)
     {
         Debug.Log("waiting for init");
-        FileOpenDialog dialog = new FileOpenDialog();
-        dialog.structSize = Marshal.SizeOf(dialog);
-        dialog.filter = "json files\0*.json\0All Files\0*.*\0\0";
-        dialog.file = new string(new char[256]);
-        dialog.maxFile = dialog.file.Length;
-        dialog.fileTitle = new string(new char[64]);
-        dialog.maxFileTitle = dialog.fileTitle.Length;
-        dialog.initialDir = "C:";  //Ĭ��·��
-        dialog.title = "Choose game history file";
-        dialog.defExt = "json";//��ʾ�ļ�������
-        //ע��һ����Ŀ��һ��Ҫȫѡ ����0x00000008�Ҫȱ��
-        dialog.flags = 0x00080000 | 0x00001000 | 0x00000800 | 0x00000200 | 0x00000008;  //OFN_EXPLORER|OFN_FILEMUSTEXIST|OFN_PATHMUSTEXIST| OFN_ALLOWMULTISELECT|OFN_NOCHANGEDIR
-        while (true)
-        {
-            if (!DialogShow.GetOpenFileName(dialog))
-            {
-                Messagebox.MessageBox(IntPtr.Zero, "Choose correct game file��", "Warning", 0);
-                continue;
-            }
-            else if (!dialog.file.Contains(".json"))
-            {
-                Messagebox.MessageBox(IntPtr.Zero, "Choose correct game file��", "Warning", 0);
-                continue;
-            }
-            else break;
-
-        }
-
-        String gameStateJson = File.ReadAllText(dialog.file);
-        Response<GameState> response = JsonUtility.FromJson<Response<GameState>>(gameStateJson);
-        gameStates = response.list;
 
         gameStates = states;
         if (gameStates != null)
@@ -121,7 +94,7 @@ public class CommandLoader : MonoBehaviour
                     gameController.map.highRole(pos[0], pos[2]);
                     gameController.map.checkres(pos[0], pos[2]);
                     yield return new WaitForSeconds(1f);
-                    yield return StartCoroutine(playerAction.Gather(currentPlayer, runningState.exp));
+                    yield return StartCoroutine(playerAction.Gather(currentPlayer, runningState.Exp));
                     break;
 
                 case "ERROR":
@@ -140,8 +113,15 @@ public class CommandLoader : MonoBehaviour
             {
                 gameController.commandIsDone = true;
                 Debug.Log("Game is Finish!");
-                PlayerStatus winner = gameController.GetPlayerStatus((int)runningState.WinnerId);
-                Debug.Log("Player " + winner.ordering + ": " + winner.teamName + " is the winner!");
+                if ((int)runningState.WinnerId != 2)
+                {
+                    PlayerStatus winner = gameController.GetPlayerStatus((int)runningState.WinnerId);
+                    Debug.Log("Player " + winner.ordering + ": " + winner.teamName + " is the winner!");
+                }
+                else
+                {
+                    Debug.Log("Heju");
+                }
                 break;
                 // end game
             }
