@@ -137,7 +137,7 @@ public class HexGrid : MonoBehaviour
         int[] n = hexToNormal(hexToOur(h_x, h_z)[0], hexToOur(h_x, h_z)[1]);
         int n_x = n[0];
         int n_z = n[1];
-        Debug.Log(n_z * w + n_x);
+        // Debug.Log(n_z * w + n_x);
         GameObject unit = units[n_z * w + n_x];
         if (unit == null) Debug.Log("GetUnitPositionERROR");
         Vector3 point = new Vector3(unit.transform.position.x, 0, unit.transform.position.z);
@@ -149,7 +149,10 @@ public class HexGrid : MonoBehaviour
         float innerRadius = 1.73205081f * length * 0.5f;
         float outerRadius = length;
         Vector3 position;
-        position.x = (t_x + (t_z % 2) * 0.5f) * (innerRadius * 2f);
+        if(width%2==0)
+            position.x = (t_x + (t_z % 2) * 0.5f) * (innerRadius * 2f);
+        else
+            position.x = (t_x + ((t_z+1) % 2) * 0.5f) * (innerRadius * 2f);
         position.y = 0f;
         position.z = t_z * (outerRadius * 1.5f);
         GameObject cell = Instantiate<GameObject>(hexPrefab);
@@ -164,6 +167,7 @@ public class HexGrid : MonoBehaviour
             return;
         else
         {
+            Debug.Log("Boundary is changed.");
             while (diff < width - t_width)
             {
                 for (int z = diff; z < w - 1 - diff; z++)

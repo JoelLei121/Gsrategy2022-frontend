@@ -18,6 +18,7 @@ public class CommandLoader : MonoBehaviour
     private GameState runningState;
     private String gameHistory;
     public Quit quitGame;
+    private float waitTime = 1f;
     [DllImport("__Internal")]
     private static extern String ReadGameHistory();
 
@@ -58,13 +59,15 @@ public class CommandLoader : MonoBehaviour
             gameController.UI.updateRound(runningState.Round);
             // PlayerStatus target = gameController.GetPlayerStatus(runningState.ActivePlayerId);
             gameController.map.checkWidth(runningState.MapSize[0]);
-            Debug.Log("checking boundary " + runningState.MapSize[0]);
+            // Debug.Log("checking boundary " + runningState.MapSize[0]);
+
             GameObject currentPlayer = gameController.players[runningState.ActivePlayerId];
             gameController.UI.updateCurrentPlayer(currentPlayer.GetComponent<PlayerStatus>(), runningState.CurrentEvent);
+
             int[] playerPos = currentPlayer.GetComponent<PlayerStatus>().pos;
             PlayerStatus status = gameController.players[runningState.ActivePlayerId].GetComponent<PlayerStatus>();
             gameController.map.setFow(playerPos[0], playerPos[2], status.visibility);
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(waitTime);
             gameController.map.clearState();
 
             int[] pos;
@@ -73,7 +76,7 @@ public class CommandLoader : MonoBehaviour
                 case "MOVE":
                     pos = runningState.ActivePos;
                     gameController.map.highRole(pos[0], pos[2]);
-                    yield return new WaitForSeconds(1f);
+                    yield return new WaitForSeconds(waitTime);
                     yield return StartCoroutine(playerAction.MoveTo(currentPlayer, pos[0], pos[1], pos[2]));
                     break;
 
@@ -85,7 +88,7 @@ public class CommandLoader : MonoBehaviour
                         int[] victimPos = victim[i].GetComponent<PlayerStatus>().pos;
                         gameController.map.highRole(victimPos[0], victimPos[2]);
                     }
-                    yield return new WaitForSeconds(1f);
+                    yield return new WaitForSeconds(waitTime);
                     yield return StartCoroutine(playerAction.Attack(currentPlayer, victim));
                     break;
 
@@ -93,14 +96,14 @@ public class CommandLoader : MonoBehaviour
                     pos = runningState.ActivePos;
                     gameController.map.highRole(pos[0], pos[2]);
                     gameController.map.checkres(pos[0], pos[2]);
-                    yield return new WaitForSeconds(1f);
+                    yield return new WaitForSeconds(waitTime);
                     yield return StartCoroutine(playerAction.Gather(currentPlayer, runningState.Exp));
                     break;
 
                 case "ERROR":
                     pos = runningState.ActivePos;
                     gameController.map.highRole(pos[0], pos[2]);
-                    yield return new WaitForSeconds(1f);
+                    yield return new WaitForSeconds(waitTime);
                     yield return StartCoroutine(playerAction.DoNothing(currentPlayer));
                     break;
 
@@ -126,7 +129,7 @@ public class CommandLoader : MonoBehaviour
                 // end game
             }
             gameController.map.clearState();
-            yield return new WaitForSeconds(0.5f);
+            // yield return new WaitForSeconds(0.5f);
         }
         // game is end
         // call function to end scene
