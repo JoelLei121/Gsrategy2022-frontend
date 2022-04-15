@@ -146,7 +146,7 @@ public class MapUnit : MonoBehaviour
         GameObject crystal = Instantiate<GameObject>(gem);
         Debug.Log("gem is generated");
         crystal.transform.position = GetCell().transform.position;
-        crystal.transform.eulerAngles = new Vector3(90f, 0f, 0f);
+        // crystal.transform.eulerAngles = new Vector3(90f, 0f, 0f);
         Destroy(crystal, 5f);
 
         if (resource_num <= 0)

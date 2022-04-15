@@ -174,10 +174,10 @@ public class PlayerActions : MonoBehaviour
     {
         Animator animator = player.GetComponent<Animator>();
         PlayerStatus status = player.GetComponent<PlayerStatus>();
-        animator.SetBool("isGathering", true);
+        // animator.SetBool("isGathering", true);
         Debug.Log("Player " + status.id + " is gathering. exp + " + exp);
-        yield return new WaitForSeconds(4f);
-        animator.SetBool("isGathering", false);
+        yield return new WaitForSeconds(1f);
+        // animator.SetBool("isGathering", false);
         yield break;
     }
 

@@ -90,7 +90,7 @@
    },
     {
       "ActivePlayerId" : 0,
-      "ActivePos" : [ 8, 10, 12 ],
+      "ActivePos" : [ 9, 10, 11 ],
       "CurrentEvent" : "MOVE",
       "MapSize" : [ 8, 8, 8 ],
       "MinesLeft" : -1,
