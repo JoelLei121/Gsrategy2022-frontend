@@ -468,6 +468,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6571549035229371067, guid: 89290b8687cd0ea4596ba66a6f8f4a71, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 68.67114
+      objectReference: {fileID: 0}
+    - target: {fileID: 6571549035229371067, guid: 89290b8687cd0ea4596ba66a6f8f4a71, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -54.46997
       objectReference: {fileID: 0}
@@ -648,6 +652,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 633247543897904530, guid: 789fdac2d8427e848aee7a136b0d815a, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 633247543897904530, guid: 789fdac2d8427e848aee7a136b0d815a, type: 3}
+      propertyPath: offset.y
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 633247543897904530, guid: 789fdac2d8427e848aee7a136b0d815a, type: 3}
+      propertyPath: offset.z
+      value: -3
+      objectReference: {fileID: 0}
     - target: {fileID: 712893857138129233, guid: 789fdac2d8427e848aee7a136b0d815a, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0
@@ -676,6 +692,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.x
       value: 17
       objectReference: {fileID: 0}
+    - target: {fileID: 1108448443531961005, guid: 789fdac2d8427e848aee7a136b0d815a, type: 3}
+      propertyPath: gemPrefab
+      value: 
+      objectReference: {fileID: 6794127757732333546, guid: ff399886cb7dcd94eafc3e1b3759c5d5, type: 3}
     - target: {fileID: 1680471250088481166, guid: 789fdac2d8427e848aee7a136b0d815a, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -740,6 +760,18 @@ PrefabInstance:
       propertyPath: UI
       value: 
       objectReference: {fileID: 1008389479}
+    - target: {fileID: 3191349261647385885, guid: 789fdac2d8427e848aee7a136b0d815a, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3191349261647385885, guid: 789fdac2d8427e848aee7a136b0d815a, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3191349261647385885, guid: 789fdac2d8427e848aee7a136b0d815a, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3719282200985956943, guid: 789fdac2d8427e848aee7a136b0d815a, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.9890159
@@ -764,6 +796,10 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 1451361813}
+    - target: {fileID: 5871034852355324042, guid: 789fdac2d8427e848aee7a136b0d815a, type: 3}
+      propertyPath: gameJson
+      value: Assets\Resources\Play10.json
+      objectReference: {fileID: 0}
     - target: {fileID: 5937700792870189324, guid: 789fdac2d8427e848aee7a136b0d815a, type: 3}
       propertyPath: c.Array.data[0]
       value: 
@@ -773,12 +809,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 215434991}
     - target: {fileID: 9205138907375462750, guid: 789fdac2d8427e848aee7a136b0d815a, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 9205138907375462750, guid: 789fdac2d8427e848aee7a136b0d815a, type: 3}
       propertyPath: offset.y
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 9205138907375462750, guid: 789fdac2d8427e848aee7a136b0d815a, type: 3}
       propertyPath: offset.z
-      value: -2.5
+      value: -3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 789fdac2d8427e848aee7a136b0d815a, type: 3}

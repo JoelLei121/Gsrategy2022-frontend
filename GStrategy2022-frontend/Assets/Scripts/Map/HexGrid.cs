@@ -24,6 +24,7 @@ public class HexGrid : MonoBehaviour
 
     //public GameObject monsterPrefab;
     public GameObject resPrefab;
+    public GameObject gemPrefab;
     //public Text textPrefab;
 
     GameObject[] units;
@@ -100,7 +101,7 @@ public class HexGrid : MonoBehaviour
             int t_z = t[1];
             GameObject tmp_hex = units[t_z * w + t_x];
             if (tmp_hex != null)
-                tmp_hex.GetComponent<MapUnit>().setType((int)Types.res, resPrefab);
+                tmp_hex.GetComponent<MapUnit>().setType((int)Types.res, resPrefab, resources[i][3]);
             else
                 Debug.Log("initERROR");
         }
@@ -272,11 +273,18 @@ public class HexGrid : MonoBehaviour
 
     public void checkres(int a_x, int a_z)
     {
+        Debug.Log("Mining");
         int[] n = hexToOur(a_x, a_z);
         int h_x = n[0];
         int h_z = n[1];
-        if (GetMapUnit(h_x, h_z).GetComponent<MapUnit>().getUnitType() != (int)Types.res)
+        MapUnit unit = GetMapUnit(h_x, h_z).GetComponent<MapUnit>();
+        if (unit.getUnitType() != (int)Types.res)
+        {
+            Debug.Log("Error: Not resource type!");
             return;
-        GetMapUnit(h_x, h_z).GetComponent<MapUnit>().CheckRes();
+        }
+        StartCoroutine(unit.Mining(gemPrefab));
     }
+
+
 }

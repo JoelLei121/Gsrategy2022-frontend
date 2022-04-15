@@ -100,6 +100,13 @@ public class CommandLoader : MonoBehaviour
                     yield return StartCoroutine(playerAction.Gather(currentPlayer, runningState.Exp));
                     break;
 
+                case "UPGRADE":
+                    pos = runningState.ActivePos;
+                    gameController.map.highRole(pos[0], pos[2]);
+                    yield return new WaitForSeconds(waitTime);
+                    yield return StartCoroutine(playerAction.LevelUp(currentPlayer));
+                    break;
+
                 case "ERROR":
                     pos = runningState.ActivePos;
                     gameController.map.highRole(pos[0], pos[2]);
@@ -109,6 +116,10 @@ public class CommandLoader : MonoBehaviour
 
                 case "DIED":
                     yield return StartCoroutine(playerAction.Died(currentPlayer));
+                    break;
+
+                case "ENDGAME":
+                    
                     break;
             }
 
@@ -123,7 +134,7 @@ public class CommandLoader : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("Heju");
+                    Debug.Log("Tie");
                 }
                 break;
                 // end game
