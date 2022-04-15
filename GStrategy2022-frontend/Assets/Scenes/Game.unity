@@ -762,7 +762,7 @@ PrefabInstance:
       objectReference: {fileID: 1008389479}
     - target: {fileID: 3191349261647385885, guid: 789fdac2d8427e848aee7a136b0d815a, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3191349261647385885, guid: 789fdac2d8427e848aee7a136b0d815a, type: 3}
       propertyPath: m_LocalScale.y
@@ -770,7 +770,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3191349261647385885, guid: 789fdac2d8427e848aee7a136b0d815a, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3719282200985956943, guid: 789fdac2d8427e848aee7a136b0d815a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -784,6 +784,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.x
       value: 17
       objectReference: {fileID: 0}
+    - target: {fileID: 4571046048273027349, guid: 789fdac2d8427e848aee7a136b0d815a, type: 3}
+      propertyPath: m_Avatar
+      value: 
+      objectReference: {fileID: 9000000, guid: 675e44af54876a04b88d57c9fd982ede, type: 3}
     - target: {fileID: 4766778367116805020, guid: 789fdac2d8427e848aee7a136b0d815a, type: 3}
       propertyPath: m_WarningMessage
       value: 
@@ -798,7 +802,7 @@ PrefabInstance:
       objectReference: {fileID: 1451361813}
     - target: {fileID: 5871034852355324042, guid: 789fdac2d8427e848aee7a136b0d815a, type: 3}
       propertyPath: gameJson
-      value: Assets\Resources\Play10.json
+      value: Assets\Resources\Play.json
       objectReference: {fileID: 0}
     - target: {fileID: 5937700792870189324, guid: 789fdac2d8427e848aee7a136b0d815a, type: 3}
       propertyPath: c.Array.data[0]

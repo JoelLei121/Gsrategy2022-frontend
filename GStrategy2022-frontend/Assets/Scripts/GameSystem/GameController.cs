@@ -10,8 +10,8 @@ using Newtonsoft.Json;
 public class Map
 {
     public int[] size;
-    public List<int[]> Barrier;
-    public List<int[]> Resource;
+    public List<int[]> barriers;
+    public List<int[]> resources;
 
 }
 

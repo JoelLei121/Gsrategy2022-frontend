@@ -38,7 +38,7 @@ public class MapUnit : MonoBehaviour
         // }
         //装饰
         int ifDecoration = Random.Range(0, 100);
-        if (ifDecoration < 5)//生成树
+        if (ifDecoration < 3)//生成树
         {
             Vector3 pos_dec = Vector3.zero;
             Vector3 scale_dec = new Vector3(0.5f, 0.5f, 0.5f);

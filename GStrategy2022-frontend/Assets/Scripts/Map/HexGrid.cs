@@ -36,8 +36,8 @@ public class HexGrid : MonoBehaviour
     public void init(Map map)
     {
         int[] size = map.size;
-        List<int[]> barriers = new List<int[]>(map.Barrier);
-        List<int[]> resources = new List<int[]>(map.Resource);
+        List<int[]> barriers = new List<int[]>(map.barriers);
+        List<int[]> resources = new List<int[]>(map.resources);
         int t_width = size[0];
         width = t_width;
         if (width < 2)
