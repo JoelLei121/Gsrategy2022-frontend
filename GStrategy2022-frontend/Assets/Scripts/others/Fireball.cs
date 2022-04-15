@@ -6,14 +6,17 @@ public class Fireball : MonoBehaviour
 {
     // Start is called before the first frame update
     
-    private Transform target;
-    public float speed = 5f;
+    private GameObject target;
+    public float speed = 10f;
     public float time = 0.5f;
-    // public int damage = 40;
+    public int atk;
+    private PlayerActions action;
 
 
-    public void Seek(Transform _target)
+    public void Seek(GameObject _target, int _atk, PlayerActions _action)
     {
+        action = _action;
+        atk = _atk;
         target = _target;
     }
 
@@ -23,38 +26,29 @@ public class Fireball : MonoBehaviour
     {
         if(target == null)
         {
-            Destroy(gameObject);
             return;
         }
 
-        Vector3 dir = target.position - transform.position;
+        Vector3 dir = target.transform.position - transform.position;
         float distanceThisFrame = speed * Time.deltaTime;
 
         if(dir.magnitude <= distanceThisFrame)
         {
             HitTarget();
+            target = null;
             return;
         }
 
         transform.Translate(dir.normalized * distanceThisFrame, Space.World);
-        transform.LookAt(target);
+        transform.LookAt(target.transform);
     }
 
     void HitTarget()
     {
-        // Damage(target);
+        Debug.Log("Hit!");
+        StartCoroutine(action.Damaged(target, atk));
         Destroy(gameObject, time);
         return;
     }
-
-    // void Damage(Transform enemy)
-    // {
-    //     Enemy e = enemy.GetComponent<Enemy>();
-    //     if(e != null)
-    //     {
-    //         e.TakeDamage(damage);
-    //     }
-
-    // }
 
 }

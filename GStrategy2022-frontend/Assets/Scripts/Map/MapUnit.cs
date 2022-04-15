@@ -93,7 +93,7 @@ public class MapUnit : MonoBehaviour
                     resource_num = t_res_num;
                     Vector3 pos_res = Vector3.zero;
                     //pos_res.y = 1f;
-                    GameObject resource = Instantiate<GameObject>(thePrefab);
+                    resource = Instantiate<GameObject>(thePrefab);
                     resource.transform.SetParent(cell.transform, false);
                     resource.transform.localPosition = pos_res;
                     Vector3 offset = resource.transform.position;
@@ -144,14 +144,17 @@ public class MapUnit : MonoBehaviour
         resource_num--;
 
         GameObject crystal = Instantiate<GameObject>(gem);
-        Debug.Log("gem is generated");
         crystal.transform.position = GetCell().transform.position;
         // crystal.transform.eulerAngles = new Vector3(90f, 0f, 0f);
         Destroy(crystal, 5f);
 
         if (resource_num <= 0)
+        {
+            Debug.Log("No resource left");
             Destroy(resource);
-            yield break;
+        }
+
+        yield break;
     }
 
     public int getUnitType()//
