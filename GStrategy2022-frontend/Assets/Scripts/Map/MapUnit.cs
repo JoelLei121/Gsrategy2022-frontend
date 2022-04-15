@@ -138,7 +138,7 @@ public class MapUnit : MonoBehaviour
     {
         if (resource_num <= 0)
             return;
-        resource_num--;
+        resource_num-=10;
         if (resource_num <= 0)
             Destroy(resource);
             return;

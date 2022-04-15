@@ -76,6 +76,7 @@ public class PlayerActions : MonoBehaviour
         // update position
         status.pos = new int[] {x, y, z};
         Debug.Log("Player " + status.id + ": moving to (" + x + ", " + y + ", " + z + ")");
+        UI.updateFightRecord("Player " + status.id + ": moving to (" + x + ", " + y + ", " + z + ")");
         yield return new WaitForSeconds(0.5f);
         yield break;
     }
@@ -85,6 +86,7 @@ public class PlayerActions : MonoBehaviour
     {
         //attack all the target could attack 
         PlayerStatus status = player.GetComponent<PlayerStatus>();
+        UI.updateFightRecord("Player " + status.id + " is going crazy!");
         Debug.Log("Player " + status.id + " is going crazy!");
         foreach (GameObject target in victims)
         {
@@ -99,6 +101,7 @@ public class PlayerActions : MonoBehaviour
         PlayerStatus playerStatus = player.GetComponent<PlayerStatus>();
         PlayerStatus targetStatus = target.GetComponent<PlayerStatus>();
 
+        UI.updateFightRecord("Player " + playerStatus.id + " attack Player " + targetStatus.id);
         Debug.Log("Player " + playerStatus.id + " attack Player " + targetStatus.id);
         yield return new WaitForSeconds(0.5f);
         Vector3 dir = target.transform.position - player.transform.position;
@@ -153,6 +156,7 @@ public class PlayerActions : MonoBehaviour
         }
         yield return new WaitForSeconds(1f);
         animator.SetBool("isDamaged", false);
+        UI.updateFightRecord("Player " + status.id + " is damaged. HP left: " + status.hp);
         Debug.Log("Player " + status.id + " is damaged. HP left: " + status.hp);
         yield break;
     }
@@ -161,6 +165,7 @@ public class PlayerActions : MonoBehaviour
     public IEnumerator Died(GameObject player)
     {
         PlayerStatus status = player.GetComponent<PlayerStatus>();
+        UI.updateFightRecord("Player " + status.id + " is killed.");
         Debug.Log("Player " + status.id + " is killed.");
         yield return new WaitForSeconds(1.5f);
         StartCoroutine(DestroyPlayer(player));
@@ -175,6 +180,7 @@ public class PlayerActions : MonoBehaviour
         Animator animator = player.GetComponent<Animator>();
         PlayerStatus status = player.GetComponent<PlayerStatus>();
         animator.SetBool("isGathering", true);
+        UI.updateFightRecord("Player " + status.id + " is gathering. exp + " + exp);
         Debug.Log("Player " + status.id + " is gathering. exp + " + exp);
         yield return new WaitForSeconds(4f);
         animator.SetBool("isGathering", false);
@@ -187,12 +193,14 @@ public class PlayerActions : MonoBehaviour
         GameObject particle = Instantiate<GameObject>(LevelUpPrefab);
         particle.transform.position = player.transform.position;
         Destroy(particle, 3f);
+        UI.updateFightRecord("Player " + status.id + "upgrade level!");
         Debug.Log("Player " + status.id + "upgrade level!");
         yield break;
     }
     public IEnumerator DoNothing(GameObject player)
     {
         PlayerStatus status = player.GetComponent<PlayerStatus>();
+        UI.updateFightRecord("Player " + status.id + " are hesitating");
         Debug.Log("Player " + status.id + " are hesitating");
         yield break;
     }

@@ -59,8 +59,8 @@ public class HexGrid : MonoBehaviour
         for (int z = 0; z < w - 1; z++)
         {
             int width_tmp = Mathf.Abs((w - 2) / 2 - z);
-            int tmp_s = (width_tmp + 1) / 2;
-            int tmp_e = w - 2 - width_tmp / 2;
+            int tmp_s = (width_tmp + ((width+1)%2)) / 2;
+            int tmp_e = w - 2 - (width_tmp + (width % 2)) / 2;
             for (int x = tmp_s; x <= tmp_e; x++)
             {
                 GameObject tmp_hex = units[z * w + x] = createHex(x, z, length);
@@ -149,10 +149,10 @@ public class HexGrid : MonoBehaviour
         float innerRadius = 1.73205081f * length * 0.5f;
         float outerRadius = length;
         Vector3 position;
-        if(width%2==0)
-            position.x = (t_x + (t_z % 2) * 0.5f) * (innerRadius * 2f);
-        else
-            position.x = (t_x + ((t_z+1) % 2) * 0.5f) * (innerRadius * 2f);
+       // if(width%2==0)
+        position.x = (t_x + (t_z % 2) * 0.5f) * (innerRadius * 2f);
+        //else
+        //    position.x = (t_x + ((t_z+1) % 2) * 0.5f) * (innerRadius * 2f);
         position.y = 0f;
         position.z = t_z * (outerRadius * 1.5f);
         GameObject cell = Instantiate<GameObject>(hexPrefab);
@@ -175,8 +175,8 @@ public class HexGrid : MonoBehaviour
                     if (z == diff || z == w - 2 - diff)
                     {
                         int width_tmp = Mathf.Abs((w - 2) / 2 - z);
-                        int tmp_s = (width_tmp + 1) / 2 + diff;
-                        int tmp_e = w - 2 - width_tmp / 2 - diff;
+                        int tmp_s = (width_tmp + ((width + 1) % 2)) / 2 + diff;
+                        int tmp_e = w - 2 - (width_tmp + (width % 2)) / 2 - diff;
                         for (int x = tmp_s; x <= tmp_e; x++)
                         {
                             units[z * w + x].GetComponent<MapUnit>().state = (int)States.del;
@@ -186,8 +186,8 @@ public class HexGrid : MonoBehaviour
                     else
                     {
                         int width_tmp = Mathf.Abs((w - 2) / 2 - z);
-                        int tmp_s = (width_tmp + 1) / 2 + diff;
-                        int tmp_e = w - 2 - width_tmp / 2 - diff;
+                        int tmp_s = (width_tmp + ((width + 1) % 2)) / 2 + diff;
+                        int tmp_e = w - 2 - (width_tmp + (width % 2)) / 2 - diff;
                         units[z * w + tmp_s].GetComponent<MapUnit>().state = (int)States.del;
                         units[z * w + tmp_s].GetComponent<Renderer>().material = deleteMaterial;
                         units[z * w + tmp_e].GetComponent<MapUnit>().state = (int)States.del;
@@ -208,8 +208,8 @@ public class HexGrid : MonoBehaviour
         for (int z = diff; z < w - 1 - diff; z++)
         {
             int width_tmp = Mathf.Abs((w - 2) / 2 - z);
-            int tmp_s = (width_tmp + 1) / 2 + diff;
-            int tmp_e = w - 2 - width_tmp / 2 - diff;
+            int tmp_s = (width_tmp + ((width + 1) % 2)) / 2 + diff;
+            int tmp_e = w - 2 - (width_tmp + (width % 2)) / 2 - diff;
             for (int x = tmp_s; x <= tmp_e; x++)
             {
                 if (units[z * w + x] == null)
@@ -233,8 +233,8 @@ public class HexGrid : MonoBehaviour
         for (int z = diff; z < w - 1 - diff; z++)
         {
             int width_tmp = Mathf.Abs((w - 2) / 2 - z);
-            int tmp_s = (width_tmp + 1) / 2 + diff;
-            int tmp_e = w - 2 - width_tmp / 2 - diff;
+            int tmp_s = (width_tmp + ((width + 1) % 2)) / 2 + diff;
+            int tmp_e = w - 2 - (width_tmp + (width % 2)) / 2 - diff;
             for (int x = tmp_s; x <= tmp_e; x++)
             {
                 if (units[z * w + x] == null)

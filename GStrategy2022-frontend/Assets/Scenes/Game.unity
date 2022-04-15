@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44976342, g: 0.49982774, b: 0.5756197, a: 1}
+  m_IndirectSpecularColor: {r: 0.4497633, g: 0.49982828, b: 0.57562, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -299,6 +299,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 21.172, y: -265.042, z: 0}
+--- !u!114 &975924105 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1102721050326848009, guid: 89290b8687cd0ea4596ba66a6f8f4a71, type: 3}
+  m_PrefabInstance: {fileID: 2044084405}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1008389479 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6571549036409075224, guid: 89290b8687cd0ea4596ba66a6f8f4a71, type: 3}
@@ -608,9 +619,28 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 59.807983
       objectReference: {fileID: 0}
+    - target: {fileID: 6571549036409075224, guid: 89290b8687cd0ea4596ba66a6f8f4a71, type: 3}
+      propertyPath: FadeImage
+      value: 
+      objectReference: {fileID: 975924105}
+    - target: {fileID: 6571549036409075224, guid: 89290b8687cd0ea4596ba66a6f8f4a71, type: 3}
+      propertyPath: fightRecord
+      value: 
+      objectReference: {fileID: 2044084406}
     m_RemovedComponents:
     - {fileID: 5598001430482957655, guid: 89290b8687cd0ea4596ba66a6f8f4a71, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 89290b8687cd0ea4596ba66a6f8f4a71, type: 3}
+--- !u!114 &2044084406 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8127713368083443099, guid: 89290b8687cd0ea4596ba66a6f8f4a71, type: 3}
+  m_PrefabInstance: {fileID: 2044084405}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &9015043105135593945
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -690,6 +720,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2579632083911738841, guid: 789fdac2d8427e848aee7a136b0d815a, type: 3}
+      propertyPath: FadeImage
+      value: 
+      objectReference: {fileID: 975924105}
     - target: {fileID: 3005906007356551973, guid: 789fdac2d8427e848aee7a136b0d815a, type: 3}
       propertyPath: path
       value: Assets/Resources/Play.json
