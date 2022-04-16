@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4497633, g: 0.49982828, b: 0.57562, a: 1}
+  m_IndirectSpecularColor: {r: 0.44976342, g: 0.49982774, b: 0.5756197, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -594,6 +594,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1451361815}
     - target: {fileID: 6571549035943697945, guid: 89290b8687cd0ea4596ba66a6f8f4a71, type: 3}
+      propertyPath: m_RenderMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6571549035943697945, guid: 89290b8687cd0ea4596ba66a6f8f4a71, type: 3}
       propertyPath: m_SortingOrder
       value: 32766
       objectReference: {fileID: 0}
@@ -668,6 +672,10 @@ PrefabInstance:
     - target: {fileID: 8808741119303893192, guid: 89290b8687cd0ea4596ba66a6f8f4a71, type: 3}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8808741119303893192, guid: 89290b8687cd0ea4596ba66a6f8f4a71, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -111.44998
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5598001430482957655, guid: 89290b8687cd0ea4596ba66a6f8f4a71, type: 3}
@@ -897,7 +905,7 @@ PrefabInstance:
       objectReference: {fileID: 1451361813}
     - target: {fileID: 5871034852355324042, guid: 789fdac2d8427e848aee7a136b0d815a, type: 3}
       propertyPath: gameJson
-      value: Assets\Resources\Play.json
+      value: Assets\Resources\Play10.json
       objectReference: {fileID: 0}
     - target: {fileID: 5871034852355324042, guid: 789fdac2d8427e848aee7a136b0d815a, type: 3}
       propertyPath: mainCamera

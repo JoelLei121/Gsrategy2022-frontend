@@ -105,7 +105,7 @@ public class PlayerActions : MonoBehaviour
         float counter = 0f;
 
         // look at target
-        while(counter < rotationMargin)
+        while (counter < rotationMargin)
         {
             Quaternion lookRotation = Quaternion.LookRotation(dir);
             Vector3 rotation = Quaternion.Lerp(player.transform.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
@@ -127,9 +127,9 @@ public class PlayerActions : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         animator.SetBool("isAttacking", false);
         yield return new WaitForSeconds(1.2f);
-        
+
         counter = 0;
-        while(counter < rotationMargin)
+        while (counter < rotationMargin)
         {
             Quaternion lookRotation = Quaternion.LookRotation(dir);
             Vector3 rotation = Quaternion.Lerp(player.transform.rotation, lookRotation, Time.deltaTime * turnSpeed * 0.5f).eulerAngles;
@@ -149,7 +149,7 @@ public class PlayerActions : MonoBehaviour
         PlayerStatus status = player.GetComponent<PlayerStatus>();
         status.hp -= atk;
         status.hp = (status.hp > 0 ? status.hp : 0);
-        StartCoroutine(UI.updateBloodline(status));
+        yield return StartCoroutine(UI.updateBloodline(status));
         animator.SetBool("isDamaged", true);
         yield return new WaitForSeconds(0.1f);
         animator.SetBool("isDamaged", false);
@@ -196,12 +196,12 @@ public class PlayerActions : MonoBehaviour
     public IEnumerator LevelUp(GameObject player, string upgradeType)
     {
         PlayerStatus status = player.GetComponent<PlayerStatus>();
-        switch(upgradeType)
+        switch (upgradeType)
         {
             case "move_range":
                 status.move_range++;
                 break;
-            
+
             case "attack_range":
                 status.attack_range++;
                 break;
@@ -226,8 +226,8 @@ public class PlayerActions : MonoBehaviour
         GameObject particle = Instantiate<GameObject>(LevelUpPrefab);
         particle.transform.position = player.transform.position;
         Destroy(particle, 3f);
-        UI.updateFightRecord("Player " + status.id + "upgrade level!");
-        Debug.Log("Player " + status.id + "upgrade level!");
+        UI.updateFightRecord("Player " + status.id + " level up!");
+        Debug.Log("Player " + status.id + " level up!");
         yield return new WaitForSeconds(1f);
         yield break;
     }

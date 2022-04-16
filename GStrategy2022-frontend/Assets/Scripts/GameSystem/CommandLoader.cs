@@ -112,8 +112,8 @@ public class CommandLoader : MonoBehaviour
                     gameController.map.highRole(pos[0], pos[2]);
                     yield return new WaitForSeconds(waitTime);
                     yield return StartCoroutine(playerAction.LevelUp(currentPlayer, runningState.UpgradeType));
-                    StartCoroutine(gameController.UI.updateCurrentPlayer(currentPlayer.GetComponent<PlayerStatus>(), runningState.CurrentEvent));
-                    StartCoroutine(gameController.UI.updateBloodline(currentPlayer.GetComponent<PlayerStatus>()));
+                    yield return StartCoroutine(gameController.UI.updateCurrentPlayer(currentPlayer.GetComponent<PlayerStatus>(), runningState.CurrentEvent));
+                    yield return StartCoroutine(gameController.UI.updateBloodline(currentPlayer.GetComponent<PlayerStatus>()));
                     break;
 
                 case "ERROR":
