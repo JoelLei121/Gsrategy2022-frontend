@@ -130,10 +130,12 @@ public class CommandLoader : MonoBehaviour
                 if ((int)runningState.WinnerId != 2)
                 {
                     PlayerStatus winner = gameController.GetPlayerStatus((int)runningState.WinnerId);
+                    gameController.UI.updateFightRecord("Player " + winner.ordering + ": " + winner.teamName + " is the winner!");
                     Debug.Log("Player " + winner.ordering + ": " + winner.teamName + " is the winner!");
                 }
                 else
                 {
+                    gameController.UI.updateFightRecord("Tie");
                     Debug.Log("Tie");
                 }
                 break;
