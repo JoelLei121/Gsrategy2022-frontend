@@ -18,9 +18,9 @@
       {
         "id": 0,
         "name": "Player1",
-        "attack_range": 10,
-        "sight_range": 10,
-        "move_range": 5,
+        "attack_range": 1,
+        "sight_range": 3,
+        "move_range": 3,
         "mine_speed": 5,
         "at": 50,
         "hp": 100,
@@ -29,9 +29,9 @@
       {
         "id": 1,
         "name": "Player2",
-        "attack_range": 7,
-        "sight_range": 12,
-        "move_range": 6,
+        "attack_range": 1,
+        "sight_range": 3,
+        "move_range": 3,
         "mine_speed": 7,
         "at": 2,
         "hp": 80,
@@ -50,7 +50,7 @@
       "UpgradeType" : -1,
       "VictimId" : [ ],
       "WinnerId" : -1,
-      "exp" : 1.5
+      "Exp" : 1.5
     },
     {
       "ActivePlayerId" : 1,
@@ -62,7 +62,7 @@
       "UpgradeType" : -1,
       "VictimId" : [ ],
       "WinnerId" : -1,
-      "exp" : 1.5
+      "Exp" : 1.5
     },
     {
       "ActivePlayerId" : 0,
@@ -74,7 +74,7 @@
       "UpgradeType" : -1,
       "VictimId" : [],
       "WinnerId" : -1,
-      "exp" : -1
+      "Exp" : -1
     },
     {
       "ActivePlayerId" : 0,
@@ -98,7 +98,7 @@
       "UpgradeType" : -1,
       "VictimId" : [],
       "WinnerId" : -1,
-      "exp" : -1
+      "Exp" : -1
     },
     {
       "ActivePlayerId" : 0,
@@ -110,7 +110,7 @@
       "UpgradeType" : -1,
       "VictimId" : [ 1 ],
       "WinnerId" : -1,
-      "exp" : -1
+      "Exp" : -1
     },
     {
       "ActivePlayerId" : 1,
@@ -122,7 +122,7 @@
       "UpgradeType" : -1,
       "VictimId" : [ 0 ],
       "WinnerId" : -1,
-      "exp" : -1
+      "Exp" : -1
     },
     {
       "ActivePlayerId" : 0,
@@ -134,8 +134,20 @@
       "UpgradeType" : -1,
       "VictimId" : [ 1 ],
       "WinnerId" : -1,
-      "exp" : -1
+      "Exp" : -1
 
-    }
+    },
+    {
+      "ActivePlayerId" : 1,
+      "ActivePos" : [ 7, 10, 13 ],
+      "CurrentEvent" : "DIED",
+      "MapSize" : [ 6, 6, 6 ],
+      "MinesLeft" : -1,
+      "Round" : 8,
+      "UpgradeType" : -1,
+      "VictimId" : [],
+      "WinnerId" : 0,
+      "Exp" : -1
+   }
   ]
 }

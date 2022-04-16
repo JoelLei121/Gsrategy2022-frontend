@@ -4,34 +4,24 @@ using System.Collections;
 
 public class GameUI : MonoBehaviour
 {
-    public Image FadeImage;
-    private float alpha = 1f;
     public Text currentPlayerName;
     public Text currentRound;
     public Text currentPlayerHp;
     public Text currentPlayerExp;
     public Text currentPlayerAction;
+    public Text currentPlayerATK;
+    public Text currentPlayerVision;
+    public Text currentPlayerPosition;
+    public Text currentPlayerAttackRange;
+    public Text currentPlayerMoveRange;
+    public Text currentPlayerGatheringSkill;
     public Text fightRecord;
     public Image playerImage1;
     public Image playerImage2;
     public Slider playerBoodline1;
     public Slider playerBoodline2;
 
-    private IEnumerator fade()
-    {
-        alpha = 1f;
-        while (alpha > 0f)
-        {
-            alpha -=  2*Time.deltaTime;
-            FadeImage.color = new Color(0, 0, 0, alpha);
-            yield return new WaitForSeconds(0);
-        }
-    }
 
-    public void Start()
-    {
-        StartCoroutine(fade());
-    }
     public void init()
     {
 
@@ -40,18 +30,32 @@ public class GameUI : MonoBehaviour
     {
         currentRound.text = numRound.ToString();
     }
-    public void updateCurrentPlayer(PlayerStatus player,string action)
+    public IEnumerator updateCurrentPlayer(PlayerStatus player, string action)
     {
         currentPlayerName.text = player.teamName;
         currentPlayerAction.text = action;
         currentPlayerExp.text = player.exp.ToString();
         currentPlayerHp.text = player.hp.ToString();
-
+        currentPlayerATK.text = player.atk.ToString();
+        currentPlayerVision.text = player.sight_range.ToString();
+        currentPlayerMoveRange.text = player.move_range.ToString();
+        currentPlayerAttackRange.text = player.attack_range.ToString();
+        currentPlayerGatheringSkill.text = player.gatheringSkill.ToString();
+        int [] pos = player.pos;
+        string posS = "(" + pos[0] + ", " + pos[1] + ", " + pos[2] + ")";
+        currentPlayerPosition.text = posS;
+        yield break;
     }
 
-    public void updateBloodline(PlayerStatus player)
+    public IEnumerator updateBloodline(PlayerStatus player)
     {
         playerBoodline1.value = player.hp / 100f;
+        Slider bloodline;
+        if (player.id == 0) bloodline = playerBoodline1;
+        else bloodline = playerBoodline2;
+        if (player.hp <= 0) bloodline.enabled = false;
+        else bloodline.value = player.hp / 100f;
+        yield break;
     }
     public void updateFightRecord(string action)
     {
