@@ -55,6 +55,6 @@ public class GameUI : MonoBehaviour
     }
     public void updateFightRecord(string action)
     {
-        fightRecord.text = action;
+        fightRecord.text = action+"\n"+ fightRecord.text;
     }
 }
