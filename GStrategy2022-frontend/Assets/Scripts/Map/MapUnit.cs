@@ -134,14 +134,14 @@ public class MapUnit : MonoBehaviour
     {
         return resource;
     }
-    public IEnumerator Mining(GameObject gem)//检查资源
+    public IEnumerator Mining(GameObject gem, int MinesLeft)//检查资源
     {
         if (resource_num <= 0)
         {
             Debug.Log("Error: No resource left!");
             yield break;
         }
-        resource_num--;
+        resource_num = MinesLeft;
 
         GameObject crystal = Instantiate<GameObject>(gem);
         crystal.transform.position = GetCell().transform.position;

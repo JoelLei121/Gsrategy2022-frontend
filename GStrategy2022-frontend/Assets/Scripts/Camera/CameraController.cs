@@ -8,15 +8,9 @@ public class CameraController : MonoBehaviour
     public float panBorderThickness = 10f;
 
     public float scrollSpeed = 5f;
-    public float maxY = 35f;
+    public float maxY = 150f;
     public float minY = 5f;
 
-    private float lastMouseX, lastMouseY, currentMouseX, currentMouseY;
-
-    void Start()
-    {
-        lastMouseX = lastMouseY = currentMouseX = currentMouseY = 0f;
-    }
 
     // Update is called once per frame
     void Update()

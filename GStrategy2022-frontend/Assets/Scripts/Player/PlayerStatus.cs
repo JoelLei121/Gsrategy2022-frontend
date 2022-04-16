@@ -8,12 +8,12 @@ public class PlayerInitialize
     public int id;
     public string name;
     public int[] Position;           //λ��
-    public int attack_range;   //������Χ
-    public int sight_range; //��Ұ��Χ
-    public int move_range; //�ƶ���Χ
     public int mine_speed; //�ɼ��ٶ�
     public int at; //������
     public int hp; //Ѫ��
+    public int attack_range;   //������Χ
+    public int sight_range; //��Ұ��Χ
+    public int move_range; //�ƶ���Χ
 }
 
 
@@ -26,12 +26,13 @@ public class PlayerStatus : MonoBehaviour
     public float exp;
     public float hp;
     public int atk;
-    public int visibility;
-
-    public int speed;
-    public int cure;
+    public int attack_range;   //������Χ
+    public int sight_range; //��Ұ��Χ
+    public int move_range; //�ƶ���Χ
+    public int mine_speed;
     public float gatheringSkill;
-    public int ordering;
+
+    public int cure;
     public bool OnProtection;
 
     public void init(PlayerInitialize p)
@@ -44,7 +45,10 @@ public class PlayerStatus : MonoBehaviour
         exp = 0;
         hp = p.hp;
         atk = p.at;
-        visibility = 1;  
+        mine_speed = p.mine_speed;
+        attack_range = p.attack_range;
+        sight_range = p.sight_range;
+        move_range = p.move_range;
     }
 
     void Start()

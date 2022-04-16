@@ -271,7 +271,7 @@ public class HexGrid : MonoBehaviour
         decoration.transform.localPosition = pos_dec;
     }
 
-    public void checkres(int a_x, int a_z)
+    public void checkres(int a_x, int a_z, int MinesLeft)
     {
         int[] n = hexToOur(a_x, a_z);
         int h_x = n[0];
@@ -282,7 +282,7 @@ public class HexGrid : MonoBehaviour
             Debug.Log("Error: Not resource type!");
             return;
         }
-        StartCoroutine(unit.Mining(gemPrefab));
+        StartCoroutine(unit.Mining(gemPrefab, MinesLeft));
     }
 
 
