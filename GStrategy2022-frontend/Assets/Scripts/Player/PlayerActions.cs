@@ -148,7 +148,8 @@ public class PlayerActions : MonoBehaviour
         Animator animator = player.GetComponent<Animator>();
         PlayerStatus status = player.GetComponent<PlayerStatus>();
         status.hp -= atk;
-        UI.updateBloodline(status);
+        status.hp = (status.hp > 0 ? status.hp : 0);
+        StartCoroutine(UI.updateBloodline(status));
         animator.SetBool("isDamaged", true);
         yield return new WaitForSeconds(0.1f);
         animator.SetBool("isDamaged", false);
@@ -173,6 +174,10 @@ public class PlayerActions : MonoBehaviour
         PlayerStatus status = player.GetComponent<PlayerStatus>();
         UI.updateFightRecord("Player " + status.id + " is killed.");
         Debug.Log("Player " + status.id + " is killed.");
+
+        Animator animator = player.GetComponent<Animator>();
+        animator.SetBool("isDamaged", true);
+        animator.SetBool("isDying", true);
         yield return new WaitForSeconds(1.5f);
         StartCoroutine(DestroyPlayer(player));
         yield break;
@@ -188,9 +193,36 @@ public class PlayerActions : MonoBehaviour
         yield break;
     }
 
-    public IEnumerator LevelUp(GameObject player)
+    public IEnumerator LevelUp(GameObject player, string upgradeType)
     {
         PlayerStatus status = player.GetComponent<PlayerStatus>();
+        switch(upgradeType)
+        {
+            case "move_range":
+                status.move_range++;
+                break;
+            
+            case "attack_range":
+                status.attack_range++;
+                break;
+
+            case "mine_speed":
+                status.mine_speed++;
+                break;
+
+            case "hp":
+                status.hp = (status.hp + 50 > 100 ? 100 : status.hp + 50);
+                break;
+
+            case "sight_range":
+                status.sight_range++;
+                break;
+
+            case "atk":
+                status.atk++;
+                break;
+        }
+
         GameObject particle = Instantiate<GameObject>(LevelUpPrefab);
         particle.transform.position = player.transform.position;
         Destroy(particle, 3f);

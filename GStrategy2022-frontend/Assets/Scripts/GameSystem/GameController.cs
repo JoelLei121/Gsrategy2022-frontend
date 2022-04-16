@@ -29,7 +29,9 @@ public class GameState
     public int[] ActivePos;
     public String CurrentEvent;
     public int[] MapSize = { 10, 10, 10 };
+    public int MinesLeft;
     public int Round;
+    public string UpgradeType;
     public int[] VictimId;
     public int? WinnerId;
     public float Exp;
@@ -69,6 +71,7 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
+        // gameHistory = ReadGameHistory();
         gameHistory = File.ReadAllText(gameJson);
         if (gameHistory == null)
         {
@@ -84,7 +87,7 @@ public class GameController : MonoBehaviour
         camPos.y = -0.5f;
         ocean.transform.position = camPos;
         overallCamera.transform.position = camPos;
-        camPos.y = (float)(2.5* (float)response.InitialState.map.size[0]);
+        camPos.y = (float)(2.5* (float)response.InitialState.map.size[0]) + 5f;
         mainCamera.transform.position = camPos;
        
         // After initialize done
