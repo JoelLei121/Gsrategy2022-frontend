@@ -48,7 +48,7 @@ public class GameController : MonoBehaviour
     
     public CommandLoader commandLoader;
     public bool commandIsDone;
-    public GameObject cam;
+    public GameObject mainCamera, overallCamera;
     public GameObject ocean;
     public GameObject[] players = new GameObject[2];
     public int playerNum;
@@ -83,8 +83,9 @@ public class GameController : MonoBehaviour
         Vector3 camPos = map.GetUnitPosition(response.InitialState.map.size[0] - 1, response.InitialState.map.size[0] - 1);
         camPos.y = -0.5f;
         ocean.transform.position = camPos;
+        overallCamera.transform.position = camPos;
         camPos.y = (float)(2.5* (float)response.InitialState.map.size[0]);
-        cam.transform.position = camPos;
+        mainCamera.transform.position = camPos;
        
         // After initialize done
         List<GameState> gameStates = response.list;

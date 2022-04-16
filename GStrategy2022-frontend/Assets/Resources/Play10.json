@@ -9,7 +9,7 @@
       ],
       "resources": [
         [ 10, 7, 10, 10 ],
-        [ 7, 10, 13, 10 ],
+        [ 7, 10, 13, 2 ],
         [ 11, 5, 11, 10 ],
         [ 10, 5, 12, 10 ]
       ]
@@ -90,7 +90,7 @@
    },
     {
       "ActivePlayerId" : 0,
-      "ActivePos" : [ 9, 10, 11 ],
+      "ActivePos" : [ 5, 10, 15 ],
       "CurrentEvent" : "MOVE",
       "MapSize" : [ 8, 8, 8 ],
       "MinesLeft" : -1,

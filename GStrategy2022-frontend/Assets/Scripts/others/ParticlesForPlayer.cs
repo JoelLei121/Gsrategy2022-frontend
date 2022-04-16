@@ -6,7 +6,8 @@ public class ParticlesForPlayer : MonoBehaviour
 {
     public GameObject fireballPrefab;
     public Transform shootPoint;
-    public Transform enemyTransform;
+    public GameObject enemy;
+    public PlayerActions action;
 
     void Start()
     {
@@ -21,9 +22,10 @@ public class ParticlesForPlayer : MonoBehaviour
 
     void releaseFireball()
     {
+        PlayerStatus status = transform.GetComponent<PlayerStatus>();
         Debug.Log("fireball!");
         GameObject fireball = Instantiate<GameObject>(fireballPrefab, shootPoint.position, shootPoint.rotation);
         Fireball fireballScript = fireball.GetComponent<Fireball>();
-        fireballScript?.Seek(enemyTransform);
+        fireballScript.Seek(enemy, status.atk, action);
     }
 }

@@ -273,7 +273,6 @@ public class HexGrid : MonoBehaviour
 
     public void checkres(int a_x, int a_z)
     {
-        Debug.Log("Mining");
         int[] n = hexToOur(a_x, a_z);
         int h_x = n[0];
         int h_z = n[1];
