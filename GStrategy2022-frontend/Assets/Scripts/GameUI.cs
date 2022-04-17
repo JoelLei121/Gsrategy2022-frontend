@@ -29,6 +29,7 @@ public class GameUI : MonoBehaviour
     public void updateRound(int numRound)
     {
         currentRound.text = numRound.ToString();
+        updateFightRecord("Round "+ numRound.ToString()+"\n\n\n\n\n");
     }
     public IEnumerator updateCurrentPlayer(PlayerStatus player, string action)
     {
@@ -49,7 +50,7 @@ public class GameUI : MonoBehaviour
 
     public IEnumerator updateBloodline(PlayerStatus player)
     {
-        playerBoodline1.value = player.hp / 100f;
+        //playerBoodline1.value = player.hp / 100f;
         Slider bloodline;
         if (player.id == 0) bloodline = playerBoodline1;
         else bloodline = playerBoodline2;
