@@ -1,0 +1,153 @@
+{
+  "InitialState": {
+    "map": {
+      "size": [ 10, 10, 10 ],
+      "barriers": [
+        [ 9, 3, 13 ],
+        [ 10, 7, 11 ],
+        [ 12, 2, 13 ]
+      ],
+      "resources": [
+        [ 10, 7, 10, 10 ],
+        [ 7, 10, 13, 2 ],
+        [ 11, 5, 11, 10 ],
+        [ 10, 5, 12, 10 ]
+      ]
+    },
+    "players": [
+      {
+        "id": 0,
+        "name": "Player1",
+        "attack_range": 1,
+        "sight_range": 3,
+        "move_range": 3,
+        "mine_speed": 5,
+        "at": 50,
+        "hp": 100,
+        "Position": [ 9, 9, 9 ]
+      },
+      {
+        "id": 1,
+        "name": "Player2",
+        "attack_range": 1,
+        "sight_range": 3,
+        "move_range": 3,
+        "mine_speed": 7,
+        "at": 2,
+        "hp": 80,
+        "Position": [ 7, 10, 13 ]
+      }
+    ]
+  },
+  "list": [
+    {
+      "ActivePlayerId" : 1,
+      "ActivePos" : [ 7, 10, 13 ],
+      "CurrentEvent" : "GATHER",
+      "MapSize" : [ 10, 10, 10 ],
+      "MinesLeft" : -1,
+      "Round" : 1,
+      "UpgradeType" : -1,
+      "VictimId" : [ ],
+      "WinnerId" : -1,
+      "Exp" : 1.5
+    },
+    {
+      "ActivePlayerId" : 1,
+      "ActivePos" : [ 7, 10, 13 ],
+      "CurrentEvent" : "GATHER",
+      "MapSize" : [ 10, 10, 10 ],
+      "MinesLeft" : -1,
+      "Round" : 1,
+      "UpgradeType" : -1,
+      "VictimId" : [ ],
+      "WinnerId" : -1,
+      "Exp" : 1.5
+    },
+    {
+      "ActivePlayerId" : 0,
+      "ActivePos" : [ 11, 10, 9 ],
+      "CurrentEvent" : "MOVE",
+      "MapSize" : [ 10, 10, 10 ],
+      "MinesLeft" : -1,
+      "Round" : 2,
+      "UpgradeType" : -1,
+      "VictimId" : [],
+      "WinnerId" : -1,
+      "Exp" : -1
+    },
+    {
+      "ActivePlayerId" : 0,
+      "ActivePos" : [ 11, 10, 9 ],
+      "CurrentEvent" : "UPGRADE",
+      "MapSize" : [ 10, 10, 10 ],
+      "MinesLeft" : -1,
+      "Round" : 3,
+      "UpgradeType" : "sight_range",
+      "VictimId" : [],
+      "WinnerId" : -1,
+      "Exp" : -1
+   },
+    {
+      "ActivePlayerId" : 0,
+      "ActivePos" : [ 5, 10, 15 ],
+      "CurrentEvent" : "MOVE",
+      "MapSize" : [ 8, 8, 8 ],
+      "MinesLeft" : -1,
+      "Round" : 4,
+      "UpgradeType" : -1,
+      "VictimId" : [],
+      "WinnerId" : -1,
+      "Exp" : -1
+    },
+    {
+      "ActivePlayerId" : 0,
+      "ActivePos" : [ 8, 10, 12 ],
+      "CurrentEvent" : "ATTACK",
+      "MapSize" : [ 8, 8, 8 ],
+      "MinesLeft" : -1,
+      "Round" : 5,
+      "UpgradeType" : -1,
+      "VictimId" : [ 1 ],
+      "WinnerId" : -1,
+      "Exp" : -1
+    },
+    {
+      "ActivePlayerId" : 1,
+      "ActivePos" : [ 7, 10, 13 ],
+      "CurrentEvent" : "ATTACK",
+      "MapSize" : [ 8, 8, 8 ],
+      "MinesLeft" : -1,
+      "Round" : 6,
+      "UpgradeType" : -1,
+      "VictimId" : [ 0 ],
+      "WinnerId" : -1,
+      "Exp" : -1
+    },
+    {
+      "ActivePlayerId" : 0,
+      "ActivePos" : [ 8, 10, 12 ],
+      "CurrentEvent" : "ATTACK",
+      "MapSize" : [ 6, 6, 6 ],
+      "MinesLeft" : -1,
+      "Round" : 7,
+      "UpgradeType" : -1,
+      "VictimId" : [ 1 ],
+      "WinnerId" : -1,
+      "Exp" : -1
+
+    },
+    {
+      "ActivePlayerId" : 1,
+      "ActivePos" : [ 7, 10, 13 ],
+      "CurrentEvent" : "DIED",
+      "MapSize" : [ 6, 6, 6 ],
+      "MinesLeft" : -1,
+      "Round" : 8,
+      "UpgradeType" : -1,
+      "VictimId" : [],
+      "WinnerId" : 0,
+      "Exp" : -1
+   }
+  ]
+}

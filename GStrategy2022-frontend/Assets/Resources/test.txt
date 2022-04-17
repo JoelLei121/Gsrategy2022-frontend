@@ -1,0 +1,9 @@
+game-start
+game-init-TeamA-TeamB-TeamC-TeamD
+player-1-move-1-2-3
+player-2-move-1-2-4
+player-1-gather-3
+player-2-ERROR
+player-1-attack-2-3-4
+player-2-died
+game-end-3
