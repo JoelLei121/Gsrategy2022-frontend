@@ -2,15 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Threading.Tasks;
-
 public class PlayerActions : MonoBehaviour
 {
+
     public GameUI UI;
     public HexGrid map;
     public float moveSpeed = 0.1f;
     public bool isMoving;
     public bool isAttacking;
     public GameObject LevelUpPrefab;
+
+    private int[] expReduce = {30, 30, 5, 40, 20, 30};
     float rotationMargin = 0.7f;
     float runningMargin = 0.5f;
     float turnSpeed = 10f;
@@ -173,6 +175,7 @@ public class PlayerActions : MonoBehaviour
     {
         PlayerStatus status = player.GetComponent<PlayerStatus>();
         UI.updateFightRecord("Player " + status.id + " is killed.");
+        UI.updateBloodline(status);
         Debug.Log("Player " + status.id + " is killed.");
 
         Animator animator = player.GetComponent<Animator>();
@@ -180,6 +183,7 @@ public class PlayerActions : MonoBehaviour
         animator.SetBool("isDying", true);
         yield return new WaitForSeconds(1.5f);
         StartCoroutine(DestroyPlayer(player));
+        UI.updateFightRecord("Player " + (status.id == 1 ? 0 : 1) + " is the winner!");
         yield break;
     }
 
@@ -189,6 +193,8 @@ public class PlayerActions : MonoBehaviour
         PlayerStatus status = player.GetComponent<PlayerStatus>();
         UI.updateFightRecord("Player " + status.id + " is gathering. exp + " + exp);
         Debug.Log("Player " + status.id + " is gathering. exp + " + exp);
+        status.exp += exp;
+        UI.updateCurrentPlayer(status, "GATHER");
         yield return new WaitForSeconds(1f);
         yield break;
     }
@@ -200,26 +206,32 @@ public class PlayerActions : MonoBehaviour
         {
             case "move_range":
                 status.move_range++;
+                status.exp -= expReduce[0];
                 break;
 
             case "attack_range":
                 status.attack_range++;
+                status.exp -= expReduce[1];
                 break;
 
             case "mine_speed":
                 status.mine_speed++;
+                status.exp -= expReduce[2];
                 break;
 
             case "hp":
                 status.hp = (status.hp + 50 > 100 ? 100 : status.hp + 50);
+                status.exp -= expReduce[3];
                 break;
 
             case "sight_range":
                 status.sight_range++;
+                status.exp -= expReduce[4];
                 break;
 
             case "atk":
                 status.atk++;
+                status.exp -= expReduce[5];
                 break;
         }
 
@@ -227,6 +239,7 @@ public class PlayerActions : MonoBehaviour
         particle.transform.position = player.transform.position;
         Destroy(particle, 3f);
         UI.updateFightRecord("Player " + status.id + " level up!");
+        UI.updateCurrentPlayer(status, "UPGRADE");
         Debug.Log("Player " + status.id + " level up!");
         yield return new WaitForSeconds(1f);
         yield break;

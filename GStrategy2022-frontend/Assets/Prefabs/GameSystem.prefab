@@ -287,6 +287,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ocean
       objectReference: {fileID: 0}
+    - target: {fileID: 1077045565885147516, guid: 273c0048381dd0a4eb2ae791f5751d21, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4300000, guid: f3d0f43f722c79c42ac98263dc8a94ae, type: 2}
     - target: {fileID: 1077045565885147517, guid: 273c0048381dd0a4eb2ae791f5751d21, type: 3}
       propertyPath: m_RootOrder
       value: 7

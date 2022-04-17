@@ -47,6 +47,7 @@ public class CommandLoader : MonoBehaviour
     {
         Debug.Log("Waiting...");
         yield return new WaitForSeconds(2f);
+        int currentRound = 0;
         while(true)
         {
             if(index >= gameLength)
@@ -56,24 +57,37 @@ public class CommandLoader : MonoBehaviour
                 break;
             }
             NextCommand();
-            gameController.UI.updateRound(runningState.Round);
             
             gameController.map.checkWidth(runningState.MapSize[0]);
-            // Debug.Log("checking boundary " + runningState.MapSize[0]);
-
+            
             GameObject currentPlayer = gameController.players[runningState.ActivePlayerId];
-            StartCoroutine(gameController.UI.updateCurrentPlayer(currentPlayer.GetComponent<PlayerStatus>(), runningState.CurrentEvent));
+            PlayerStatus status = currentPlayer.GetComponent<PlayerStatus>();
+            StartCoroutine(gameController.UI.updateCurrentPlayer(status, runningState.CurrentEvent));
 
-            int[] playerPos = currentPlayer.GetComponent<PlayerStatus>().pos;
-            PlayerStatus status = gameController.players[runningState.ActivePlayerId].GetComponent<PlayerStatus>();
+            int[] playerPos = status.pos;
 
             if(runningState.CurrentEvent == "DIED" || runningState.CurrentEvent == "ENDGAME")
             {
                 break;
             }
 
+            if(currentRound != runningState.Round)
+            {
+                gameController.UI.updateRound(runningState.Round);
+                currentRound = runningState.Round;
+            }
 
-            gameController.map.setFow(playerPos[0], playerPos[2], status.sight_range);
+            if(runningState.CurrentEvent == "BOUNDARYHURT")
+            {
+                // effect needed
+                yield return StartCoroutine(playerAction.Damaged(currentPlayer, runningState.BoundaryHurt));
+                StartCoroutine(gameController.UI.updateCurrentPlayer(status, runningState.CurrentEvent));
+                yield return new WaitForSeconds(waitTime);
+                continue;
+            }
+
+
+            gameController.map.setFow(playerPos[0], playerPos[2], status.move_range);
             yield return new WaitForSeconds(waitTime);
             gameController.map.clearState();
 
@@ -83,7 +97,6 @@ public class CommandLoader : MonoBehaviour
                 case "MOVE":
                     pos = runningState.ActivePos;
                     gameController.map.highRole(pos[0], pos[2]);
-                    yield return new WaitForSeconds(waitTime);
                     yield return StartCoroutine(playerAction.MoveTo(currentPlayer, pos[0], pos[1], pos[2]));
                     break;
 
@@ -94,23 +107,20 @@ public class CommandLoader : MonoBehaviour
                         victim[i] = gameController.players[runningState.VictimId[i]];
                         int[] victimPos = victim[i].GetComponent<PlayerStatus>().pos;
                         gameController.map.highRole(victimPos[0], victimPos[2]);
+                        yield return StartCoroutine(playerAction.Attack(currentPlayer, victim));
                     }
-                    yield return new WaitForSeconds(waitTime);
-                    yield return StartCoroutine(playerAction.Attack(currentPlayer, victim));
                     break;
 
                 case "GATHER":
                     pos = runningState.ActivePos;
                     gameController.map.highRole(pos[0], pos[2]);
                     gameController.map.checkres(pos[0], pos[2], runningState.MinesLeft);
-                    yield return new WaitForSeconds(waitTime);
                     yield return StartCoroutine(playerAction.Gather(currentPlayer, runningState.Exp));
                     break;
 
                 case "UPGRADE":
                     pos = runningState.ActivePos;
                     gameController.map.highRole(pos[0], pos[2]);
-                    yield return new WaitForSeconds(waitTime);
                     yield return StartCoroutine(playerAction.LevelUp(currentPlayer, runningState.UpgradeType));
                     yield return StartCoroutine(gameController.UI.updateCurrentPlayer(currentPlayer.GetComponent<PlayerStatus>(), runningState.CurrentEvent));
                     yield return StartCoroutine(gameController.UI.updateBloodline(currentPlayer.GetComponent<PlayerStatus>()));
@@ -119,13 +129,10 @@ public class CommandLoader : MonoBehaviour
                 case "ERROR":
                     pos = runningState.ActivePos;
                     gameController.map.highRole(pos[0], pos[2]);
-                    yield return new WaitForSeconds(waitTime);
                     yield return StartCoroutine(playerAction.DoNothing(currentPlayer));
                     break;
             }
 
-            if(runningState.CurrentEvent == "DIED" || runningState.CurrentEvent == "ENDGAME")
-                break;
             gameController.map.clearState();
             // yield return new WaitForSeconds(0.5f);
         }

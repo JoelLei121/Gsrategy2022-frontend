@@ -35,6 +35,7 @@ public class GameState
     public int[] VictimId;
     public int? WinnerId;
     public float Exp;
+    public int BoundaryHurt = 10;
 
 }
 
