@@ -105,6 +105,22 @@ public class HexGrid : MonoBehaviour
             else
                 Debug.Log("initERROR");
         }
+
+        for (int z = 0; z < w - 1; z++)
+        {
+            int width_tmp = Mathf.Abs((w - 2) / 2 - z);
+            int tmp_s = (width_tmp + ((width+1)%2)) / 2;
+            int tmp_e = w - 2 - (width_tmp + (width % 2)) / 2;
+            for (int x = tmp_s; x <= tmp_e; x++)
+            {
+                GameObject tmp_hex = units[z * w + x];
+                if(tmp_hex.GetComponent<MapUnit>().getUnitType()== (int)Types.nor)
+                {
+                    tmp_hex.GetComponent<MapUnit>().setType((int)Types.nor,treePrefab);
+                }
+            }
+        }
+
     }
 
     public int[] hexToNormal(int h_x, int h_z)
