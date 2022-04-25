@@ -8,9 +8,10 @@ public class Fireball : MonoBehaviour
     
     private GameObject target;
     public float speed = 10f;
-    public float time = 0.5f;
+    public float time = 0.8f;
     public int atk;
     private PlayerActions action;
+    private float playSpeed = 1f;
 
 
     public void Seek(GameObject _target, int _atk, PlayerActions _action)
@@ -28,9 +29,10 @@ public class Fireball : MonoBehaviour
         {
             return;
         }
+        playSpeed = action.playSpeed;
 
         Vector3 dir = target.transform.position - transform.position;
-        float distanceThisFrame = speed * Time.deltaTime;
+        float distanceThisFrame = (speed * playSpeed) * Time.deltaTime;
 
         if(dir.magnitude <= distanceThisFrame)
         {
@@ -47,7 +49,7 @@ public class Fireball : MonoBehaviour
     {
         Debug.Log("Hit!");
         StartCoroutine(action.Damaged(target, atk));
-        Destroy(gameObject, time);
+        Destroy(gameObject, time / playSpeed);
         return;
     }
 

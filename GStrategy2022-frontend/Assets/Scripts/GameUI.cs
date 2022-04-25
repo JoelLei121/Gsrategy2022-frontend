@@ -55,10 +55,10 @@ public class GameUI : MonoBehaviour
         if (player.id == 0) bloodline = playerBoodline1;
         else bloodline = playerBoodline2;
         bloodline.value = player.hp / 100f;
-        if (player.hp <= 0)
-        {
-            bloodline.gameObject.SetActive(false);
-        } 
+        // if (player.hp <= 0)
+        // {
+        //     bloodline.gameObject.SetActive(false);
+        // } 
         yield break;
     }
     public void updateFightRecord(string action)

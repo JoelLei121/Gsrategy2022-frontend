@@ -62,7 +62,7 @@ public class GameController : MonoBehaviour
     public HexGrid map;
     public Initialize initialize;
     public GameUI UI;
-    public bool isInstantiated = false;
+    public float playSpeed = 1f;
 
     [DllImport("__Internal")]
     private static extern String ReadGameHistory();
@@ -72,8 +72,8 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
-        gameHistory = ReadGameHistory();
-        // gameHistory = File.ReadAllText(gameJson);
+        // gameHistory = ReadGameHistory();
+        gameHistory = File.ReadAllText(gameJson);
         if (gameHistory == null)
         {
             Debug.Log("Empty String.");
@@ -103,12 +103,6 @@ public class GameController : MonoBehaviour
         GameStart();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        //unnecessary
-    }
-
     void GameStart()
     {
         foreach(GameObject p in players)
@@ -128,5 +122,10 @@ public class GameController : MonoBehaviour
         return players[id].GetComponent<PlayerStatus>();
     }
 
+    public void SpeedUp(bool flag)
+    {
+        playSpeed = flag ? 2f : 1f;
+        return;
+    }
 
 }
