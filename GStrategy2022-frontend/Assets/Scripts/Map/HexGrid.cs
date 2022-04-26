@@ -222,11 +222,11 @@ public class HexGrid : MonoBehaviour
         int[] n = hexToOur(a_x, a_z);
         int h_x = n[0];
         int h_z = n[1];
-        for (int z = diff; z < w - 1 - diff; z++)
+        for (int z = 0; z < w - 1; z++)
         {
             int width_tmp = Mathf.Abs((w - 2) / 2 - z);
-            int tmp_s = (width_tmp + ((width + 1) % 2)) / 2 + diff;
-            int tmp_e = w - 2 - (width_tmp + (width % 2)) / 2 - diff;
+            int tmp_s = (width_tmp + ((width + 1) % 2)) / 2;
+            int tmp_e = w - 2 - (width_tmp + (width % 2)) / 2;
             for (int x = tmp_s; x <= tmp_e; x++)
             {
                 if (units[z * w + x] == null)
@@ -236,9 +236,12 @@ public class HexGrid : MonoBehaviour
                 }
                 int[] u_coor = units[z * w + x].GetComponent<MapUnit>().GetHexCoor();
                 int h_y = -h_x - h_z;
-                if (units[z * w + x].GetComponent<MapUnit>().state != (int)States.del && units[z * w + x].GetComponent<MapUnit>().type != (int)Types.bar && ((Mathf.Sqrt(Mathf.Pow((h_x - u_coor[0]), 2) + Mathf.Pow(h_y - u_coor[1], 2) + Mathf.Pow(h_z - u_coor[2], 2)) - ((float)range * Mathf.Sqrt(2))) < 0.1))
+                if (units[z * w + x].GetComponent<MapUnit>().type != (int)Types.bar && ((Mathf.Sqrt(Mathf.Pow((h_x - u_coor[0]), 2) + Mathf.Pow(h_y - u_coor[1], 2) + Mathf.Pow(h_z - u_coor[2], 2)) - ((float)range * Mathf.Sqrt(2))) < 0.1))
                 {
-                    units[z * w + x].GetComponent<MapUnit>().state = (int)States.fow;
+                    if (units[z * w + x].GetComponent<MapUnit>().state != (int)States.del)
+                    {
+                        units[z * w + x].GetComponent<MapUnit>().state = (int)States.fow;
+                    }
                     units[z * w + x].GetComponent<Renderer>().material = fowMaterial;
                 }
             }
@@ -247,11 +250,11 @@ public class HexGrid : MonoBehaviour
 
     public void clearState()
     {
-        for (int z = diff; z < w - 1 - diff; z++)
+        for (int z = 0; z < w - 1; z++)
         {
             int width_tmp = Mathf.Abs((w - 2) / 2 - z);
-            int tmp_s = (width_tmp + ((width + 1) % 2)) / 2 + diff;
-            int tmp_e = w - 2 - (width_tmp + (width % 2)) / 2 - diff;
+            int tmp_s = (width_tmp + ((width + 1) % 2)) / 2;
+            int tmp_e = w - 2 - (width_tmp + (width % 2)) / 2;
             for (int x = tmp_s; x <= tmp_e; x++)
             {
                 if (units[z * w + x] == null)
@@ -259,8 +262,15 @@ public class HexGrid : MonoBehaviour
                     Debug.Log("clearERROR");
                     return;
                 }
-                units[z * w + x].GetComponent<MapUnit>().state = (int)States.nor;
-                units[z * w + x].GetComponent<Renderer>().material = normalMaterial;
+                if(units[z * w + x].GetComponent<MapUnit>().state != (int)States.del)
+                {
+                    units[z * w + x].GetComponent<MapUnit>().state = (int)States.nor;
+                    units[z * w + x].GetComponent<Renderer>().material = normalMaterial;
+                }
+                else
+                {
+                    units[z * w + x].GetComponent<Renderer>().material = deleteMaterial;
+                }
             }
         }
     }
@@ -272,7 +282,8 @@ public class HexGrid : MonoBehaviour
         int h_z = n[1];
 
         GetMapUnit(h_x, h_z).GetCell().GetComponent<Renderer>().material = highlightMaterial;
-        GetMapUnit(h_x, h_z).state = (int)States.high;
+        if (GetMapUnit(h_x, h_z).state != (int)States.del)
+            GetMapUnit(h_x, h_z).state = (int)States.high;
     }
 
     public void setBeautifulUnits(int a_x, int a_z)

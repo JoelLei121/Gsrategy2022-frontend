@@ -31,7 +31,7 @@ public class PlayerActions : MonoBehaviour
     {
         moveSpeed = 0.1f * playSpeed;
         turnSpeed = 20f * playSpeed;
-        runningMargin = 0.05f * Mathf.Pow(8, playSpeed);
+        runningMargin = 0.1f * Mathf.Pow(5, playSpeed);
         rotationTimer = 0.5f / playSpeed;
         if(animator != null) animator.SetFloat("playSpeed", playSpeed);
     }

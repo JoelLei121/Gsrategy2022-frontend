@@ -141,6 +141,7 @@ public class CommandLoader : MonoBehaviour
             }
 
             gameController.map.clearState();
+            gameController.map.highRole(pos[0], pos[2]);
             // yield return new WaitForSeconds(0.5f);
         }
         // game is end
