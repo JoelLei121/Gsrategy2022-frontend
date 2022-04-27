@@ -11,15 +11,29 @@ public class PlayerActions : MonoBehaviour
     public bool isMoving;
     public bool isAttacking;
     public GameObject LevelUpPrefab;
+    private Animator animator;
 
-    private int[] expReduce = {30, 30, 5, 40, 20, 30};
-    float rotationMargin = 0.7f;
-    float runningMargin = 0.5f;
-    float turnSpeed = 10f;
+    private int[] expReduce = { 30, 30, 5, 40, 20, 30 };
+    private int[] levelUpData = { 1, 1, 5, 50, 1, 5 };
+    private int[] levelUpBoundary = { 100, 100, 30, 100, 100, 50 };
+    private float rotationTimer = 0.35f;
+    private float runningMargin = 0.05f;
+    public float turnSpeed = 20f;
+    private float particleLivetime = 3f;
+    public float playSpeed = 1f;
     void Start()
     {
         isMoving = false;
         isAttacking = false;
+    }
+
+    private void Update()
+    {
+        moveSpeed = 0.1f * playSpeed;
+        turnSpeed = 20f * playSpeed;
+        runningMargin = 0.1f * Mathf.Pow(5, playSpeed);
+        rotationTimer = 0.5f / playSpeed;
+        if(animator != null) animator.SetFloat("playSpeed", playSpeed);
     }
 
     bool isArrived(Vector3 start, Vector3 end)
@@ -43,18 +57,17 @@ public class PlayerActions : MonoBehaviour
 
         float counter = 0f;
 
-        while (counter < rotationMargin)
+        while (counter < rotationTimer)
         {
             Quaternion lookRotation = Quaternion.LookRotation(dir);
             Vector3 rotation = Quaternion.Lerp(player.transform.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
             player.transform.rotation = Quaternion.Euler(0f, rotation.y, 0f);
             counter += Time.deltaTime;
             yield return null;
-            if (Mathf.Abs(player.transform.rotation.y - lookRotation.y) < rotationMargin) break;
         }
 
         // moving
-        Animator animator = player.GetComponent<Animator>();
+        animator = player.GetComponent<Animator>();
         animator.SetBool("isRunning", true);
         // adjust animation
         while (true)
@@ -74,7 +87,7 @@ public class PlayerActions : MonoBehaviour
         status.pos = new int[] { x, y, z };
         Debug.Log("Player " + status.id + ": moving to (" + x + ", " + y + ", " + z + ")");
         UI.updateFightRecord("Player " + status.id + ": moving to (" + x + ", " + y + ", " + z + ")");
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.2f);
         yield break;
     }
 
@@ -94,20 +107,20 @@ public class PlayerActions : MonoBehaviour
     public IEnumerator AttackTo(GameObject player, GameObject target)
     {
         //play attacking animation
-        Animator animator = player.GetComponent<Animator>();
+        animator = player.GetComponent<Animator>();
         PlayerStatus playerStatus = player.GetComponent<PlayerStatus>();
         PlayerStatus targetStatus = target.GetComponent<PlayerStatus>();
 
         UI.updateFightRecord("Player " + playerStatus.id + " attack Player " + targetStatus.id);
         Debug.Log("Player " + playerStatus.id + " attack Player " + targetStatus.id);
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.5f / playSpeed);
         Vector3 dir = target.transform.position - player.transform.position;
         // rotate y 60
         float turn = 500f;
         float counter = 0f;
 
         // look at target
-        while (counter < rotationMargin)
+        while (counter < rotationTimer)
         {
             Quaternion lookRotation = Quaternion.LookRotation(dir);
             Vector3 rotation = Quaternion.Lerp(player.transform.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
@@ -116,7 +129,7 @@ public class PlayerActions : MonoBehaviour
             yield return null;
         }
 
-        // adjust
+        // adjust angle to 60
         counter = 0;
         while (counter < 60f)
         {
@@ -126,12 +139,12 @@ public class PlayerActions : MonoBehaviour
         }
 
         animator.SetBool("isAttacking", true);
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.5f / playSpeed);
         animator.SetBool("isAttacking", false);
-        yield return new WaitForSeconds(1.2f);
+        yield return new WaitForSeconds(1.2f / playSpeed);
 
         counter = 0;
-        while (counter < rotationMargin)
+        while (counter < rotationTimer)
         {
             Quaternion lookRotation = Quaternion.LookRotation(dir);
             Vector3 rotation = Quaternion.Lerp(player.transform.rotation, lookRotation, Time.deltaTime * turnSpeed * 0.5f).eulerAngles;
@@ -140,20 +153,20 @@ public class PlayerActions : MonoBehaviour
             yield return null;
         }
 
-        yield return new WaitForSeconds(0.8f);
+        yield return new WaitForSeconds(0.8f / playSpeed);
         yield break;
     }
 
     // Damaged(Vector3 direction)
     public IEnumerator Damaged(GameObject player, int atk)
     {
-        Animator animator = player.GetComponent<Animator>();
+        animator = player.GetComponent<Animator>();
         PlayerStatus status = player.GetComponent<PlayerStatus>();
         status.hp -= atk;
         status.hp = (status.hp > 0 ? status.hp : 0);
         yield return StartCoroutine(UI.updateBloodline(status));
         animator.SetBool("isDamaged", true);
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.1f / playSpeed);
         animator.SetBool("isDamaged", false);
         //Debug.Log("Player " + status.id + " is damaged. HP left: " + status.hp);
         if (status.isDead())
@@ -178,7 +191,7 @@ public class PlayerActions : MonoBehaviour
         UI.updateBloodline(status);
         Debug.Log("Player " + status.id + " is killed.");
 
-        Animator animator = player.GetComponent<Animator>();
+        animator = player.GetComponent<Animator>();
         animator.SetBool("isDamaged", true);
         animator.SetBool("isDying", true);
         yield return new WaitForSeconds(1.5f);
@@ -187,7 +200,7 @@ public class PlayerActions : MonoBehaviour
         yield break;
     }
 
-    // Grab(Vector3 setPoint)
+    // unused
     public IEnumerator Gather(GameObject player, float exp)
     {
         PlayerStatus status = player.GetComponent<PlayerStatus>();
@@ -195,7 +208,7 @@ public class PlayerActions : MonoBehaviour
         Debug.Log("Player " + status.id + " is gathering. exp + " + exp);
         status.exp += exp;
         UI.updateCurrentPlayer(status, "GATHER");
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1f / playSpeed);
         yield break;
     }
 
@@ -205,43 +218,43 @@ public class PlayerActions : MonoBehaviour
         switch (upgradeType)
         {
             case "move_range":
-                status.move_range++;
+                status.move_range += levelUpData[0];
                 status.exp -= expReduce[0];
                 break;
 
             case "attack_range":
-                status.attack_range++;
+                status.attack_range += levelUpData[1];
                 status.exp -= expReduce[1];
                 break;
 
             case "mine_speed":
-                status.mine_speed++;
+                status.mine_speed = (status.mine_speed + levelUpData[2] > levelUpBoundary[2] ? levelUpBoundary[2] : status.mine_speed + levelUpData[2]);
                 status.exp -= expReduce[2];
                 break;
 
             case "hp":
-                status.hp = (status.hp + 50 > 100 ? 100 : status.hp + 50);
+                status.hp = (status.hp + levelUpData[3] > levelUpBoundary[3] ? levelUpBoundary[3] : status.hp + levelUpData[3]);
                 status.exp -= expReduce[3];
                 break;
 
             case "sight_range":
-                status.sight_range++;
+                status.sight_range += levelUpData[4];
                 status.exp -= expReduce[4];
                 break;
 
             case "atk":
-                status.atk++;
+                status.atk = (status.atk + levelUpData[5] > levelUpBoundary[5] ? levelUpBoundary[5] : status.atk + levelUpData[5]);
                 status.exp -= expReduce[5];
                 break;
         }
 
         GameObject particle = Instantiate<GameObject>(LevelUpPrefab);
         particle.transform.position = player.transform.position;
-        Destroy(particle, 3f);
+        Destroy(particle, particleLivetime);
         UI.updateFightRecord("Player " + status.id + " level up!");
         UI.updateCurrentPlayer(status, "UPGRADE");
         Debug.Log("Player " + status.id + " level up!");
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1f / playSpeed);
         yield break;
     }
     public IEnumerator DoNothing(GameObject player)
@@ -259,6 +272,11 @@ public class PlayerActions : MonoBehaviour
         player.SetActive(false);
         // destroy gameObject
         yield break;
+    }
+    public void SpeedUp(bool flag)
+    {
+        playSpeed = flag ? 1.5f : 1f;
+        return;
     }
 
 }

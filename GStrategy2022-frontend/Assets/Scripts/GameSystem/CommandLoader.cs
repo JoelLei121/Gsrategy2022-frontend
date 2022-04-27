@@ -18,7 +18,9 @@ public class CommandLoader : MonoBehaviour
     private GameState runningState;
     private String gameHistory;
     public Quit quitGame;
-    private float waitTime = 1f;
+    public float waitTime = 1f;
+    private float playSpeed = 1f;
+
     [DllImport("__Internal")]
     private static extern String ReadGameHistory();
 
@@ -26,6 +28,12 @@ public class CommandLoader : MonoBehaviour
     void Start()
     {
         index = 0;
+    }
+
+    private void Update()
+    {
+        waitTime = 1f / playSpeed;
+        if(gameController != null) playSpeed = gameController.playSpeed;
     }
     public void GetCommandFromDocument(List<GameState> states)
     {
@@ -77,25 +85,24 @@ public class CommandLoader : MonoBehaviour
                 currentRound = runningState.Round;
             }
 
+            int[] pos = runningState.ActivePos;
             if(runningState.CurrentEvent == "BOUNDARYHURT")
             {
                 // effect needed
+                gameController.map.highRole(pos[0], pos[2]);
                 yield return StartCoroutine(playerAction.Damaged(currentPlayer, runningState.BoundaryHurt));
                 StartCoroutine(gameController.UI.updateCurrentPlayer(status, runningState.CurrentEvent));
                 yield return new WaitForSeconds(waitTime);
+                gameController.map.clearState();
                 continue;
             }
 
-
-            gameController.map.setFow(playerPos[0], playerPos[2], status.move_range);
-            yield return new WaitForSeconds(waitTime);
-            gameController.map.clearState();
-
-            int[] pos;
             switch (runningState.CurrentEvent)
             {
                 case "MOVE":
-                    pos = runningState.ActivePos;
+                    gameController.map.setFow(playerPos[0], playerPos[2], status.move_range);
+                    yield return new WaitForSeconds(waitTime/4);
+                    // gameController.map.clearState();
                     gameController.map.highRole(pos[0], pos[2]);
                     yield return StartCoroutine(playerAction.MoveTo(currentPlayer, pos[0], pos[1], pos[2]));
                     break;
@@ -104,6 +111,9 @@ public class CommandLoader : MonoBehaviour
                     GameObject[] victim = new GameObject[runningState.VictimId.Length];
                     for (int i = 0; i < runningState.VictimId.Length; i++)
                     {
+                        gameController.map.setFow(playerPos[0], playerPos[2], status.move_range);
+                        yield return new WaitForSeconds(waitTime/4);
+                        // gameController.map.clearState();
                         victim[i] = gameController.players[runningState.VictimId[i]];
                         int[] victimPos = victim[i].GetComponent<PlayerStatus>().pos;
                         gameController.map.highRole(victimPos[0], victimPos[2]);
@@ -112,14 +122,12 @@ public class CommandLoader : MonoBehaviour
                     break;
 
                 case "GATHER":
-                    pos = runningState.ActivePos;
                     gameController.map.highRole(pos[0], pos[2]);
                     gameController.map.checkres(pos[0], pos[2], runningState.MinesLeft);
                     yield return StartCoroutine(playerAction.Gather(currentPlayer, runningState.Exp));
                     break;
 
                 case "UPGRADE":
-                    pos = runningState.ActivePos;
                     gameController.map.highRole(pos[0], pos[2]);
                     yield return StartCoroutine(playerAction.LevelUp(currentPlayer, runningState.UpgradeType));
                     yield return StartCoroutine(gameController.UI.updateCurrentPlayer(currentPlayer.GetComponent<PlayerStatus>(), runningState.CurrentEvent));
@@ -127,13 +135,13 @@ public class CommandLoader : MonoBehaviour
                     break;
 
                 case "ERROR":
-                    pos = runningState.ActivePos;
                     gameController.map.highRole(pos[0], pos[2]);
                     yield return StartCoroutine(playerAction.DoNothing(currentPlayer));
                     break;
             }
 
             gameController.map.clearState();
+            gameController.map.highRole(pos[0], pos[2]);
             // yield return new WaitForSeconds(0.5f);
         }
         // game is end
