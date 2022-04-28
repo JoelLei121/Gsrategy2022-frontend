@@ -61,7 +61,10 @@ public class GameController : MonoBehaviour
     // public GameObject playerPrefab;
     public HexGrid map;
     public Initialize initialize;
-    public GameUI UI;
+    public GameUI UI,redUI,blueUI;
+    public OverlayUI overlayUI;
+    public AllUI allUI;
+    public RecordUI record;
     public float playSpeed = 1f;
 
     [DllImport("__Internal")]

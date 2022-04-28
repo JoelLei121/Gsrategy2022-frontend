@@ -5,7 +5,10 @@ using System.Threading.Tasks;
 public class PlayerActions : MonoBehaviour
 {
 
-    public GameUI UI;
+    public GameUI UI,redUI,blueUI;
+    public RecordUI record;
+    public OverlayUI overlayUI;
+    public AllUI allUI;
     public HexGrid map;
     public float moveSpeed = 0.1f;
     public bool isMoving;
@@ -86,7 +89,7 @@ public class PlayerActions : MonoBehaviour
         // update position
         status.pos = new int[] { x, y, z };
         Debug.Log("Player " + status.id + ": moving to (" + x + ", " + y + ", " + z + ")");
-        UI.updateFightRecord("Player " + status.id + ": moving to (" + x + ", " + y + ", " + z + ")");
+        record.updateFightRecord("Player " + status.id + ": moving to (" + x + ", " + y + ", " + z + ")");
         yield return new WaitForSeconds(0.2f);
         yield break;
     }
@@ -111,7 +114,7 @@ public class PlayerActions : MonoBehaviour
         PlayerStatus playerStatus = player.GetComponent<PlayerStatus>();
         PlayerStatus targetStatus = target.GetComponent<PlayerStatus>();
 
-        UI.updateFightRecord("Player " + playerStatus.id + " attack Player " + targetStatus.id);
+        record.updateFightRecord("Player " + playerStatus.id + " attack Player " + targetStatus.id);
         Debug.Log("Player " + playerStatus.id + " attack Player " + targetStatus.id);
         yield return new WaitForSeconds(0.5f / playSpeed);
         Vector3 dir = target.transform.position - player.transform.position;
@@ -164,7 +167,7 @@ public class PlayerActions : MonoBehaviour
         PlayerStatus status = player.GetComponent<PlayerStatus>();
         status.hp -= atk;
         status.hp = (status.hp > 0 ? status.hp : 0);
-        yield return StartCoroutine(UI.updateBloodline(status));
+        yield return StartCoroutine(overlayUI.updateBloodline(status));
         animator.SetBool("isDamaged", true);
         yield return new WaitForSeconds(0.1f / playSpeed);
         animator.SetBool("isDamaged", false);
@@ -178,7 +181,7 @@ public class PlayerActions : MonoBehaviour
         }
         //yield return new WaitForSeconds(1f);
         //animator.SetBool("isDamaged", false);
-        UI.updateFightRecord("Player " + status.id + " is damaged. HP left: " + status.hp);
+        record.updateFightRecord("Player " + status.id + " is damaged. HP left: " + status.hp);
         Debug.Log("Player " + status.id + " is damaged. HP left: " + status.hp);
         yield break;
     }
@@ -187,8 +190,8 @@ public class PlayerActions : MonoBehaviour
     public IEnumerator Died(GameObject player)
     {
         PlayerStatus status = player.GetComponent<PlayerStatus>();
-        UI.updateFightRecord("Player " + status.id + " is killed.");
-        UI.updateBloodline(status);
+        record.updateFightRecord("Player " + status.id + " is killed.");
+        overlayUI.updateBloodline(status);
         Debug.Log("Player " + status.id + " is killed.");
 
         animator = player.GetComponent<Animator>();
@@ -196,7 +199,7 @@ public class PlayerActions : MonoBehaviour
         animator.SetBool("isDying", true);
         yield return new WaitForSeconds(1.5f);
         StartCoroutine(DestroyPlayer(player));
-        UI.updateFightRecord("Player " + (status.id == 1 ? 0 : 1) + " is the winner!");
+        record.updateFightRecord("Player " + (status.id == 1 ? 0 : 1) + " is the winner!");
         yield break;
     }
 
@@ -204,10 +207,20 @@ public class PlayerActions : MonoBehaviour
     public IEnumerator Gather(GameObject player, float exp)
     {
         PlayerStatus status = player.GetComponent<PlayerStatus>();
-        UI.updateFightRecord("Player " + status.id + " is gathering. exp + " + exp);
+        record.updateFightRecord("Player " + status.id + " is gathering. exp + " + exp);
         Debug.Log("Player " + status.id + " is gathering. exp + " + exp);
         status.exp += exp;
-        UI.updateCurrentPlayer(status, "GATHER");
+        StartCoroutine(UI.updateCurrentPlayer(status, "GATHER"));
+        if (status.id == 0)
+        {
+            StartCoroutine(redUI.updateCurrentPlayer(status, "GATHER"));
+            StartCoroutine(allUI.updateRedPlayer(status, "GATHER"));
+        }
+        else
+        {
+            StartCoroutine(blueUI.updateCurrentPlayer(status, "GATHER"));
+            StartCoroutine(allUI.updateBluePlayer(status, "GATHER"));
+        }
         yield return new WaitForSeconds(1f / playSpeed);
         yield break;
     }
@@ -251,8 +264,18 @@ public class PlayerActions : MonoBehaviour
         GameObject particle = Instantiate<GameObject>(LevelUpPrefab);
         particle.transform.position = player.transform.position;
         Destroy(particle, particleLivetime);
-        UI.updateFightRecord("Player " + status.id + " level up!");
-        UI.updateCurrentPlayer(status, "UPGRADE");
+        record.updateFightRecord("Player " + status.id + " level up!");
+        StartCoroutine(UI.updateCurrentPlayer(status, "UPGRADE"));
+        if (status.id == 0)
+        {
+            StartCoroutine(redUI.updateCurrentPlayer(status, "UPGRADE"));
+            StartCoroutine(allUI.updateRedPlayer(status, "UPGRADE"));
+        }
+        else
+        {
+            StartCoroutine(blueUI.updateCurrentPlayer(status, "UPGRADE"));
+            StartCoroutine(allUI.updateBluePlayer(status, "UPGRADE"));
+        }
         Debug.Log("Player " + status.id + " level up!");
         yield return new WaitForSeconds(1f / playSpeed);
         yield break;
@@ -260,7 +283,7 @@ public class PlayerActions : MonoBehaviour
     public IEnumerator DoNothing(GameObject player)
     {
         PlayerStatus status = player.GetComponent<PlayerStatus>();
-        UI.updateFightRecord("Player " + status.id + " are hesitating");
+        record.updateFightRecord("Player " + status.id + " are hesitating");
         Debug.Log("Player " + status.id + " are hesitating");
         yield break;
     }
