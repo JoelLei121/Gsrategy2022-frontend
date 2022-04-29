@@ -164,6 +164,7 @@ public class CommandLoader : MonoBehaviour
                     }
                     break;
 
+                case "DONOTHING":
                 case "ERROR":
                     gameController.map.highRole(pos[0], pos[2]);
                     yield return StartCoroutine(playerAction.DoNothing(currentPlayer));

@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using System;
+using Random = UnityEngine.Random;
 
 public class HexGrid : MonoBehaviour
 {
@@ -15,6 +16,11 @@ public class HexGrid : MonoBehaviour
     //装饰
     public GameObject treePrefab;
     public GameObject rockPrefab;
+    public GameObject flowPrefab1;
+    public GameObject flowPrefab2;  
+    public GameObject flowPrefab3;  
+    public GameObject flowPrefab4;
+    public GameObject flowPrefab5;
     public GameObject beautifulPrefab;
 
     public Material normalMaterial;
@@ -83,7 +89,13 @@ public class HexGrid : MonoBehaviour
             int t_z = t[1];
             GameObject tmp_hex = units[t_z * w + t_x];
             if (tmp_hex != null)
-                tmp_hex.GetComponent<MapUnit>().setType((int)Types.bar,rockPrefab);
+            {
+                int ran = Random.Range(0, 100);
+                if(ran<50)
+                    tmp_hex.GetComponent<MapUnit>().setType((int)Types.bar, rockPrefab);
+                else
+                    tmp_hex.GetComponent<MapUnit>().setType((int)Types.bar, treePrefab);
+            }
             else
                 Debug.Log("initERROR");
         }
@@ -116,7 +128,19 @@ public class HexGrid : MonoBehaviour
                 GameObject tmp_hex = units[z * w + x];
                 if(tmp_hex.GetComponent<MapUnit>().getUnitType()== (int)Types.nor)
                 {
-                    tmp_hex.GetComponent<MapUnit>().setType((int)Types.nor,treePrefab);
+                    int ran = Random.Range(0, 100);
+                    if (ran < 20)
+                        tmp_hex.GetComponent<MapUnit>().setType((int)Types.nor, flowPrefab1);
+                    else if (ran<40)
+                        tmp_hex.GetComponent<MapUnit>().setType((int)Types.nor, flowPrefab2);
+                    else if (ran < 60)
+                        tmp_hex.GetComponent<MapUnit>().setType((int)Types.nor, flowPrefab3);
+                    else if (ran < 80)
+                        tmp_hex.GetComponent<MapUnit>().setType((int)Types.nor, flowPrefab4);
+                    else
+                        tmp_hex.GetComponent<MapUnit>().setType((int)Types.nor, flowPrefab5);
+
+
                 }
             }
         }

@@ -13,7 +13,7 @@ public class RecordUI : MonoBehaviour
 
     public void updateRound(int numRound)
     {
-        fightRecord.text = "Round " + numRound.ToString() + "Start." + "\n" + fightRecord.text;
+        fightRecord.text = "Round " + numRound.ToString() + " start" + "\n" + fightRecord.text;
     }
 
 }

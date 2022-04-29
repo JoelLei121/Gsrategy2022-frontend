@@ -88,8 +88,8 @@ public class PlayerActions : MonoBehaviour
 
         // update position
         status.pos = new int[] { x, y, z };
-        Debug.Log("Player " + status.id + ": moving to (" + x + ", " + y + ", " + z + ")");
-        record.updateFightRecord("Player " + status.id + ": moving to (" + x + ", " + y + ", " + z + ")");
+        Debug.Log("Player " + status.id + ": Move to (" + x + ", " + y + ", " + z + ")");
+        record.updateFightRecord("Player " + status.id + ": Move to (" + x + ", " + y + ", " + z + ")");
         yield return new WaitForSeconds(0.2f);
         yield break;
     }
@@ -264,7 +264,7 @@ public class PlayerActions : MonoBehaviour
         GameObject particle = Instantiate<GameObject>(LevelUpPrefab);
         particle.transform.position = player.transform.position;
         Destroy(particle, particleLivetime);
-        record.updateFightRecord("Player " + status.id + " level up!");
+        record.updateFightRecord("Player " + status.id + " level up: " + upgradeType.ToUpper() + "!");
         StartCoroutine(UI.updateCurrentPlayer(status, "UPGRADE"));
         if (status.id == 0)
         {

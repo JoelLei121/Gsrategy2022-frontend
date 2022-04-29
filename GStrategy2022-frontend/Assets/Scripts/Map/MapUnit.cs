@@ -95,15 +95,18 @@ public class MapUnit : MonoBehaviour
             default:
             {
                 int ifDecoration = Random.Range(0, 100);
-                if (ifDecoration < 3)//生成树
+                if (ifDecoration < 3)//生成花
                 {
                     Vector3 pos_dec = Vector3.zero;
-                    Vector3 scale_dec = new Vector3(0.5f, 0.5f, 0.5f);
+                    //Vector3 scale_dec = new Vector3(0.5f, 0.5f, 0.5f);
                     GameObject decoration = Instantiate<GameObject>(thePrefab);
                     decoration.transform.SetParent(cell.transform, false);
                     decoration.transform.localPosition = pos_dec;
-                     decoration.transform.transform.localScale = scale_dec;
-                }
+                    Vector3 offset = decoration.transform.position;
+                    offset.y += 0.1f;
+                    decoration.transform.position = offset;
+                        //decoration.transform.transform.localScale = scale_dec;
+                    }
                 break;
             }
         }
@@ -146,12 +149,46 @@ public class MapUnit : MonoBehaviour
         }
         resource_num = MinesLeft;
 
+
+
         GameObject crystal = Instantiate<GameObject>(gem);
         crystal.transform.position = GetCell().transform.position;
         // crystal.transform.eulerAngles = new Vector3(90f, 0f, 0f);
         Destroy(crystal, 5f);
 
-        if (resource_num <= 0)
+        if (resource_num <= 25)
+        {
+            Vector3 pos_dec = Vector3.zero;
+            Vector3 scale_dec = new Vector3(0.25f, 0.25f, 0.25f);
+            GetRes().transform.localPosition = pos_dec;
+            GetRes().transform.transform.localScale = scale_dec;
+            Vector3 offset = GetRes().transform.position;
+            offset.y += 0.25f;
+            GetRes().transform.position = offset;
+        }
+        else if (resource_num <= 50)
+        {
+            Vector3 pos_dec = Vector3.zero;
+            Vector3 scale_dec = new Vector3(0.5f, 0.5f, 0.5f);
+            GetRes().transform.localPosition = pos_dec;
+            GetRes().transform.transform.localScale = scale_dec;
+            Vector3 offset = GetRes().transform.position;
+            offset.y += 0.37f;
+            GetRes().transform.position = offset;
+        }
+        else if (resource_num <= 75)
+        {
+            Vector3 pos_dec = Vector3.zero;
+            Vector3 scale_dec = new Vector3(0.75f, 0.75f, 0.75f);
+            GetRes().transform.localPosition = pos_dec;
+            GetRes().transform.transform.localScale = scale_dec;
+            Vector3 offset = GetRes().transform.position;
+            offset.y += 0.5f;
+            GetRes().transform.position = offset;
+        }
+
+
+            if (resource_num <= 0)
         {
             Debug.Log("No resource left");
             Destroy(resource);
