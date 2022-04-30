@@ -7,7 +7,7 @@ public class Fireball : MonoBehaviour
     // Start is called before the first frame update
     
     private GameObject target;
-    public float speed = 10f;
+    public float speed = 30f;
     public float time = 0.8f;
     public int atk;
     private PlayerActions action;
@@ -49,7 +49,7 @@ public class Fireball : MonoBehaviour
     {
         Debug.Log("Hit!");
         StartCoroutine(action.Damaged(target, atk));
-        Destroy(gameObject, time / playSpeed);
+        Destroy(gameObject, time);
         return;
     }
 

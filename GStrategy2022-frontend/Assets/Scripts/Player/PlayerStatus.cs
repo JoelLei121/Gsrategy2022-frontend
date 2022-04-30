@@ -9,7 +9,7 @@ public class PlayerInitialize
     public string name;
     public int[] Position;           //λ��
     public int mine_speed; //�ɼ��ٶ�
-    public int at; //������
+    public int atk; //������
     public int hp; //Ѫ��
     public int attack_range;   //������Χ
     public int sight_range; //��Ұ��Χ
@@ -30,7 +30,6 @@ public class PlayerStatus : MonoBehaviour
     public int sight_range; //��Ұ��Χ
     public int move_range; //�ƶ���Χ
     public int mine_speed;
-    public float gatheringSkill;
 
     public int cure;
     public bool OnProtection;
@@ -44,7 +43,7 @@ public class PlayerStatus : MonoBehaviour
         id = p.id;
         exp = 0;
         hp = p.hp;
-        atk = p.at;
+        atk = p.atk;
         mine_speed = p.mine_speed;
         attack_range = p.attack_range;
         sight_range = p.sight_range;

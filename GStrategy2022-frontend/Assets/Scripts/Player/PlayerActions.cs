@@ -16,7 +16,7 @@ public class PlayerActions : MonoBehaviour
     public GameObject LevelUpPrefab;
     private Animator animator;
 
-    private int[] expReduce = { 30, 30, 5, 40, 20, 30 };
+    private int[] expReduce = { 30, 30, 5, 40, 30, 20 };
     private int[] levelUpData = { 1, 1, 5, 50, 1, 5 };
     private int[] levelUpBoundary = { 100, 100, 30, 100, 100, 50 };
     private float rotationTimer = 0.35f;
@@ -179,8 +179,6 @@ public class PlayerActions : MonoBehaviour
             StartCoroutine(Died(player));
             yield break;
         }
-        //yield return new WaitForSeconds(1f);
-        //animator.SetBool("isDamaged", false);
         record.updateFightRecord("Player " + status.id + " is damaged. HP left: " + status.hp);
         Debug.Log("Player " + status.id + " is damaged. HP left: " + status.hp);
         yield break;
@@ -210,16 +208,16 @@ public class PlayerActions : MonoBehaviour
         record.updateFightRecord("Player " + status.id + " is gathering. exp + " + exp);
         Debug.Log("Player " + status.id + " is gathering. exp + " + exp);
         status.exp += exp;
-        StartCoroutine(UI.updateCurrentPlayer(status, "GATHER"));
+        yield return StartCoroutine(UI.updateCurrentPlayer(status, "GATHER"));
         if (status.id == 0)
         {
-            StartCoroutine(redUI.updateCurrentPlayer(status, "GATHER"));
-            StartCoroutine(allUI.updateRedPlayer(status, "GATHER"));
+            yield return StartCoroutine(redUI.updateCurrentPlayer(status, "GATHER"));
+            yield return StartCoroutine(allUI.updateRedPlayer(status, "GATHER"));
         }
         else
         {
-            StartCoroutine(blueUI.updateCurrentPlayer(status, "GATHER"));
-            StartCoroutine(allUI.updateBluePlayer(status, "GATHER"));
+            yield return StartCoroutine(blueUI.updateCurrentPlayer(status, "GATHER"));
+            yield return StartCoroutine(allUI.updateBluePlayer(status, "GATHER"));
         }
         yield return new WaitForSeconds(1f / playSpeed);
         yield break;
@@ -243,6 +241,7 @@ public class PlayerActions : MonoBehaviour
             case "mine_speed":
                 status.mine_speed = (status.mine_speed + levelUpData[2] > levelUpBoundary[2] ? levelUpBoundary[2] : status.mine_speed + levelUpData[2]);
                 status.exp -= expReduce[2];
+                upgradeType = "Gathering_skill";
                 break;
 
             case "hp":
@@ -261,21 +260,22 @@ public class PlayerActions : MonoBehaviour
                 break;
         }
 
-        GameObject particle = Instantiate<GameObject>(LevelUpPrefab);
-        particle.transform.position = player.transform.position;
-        Destroy(particle, particleLivetime);
         record.updateFightRecord("Player " + status.id + " level up: " + upgradeType.ToUpper() + "!");
-        StartCoroutine(UI.updateCurrentPlayer(status, "UPGRADE"));
+        yield return StartCoroutine(UI.updateCurrentPlayer(status, "UPGRADE"));
         if (status.id == 0)
         {
-            StartCoroutine(redUI.updateCurrentPlayer(status, "UPGRADE"));
-            StartCoroutine(allUI.updateRedPlayer(status, "UPGRADE"));
+            yield return StartCoroutine(redUI.updateCurrentPlayer(status, "UPGRADE"));
+            yield return StartCoroutine(allUI.updateRedPlayer(status, "UPGRADE"));
         }
         else
         {
-            StartCoroutine(blueUI.updateCurrentPlayer(status, "UPGRADE"));
-            StartCoroutine(allUI.updateBluePlayer(status, "UPGRADE"));
+            yield return StartCoroutine(blueUI.updateCurrentPlayer(status, "UPGRADE"));
+            yield return StartCoroutine(allUI.updateBluePlayer(status, "UPGRADE"));
         }
+
+        GameObject particle = Instantiate<GameObject>(LevelUpPrefab);
+        particle.transform.position = player.transform.position;
+        Destroy(particle, particleLivetime);
         Debug.Log("Player " + status.id + " level up!");
         yield return new WaitForSeconds(1f / playSpeed);
         yield break;

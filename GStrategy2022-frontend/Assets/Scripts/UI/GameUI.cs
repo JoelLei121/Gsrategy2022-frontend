@@ -30,7 +30,7 @@ public class GameUI : MonoBehaviour
         currentPlayerVision.text = player.sight_range.ToString();
         currentPlayerMoveRange.text = player.move_range.ToString();
         currentPlayerAttackRange.text = player.attack_range.ToString();
-        currentPlayerGatheringSkill.text = player.gatheringSkill.ToString();
+        currentPlayerGatheringSkill.text = player.mine_speed.ToString();
         int [] pos = player.pos;
         string posS = "(" + pos[0] + ", " + pos[1] + ", " + pos[2] + ")";
         currentPlayerPosition.text = posS;

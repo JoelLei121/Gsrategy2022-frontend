@@ -36,7 +36,7 @@ public class AllUI : MonoBehaviour
         rPlayerVision.text = player.sight_range.ToString();
         rPlayerMoveRange.text = player.move_range.ToString();
         rPlayerAttackRange.text = player.attack_range.ToString();
-        rPlayerGatheringSkill.text = player.gatheringSkill.ToString();
+        rPlayerGatheringSkill.text = player.mine_speed.ToString();
         int[] pos = player.pos;
         string posS = "(" + pos[0] + ", " + pos[1] + ", " + pos[2] + ")";
         rPlayerPosition.text = posS;
@@ -53,7 +53,7 @@ public class AllUI : MonoBehaviour
         bPlayerVision.text = player.sight_range.ToString();
         bPlayerMoveRange.text = player.move_range.ToString();
         bPlayerAttackRange.text = player.attack_range.ToString();
-        bPlayerGatheringSkill.text = player.gatheringSkill.ToString();
+        bPlayerGatheringSkill.text = player.mine_speed.ToString();
         int[] pos = player.pos;
         string posS = "(" + pos[0] + ", " + pos[1] + ", " + pos[2] + ")";
         bPlayerPosition.text = posS;

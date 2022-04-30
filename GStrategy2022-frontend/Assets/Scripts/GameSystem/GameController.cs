@@ -75,8 +75,8 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
-        // gameHistory = ReadGameHistory();
-        gameHistory = File.ReadAllText(gameJson);
+        gameHistory = ReadGameHistory();
+        // gameHistory = File.ReadAllText(gameJson);
         if (gameHistory == null)
         {
             Debug.Log("Empty String.");
@@ -92,7 +92,7 @@ public class GameController : MonoBehaviour
         ocean.transform.position = camPos;
         overallCamera.transform.position = camPos;
         camPos.y = (float)(2.5* (float)response.InitialState.map.size[0]) + 5f;
-        camPos.x = 15f;
+        camPos.x = 20f;
         mainCamera.transform.position = camPos;
        
         // After initialize done
