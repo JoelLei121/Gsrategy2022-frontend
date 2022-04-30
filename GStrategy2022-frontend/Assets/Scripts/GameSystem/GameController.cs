@@ -61,9 +61,9 @@ public class GameController : MonoBehaviour
     // public GameObject playerPrefab;
     public HexGrid map;
     public Initialize initialize;
-    public GameUI UI,redUI,blueUI;
+    public GameUI redUI,blueUI;
     public OverlayUI overlayUI;
-    public AllUI allUI;
+    public AllUI allUI,UI;
     public RecordUI record;
     public float playSpeed = 1f;
 
@@ -92,6 +92,7 @@ public class GameController : MonoBehaviour
         ocean.transform.position = camPos;
         overallCamera.transform.position = camPos;
         camPos.y = (float)(2.5* (float)response.InitialState.map.size[0]) + 5f;
+        camPos.x = 15f;
         mainCamera.transform.position = camPos;
        
         // After initialize done

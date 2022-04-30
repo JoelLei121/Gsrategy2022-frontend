@@ -70,16 +70,18 @@ public class CommandLoader : MonoBehaviour
             
             GameObject currentPlayer = gameController.players[runningState.ActivePlayerId];
             PlayerStatus status = currentPlayer.GetComponent<PlayerStatus>();
-            StartCoroutine(gameController.UI.updateCurrentPlayer(status, runningState.CurrentEvent));
+            //StartCoroutine(gameController.UI.updateCurrentPlayer(status, runningState.CurrentEvent));
             if (runningState.ActivePlayerId == 0)
             {
                 StartCoroutine(gameController.redUI.updateCurrentPlayer(status, runningState.CurrentEvent));
                 StartCoroutine(gameController.allUI.updateRedPlayer(status, runningState.CurrentEvent));
+                StartCoroutine(gameController.UI.updateRedPlayer(status, runningState.CurrentEvent));
             }
             else
             {
                 StartCoroutine(gameController.blueUI.updateCurrentPlayer(status, runningState.CurrentEvent));
                 StartCoroutine(gameController.allUI.updateBluePlayer(status, runningState.CurrentEvent));
+                StartCoroutine(gameController.UI.updateBluePlayer(status, runningState.CurrentEvent));
             }
             int[] playerPos = status.pos;
 
@@ -101,16 +103,18 @@ public class CommandLoader : MonoBehaviour
                 // effect needed
                 gameController.map.highRole(pos[0], pos[2]);
                 yield return StartCoroutine(playerAction.Damaged(currentPlayer, runningState.BoundaryHurt));
-                StartCoroutine(gameController.UI.updateCurrentPlayer(status, runningState.CurrentEvent));
+                //StartCoroutine(gameController.UI.updateCurrentPlayer(status, runningState.CurrentEvent));
                 if (runningState.ActivePlayerId == 0)
                 {
                     StartCoroutine(gameController.redUI.updateCurrentPlayer(status, runningState.CurrentEvent));
                     StartCoroutine(gameController.allUI.updateRedPlayer(status, runningState.CurrentEvent));
+                    StartCoroutine(gameController.UI.updateRedPlayer(status, runningState.CurrentEvent));
                 }
                 else
                 {
                     StartCoroutine(gameController.blueUI.updateCurrentPlayer(status, runningState.CurrentEvent));
                     StartCoroutine(gameController.allUI.updateBluePlayer(status, runningState.CurrentEvent));
+                    StartCoroutine(gameController.UI.updateBluePlayer(status, runningState.CurrentEvent));
                 }
                 yield return new WaitForSeconds(waitTime);
                 gameController.map.clearState();
@@ -150,17 +154,19 @@ public class CommandLoader : MonoBehaviour
                 case "UPGRADE":
                     gameController.map.highRole(pos[0], pos[2]);
                     yield return StartCoroutine(playerAction.LevelUp(currentPlayer, runningState.UpgradeType));
-                    yield return StartCoroutine(gameController.UI.updateCurrentPlayer(currentPlayer.GetComponent<PlayerStatus>(), runningState.CurrentEvent));
+                    //yield return StartCoroutine(gameController.UI.updateCurrentPlayer(currentPlayer.GetComponent<PlayerStatus>(), runningState.CurrentEvent));
                     yield return StartCoroutine(gameController.overlayUI.updateBloodline(currentPlayer.GetComponent<PlayerStatus>()));
                     if (runningState.ActivePlayerId == 0)
                     {
                         yield return StartCoroutine(gameController.redUI.updateCurrentPlayer(status, runningState.CurrentEvent));
                         yield return StartCoroutine(gameController.allUI.updateRedPlayer(status, runningState.CurrentEvent));
+                        yield return StartCoroutine(gameController.UI.updateRedPlayer(status, runningState.CurrentEvent));
                     }
                     else
                     {
                         yield return StartCoroutine(gameController.blueUI.updateCurrentPlayer(status, runningState.CurrentEvent));
                         yield return StartCoroutine(gameController.allUI.updateBluePlayer(status, runningState.CurrentEvent));
+                        yield return StartCoroutine(gameController.UI.updateBluePlayer(status, runningState.CurrentEvent));
                     }
                     break;
 
