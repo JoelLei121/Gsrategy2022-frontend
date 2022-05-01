@@ -34,7 +34,7 @@ public class PlayerActions : MonoBehaviour
     {
         moveSpeed = 0.1f * playSpeed;
         turnSpeed = 20f * playSpeed;
-        runningMargin = 0.1f * Mathf.Pow(5, playSpeed);
+        runningMargin = 0.25f * Mathf.Pow(2, playSpeed);
         rotationTimer = 0.5f / playSpeed;
         if(animator != null) animator.SetFloat("playSpeed", playSpeed);
     }
@@ -156,7 +156,7 @@ public class PlayerActions : MonoBehaviour
             yield return null;
         }
 
-        yield return new WaitForSeconds(0.8f / playSpeed);
+        yield return new WaitForSeconds(0.8f);
         yield break;
     }
 
