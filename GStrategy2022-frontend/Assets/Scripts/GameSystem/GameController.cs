@@ -75,8 +75,8 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
-        gameHistory = ReadGameHistory();
-        //gameHistory = File.ReadAllText(gameJson);
+        //gameHistory = ReadGameHistory();
+        gameHistory = File.ReadAllText(gameJson);
         if (gameHistory == null)
         {
             Debug.Log("Empty String.");

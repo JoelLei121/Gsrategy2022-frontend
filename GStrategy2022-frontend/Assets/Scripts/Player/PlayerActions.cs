@@ -17,7 +17,7 @@ public class PlayerActions : MonoBehaviour
     private Animator animator;
 
     private int[] expReduce = { 30, 30, 5, 40, 30, 20 };
-    private int[] levelUpData = { 1, 1, 5, 50, 1, 5 };
+    private int[] levelUpData = { 1, 1, 5, 30, 1, 5 };
     private int[] levelUpBoundary = { 100, 100, 30, 100, 100, 50 };
     private float rotationTimer = 0.35f;
     private float runningMargin = 0.05f;
