@@ -9,10 +9,7 @@ public class Quit : MonoBehaviour
         //StartCoroutine(fadeOut());
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         //yield return new WaitForSeconds(2f);
-        Scene scene = SceneManager.GetActiveScene();
-        AllUI ui = GetComponent<AllUI>();
-        yield return ui.updateBluePlayer(blue,"");
-        yield return ui.updateRedPlayer(red,"");
+        //yield return new WaitForSeconds(2f);
         yield break;
     }
 }
