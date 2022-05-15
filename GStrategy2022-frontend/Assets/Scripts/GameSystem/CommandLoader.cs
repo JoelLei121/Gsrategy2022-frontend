@@ -165,7 +165,7 @@ public class CommandLoader : MonoBehaviour
 
         yield return new WaitForSeconds(10f);
         Debug.Log("Quit!");
-        StartCoroutine(quitGame.QuitGame());
+        StartCoroutine(quitGame.QuitGame(gameController.GetPlayerStatus(0), gameController.GetPlayerStatus(1)));
         yield break;
     }
 

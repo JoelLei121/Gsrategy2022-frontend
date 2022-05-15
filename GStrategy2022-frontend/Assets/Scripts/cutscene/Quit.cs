@@ -4,14 +4,15 @@ using System.Collections;
 
 public class Quit : MonoBehaviour
 {
-    public IEnumerator QuitGame()
+    public IEnumerator QuitGame(PlayerStatus red,PlayerStatus blue)
     {
         //StartCoroutine(fadeOut());
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         //yield return new WaitForSeconds(2f);
-        yield return new WaitForSeconds(10f);
-        // System.Threading.Thread.Sleep(5000);
-        Application.Quit();
+        Scene scene = SceneManager.GetActiveScene();
+        AllUI ui = GetComponent<AllUI>();
+        yield return ui.updateBluePlayer(blue,"");
+        yield return ui.updateRedPlayer(red,"");
         yield break;
     }
 }
