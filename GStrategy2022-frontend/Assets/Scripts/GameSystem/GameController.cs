@@ -66,17 +66,28 @@ public class GameController : MonoBehaviour
     public AllUI allUI,UI;
     public RecordUI record;
     public float playSpeed = 1f;
-
-    [DllImport("__Internal")]
-    private static extern String ReadGameHistory();
     private String gameHistory;
     public string gameJson = "Assets\\Resources\\Play.json";
 
 
     void Start()
     {
-        //gameHistory = ReadGameHistory();
-        gameHistory = File.ReadAllText(gameJson);
+        FileDialog dialog = new FileDialog();
+        dialog.structSize = Marshal.SizeOf(dialog);
+        dialog.filter = "json files\0*.json\0All Files\0*.*\0\0";
+        dialog.file = new string(new char[256]);
+        dialog.maxFile = dialog.file.Length;
+        dialog.fileTitle = new string(new char[64]);
+        dialog.maxFileTitle = dialog.fileTitle.Length;
+        dialog.initialDir = UnityEngine.Application.dataPath;  //默认路径
+        dialog.title = "Choose game file";
+        dialog.defExt = "json";//显示文件的类型
+        //注意一下项目不一定要全选 但是0x00000008项不要缺少
+        dialog.flags = 0x00080000 | 0x00001000 | 0x00000800 | 0x00000200 | 0x00000008;  //OFN_EXPLORER|OFN_FILEMUSTEXIST|OFN_PATHMUSTEXIST| OFN_ALLOWMULTISELECT|OFN_NOCHANGEDIR
+
+        while (!DialogShow.GetOpenFileName(dialog)) ;
+
+        gameHistory = File.ReadAllText(dialog.file);
         if (gameHistory == null)
         {
             Debug.Log("Empty String.");

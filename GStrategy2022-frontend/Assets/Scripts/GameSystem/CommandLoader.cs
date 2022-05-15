@@ -21,9 +21,6 @@ public class CommandLoader : MonoBehaviour
     public float waitTime = 1f;
     private float playSpeed = 1f;
 
-    [DllImport("__Internal")]
-    private static extern String ReadGameHistory();
-
     // private IEnumerator coroutine; 
     void Start()
     {
