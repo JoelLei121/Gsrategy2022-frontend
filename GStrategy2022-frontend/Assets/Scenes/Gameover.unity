@@ -1175,6 +1175,7 @@ MonoBehaviour:
   ui: {fileID: 1764346974}
   red: {fileID: 0}
   blue: {fileID: 0}
+  winner: {fileID: 886614599}
 --- !u!114 &1807883817 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6126245138900809822, guid: abd60772318728b45a78745b33c93345, type: 3}
