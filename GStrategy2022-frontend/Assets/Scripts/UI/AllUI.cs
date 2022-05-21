@@ -28,7 +28,7 @@ public class AllUI : MonoBehaviour
 
     public IEnumerator updateRedPlayer(PlayerStatus player, string action)
     {
-        rPlayerName.text = player.teamName;
+        rPlayerName.text = "Red";
         rPlayerAction.text = action;
         rPlayerExp.text = player.exp.ToString();
         rPlayerHp.text = player.hp.ToString();
@@ -45,7 +45,7 @@ public class AllUI : MonoBehaviour
 
     public IEnumerator updateBluePlayer(PlayerStatus player, string action)
     {
-        bPlayerName.text = player.teamName;
+        bPlayerName.text = "Blue";
         bPlayerAction.text = action;
         bPlayerExp.text = player.exp.ToString();
         bPlayerHp.text = player.hp.ToString();
