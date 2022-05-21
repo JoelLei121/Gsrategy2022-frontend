@@ -88,8 +88,8 @@ public class PlayerActions : MonoBehaviour
 
         // update position
         status.pos = new int[] { x, y, z };
-        Debug.Log("Player " + status.id + ": Move to (" + x + ", " + y + ", " + z + ")");
-        record.updateFightRecord("Player " + status.id + ": Move to (" + x + ", " + y + ", " + z + ")");
+        Debug.Log(status.teamName + ": Move to (" + x + ", " + y + ", " + z + ")");
+        record.updateFightRecord(status.teamName + ": Move to (" + x + ", " + y + ", " + z + ")");
         yield return new WaitForSeconds(0.2f);
         yield break;
     }
@@ -114,8 +114,8 @@ public class PlayerActions : MonoBehaviour
         PlayerStatus playerStatus = player.GetComponent<PlayerStatus>();
         PlayerStatus targetStatus = target.GetComponent<PlayerStatus>();
 
-        record.updateFightRecord("Player " + playerStatus.id + " attack Player " + targetStatus.id);
-        Debug.Log("Player " + playerStatus.id + " attack Player " + targetStatus.id);
+        record.updateFightRecord(playerStatus.teamName + " attack " + targetStatus.teamName);
+        Debug.Log(playerStatus.teamName + " attack " + targetStatus.teamName);
         yield return new WaitForSeconds(0.5f / playSpeed);
         Vector3 dir = target.transform.position - player.transform.position;
         // rotate y 60
@@ -179,8 +179,8 @@ public class PlayerActions : MonoBehaviour
             StartCoroutine(Died(player));
             yield break;
         }
-        record.updateFightRecord("Player " + status.id + " is damaged. HP left: " + status.hp);
-        Debug.Log("Player " + status.id + " is damaged. HP left: " + status.hp);
+        record.updateFightRecord(status.teamName + " is damaged. HP left: " + status.hp);
+        Debug.Log(status.teamName + " is damaged. HP left: " + status.hp);
         yield break;
     }
 
@@ -188,16 +188,16 @@ public class PlayerActions : MonoBehaviour
     public IEnumerator Died(GameObject player)
     {
         PlayerStatus status = player.GetComponent<PlayerStatus>();
-        record.updateFightRecord("Player " + status.id + " is killed.");
+        record.updateFightRecord(status.teamName + " is killed.");
         overlayUI.updateBloodline(status);
-        Debug.Log("Player " + status.id + " is killed.");
+        Debug.Log(status.teamName + " is killed.");
 
         animator = player.GetComponent<Animator>();
         animator.SetBool("isDamaged", true);
         animator.SetBool("isDying", true);
         yield return new WaitForSeconds(1.5f);
         StartCoroutine(DestroyPlayer(player));
-        record.updateFightRecord("Player " + (status.id == 1 ? 0 : 1) + " is the winner!");
+        record.updateFightRecord((status.id == 1 ? "Red" : "Blue") + " is the winner!");
         yield break;
     }
 
@@ -205,8 +205,8 @@ public class PlayerActions : MonoBehaviour
     public IEnumerator Gather(GameObject player, float exp)
     {
         PlayerStatus status = player.GetComponent<PlayerStatus>();
-        record.updateFightRecord("Player " + status.id + " is gathering. exp + " + exp);
-        Debug.Log("Player " + status.id + " is gathering. exp + " + exp);
+        record.updateFightRecord(status.teamName + " is gathering. exp + " + exp);
+        Debug.Log(status.teamName + " is gathering. exp + " + exp);
         status.exp += exp;
         yield return StartCoroutine(UI.updateCurrentPlayer(status, "GATHER"));
         if (status.id == 0)
@@ -260,7 +260,7 @@ public class PlayerActions : MonoBehaviour
                 break;
         }
 
-        record.updateFightRecord("Player " + status.id + " level up: " + upgradeType.ToUpper() + "!");
+        record.updateFightRecord(status.teamName + " level up: " + upgradeType.ToUpper() + "!");
         yield return StartCoroutine(UI.updateCurrentPlayer(status, "UPGRADE"));
         if (status.id == 0)
         {
@@ -276,15 +276,15 @@ public class PlayerActions : MonoBehaviour
         GameObject particle = Instantiate<GameObject>(LevelUpPrefab);
         particle.transform.position = player.transform.position;
         Destroy(particle, particleLivetime);
-        Debug.Log("Player " + status.id + " level up!");
+        Debug.Log(status.teamName + " level up!");
         yield return new WaitForSeconds(1f / playSpeed);
         yield break;
     }
     public IEnumerator DoNothing(GameObject player)
     {
         PlayerStatus status = player.GetComponent<PlayerStatus>();
-        record.updateFightRecord("Player " + status.id + " are hesitating");
-        Debug.Log("Player " + status.id + " are hesitating");
+        record.updateFightRecord(status.teamName + " are hesitating");
+        Debug.Log(status.teamName + " are hesitating");
         yield break;
     }
 

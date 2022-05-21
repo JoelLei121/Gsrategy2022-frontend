@@ -36,9 +36,10 @@ public class PlayerStatus : MonoBehaviour
 
     public void init(PlayerInitialize p)
     {
-        teamName = p.name;
+        if (p.name == "Player1") teamName = "Red";
+        else teamName = "Blue";
         pos = new int[3];
-        for(int i = 0; i < 3; i++)
+        for (int i = 0; i < 3; i++)
             pos[i] = p.Position[i];
         id = p.id;
         exp = 0;

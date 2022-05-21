@@ -22,8 +22,7 @@ public class GameUI : MonoBehaviour
     }
     public IEnumerator updateCurrentPlayer(PlayerStatus player, string action)
     {
-        if (player.teamName == "Player1") currentPlayerName.text = "Red";
-        else currentPlayerName.text = "Blue";
+        currentPlayerName.text = player.teamName;
         currentPlayerAction.text = action;
         currentPlayerExp.text = player.exp.ToString();
         currentPlayerHp.text = player.hp.ToString();
